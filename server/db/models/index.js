@@ -3,14 +3,20 @@ const Order = require('./order')
 const Product = require('./product')
 const Review = require('./review')
 const Category = require('./category')
+const OrderDetails = require('./orderDetails')
 
 User.hasMany(Order)
 Order.belongsTo(User)
-Order.hasMany(Product)
-Product.belongsToMany(Order)
-Product.belongsToMany(Category)
+
+Order.belongsToMany(Product, {through: OrderDetails})
+Product.belongsToMany(Order, {thorugh: OrderDetails})
+
+Product.belongsToMany(Category, {through: product_category})
+Category.belongsToMany(Product, {through: product_category})
+
 User.hasMany(Review)
 Review.belongsTo(User)
+
 Review.belongsTo(Product)
 Product.hasMany(Review)
 
