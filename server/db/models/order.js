@@ -1,16 +1,22 @@
 const Sequelize = require('sequelize')
 const db = require('../db')
+const Product = require('./product')
 
 const Order = db.define('order', {
-  products: Sequelize.ARRAY,
-  subtotal: Sequelize.INTEGER
+  status: {
+    type: Sequelize.ENUM('created', 'processing', 'cancelled', 'completed'),
+    defaultValue: 'approved'
+  },
+  subtotal: Sequelize.INTEGER,
+  quantity: {
+    type: Sequelize.INTEGER,
+    defaultValue: 0
+  }
+})
+
+Order.beforeCreate(async orderInstance => {
+  const product = await Product.findbyPk(orderInstance.productId)
+  orderInstance.subtotal = product.price * orderInstance.quantity
 })
 
 module.exports = Order
-
-//original markup for this model included dateCreated and timeCreated. These features should already
-//be available in the createdAt field at is provided in our db upon creation.
-
-//Additionally, I think that if products is an array of product objects, each one will have a price;
-//we can simply write an axios request to pull that subtotal in through a thunk creator. Therefore,
-//I'm not sure if we need a subtotal datatype in our Order model.
