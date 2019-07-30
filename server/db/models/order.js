@@ -5,8 +5,8 @@ const OrderDetails = require('./orderDetails')
 
 const Order = db.define('order', {
   status: {
-    type: Sequelize.ENUM('created', 'processing', 'cancelled', 'completed'),
-    defaultValue: 'created'
+    type: Sequelize.ENUM('cart', 'processing', 'cancelled', 'completed'),
+    defaultValue: 'cart'
   },
   address: Sequelize.STRING,
   subtotal: Sequelize.INTEGER
