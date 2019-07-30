@@ -5,14 +5,15 @@ const db = require('../db')
 const User = db.define('user', {
   name: {
     type: Sequelize.STRING,
-    allowNull: false
+    allowNull: false,
+    defaultValue: 'Bob Bobberson'
   },
   isAdmin: {
     type: Sequelize.BOOLEAN,
     defaultValue: false
   },
   phone: {
-    type: Sequelize.NUMBER
+    type: Sequelize.INTEGER
   },
   email: {
     type: Sequelize.STRING,
