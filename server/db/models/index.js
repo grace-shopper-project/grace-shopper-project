@@ -6,13 +6,19 @@ const Category = require('./category')
 
 User.hasMany(Order)
 Order.belongsTo(User)
+
 Order.hasMany(Product)
-Product.belongsToMany(Order)
-Product.belongsToMany(Category)
+Product.belongsTo(Order)
+
+Product.belongsToMany(Category, {through: 'product_category'})
+Category.belongsToMany(Product, {through: 'product_category'})
+
 User.hasMany(Review)
 Review.belongsTo(User)
-Review.belongsTo(Product)
+
 Product.hasMany(Review)
+Review.belongsTo(Product)
+
 
 /**
  * If we had any associations to make, this would be a great place to put them!
