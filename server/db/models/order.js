@@ -8,6 +8,7 @@ const Order = db.define('order', {
     type: Sequelize.ENUM('created', 'processing', 'cancelled', 'completed'),
     defaultValue: 'created'
   },
+  address: Sequelize.STRING,
   subtotal: Sequelize.INTEGER
 })
 
