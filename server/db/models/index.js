@@ -9,10 +9,10 @@ User.hasMany(Order)
 Order.belongsTo(User)
 
 Order.belongsToMany(Product, {through: OrderDetails})
-Product.belongsToMany(Order, {thorugh: OrderDetails})
+Product.belongsToMany(Order, {through: OrderDetails})
 
-Product.belongsToMany(Category, {through: product_category})
-Category.belongsToMany(Product, {through: product_category})
+Product.belongsToMany(Category, {through: 'product_category'})
+Category.belongsToMany(Product, {through: 'product_category'})
 
 User.hasMany(Review)
 Review.belongsTo(User)
