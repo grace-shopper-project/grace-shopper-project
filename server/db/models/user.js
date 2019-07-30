@@ -11,6 +11,10 @@ const User = db.define('user', {
     type: Sequelize.BOOLEAN,
     defaultValue: false
   },
+  isGuest: {
+    type: Sequelize.BOOLEAN,
+    defaultValue: true
+  },
   phone: {
     type: Sequelize.NUMBER
   },
