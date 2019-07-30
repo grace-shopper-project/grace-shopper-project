@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import {logout} from '../store'
+import {Modal} from 'react-bootstrap'
 
 const Navbar = ({handleClick, isLoggedIn}) => (
   <div className="navHeader">
@@ -11,13 +12,16 @@ const Navbar = ({handleClick, isLoggedIn}) => (
         textAlign: 'center',
         fontFamily: 'Corben, cursive',
         fontSize: '3.5vw',
-        color: '#586C50'
+        color: 'white',
+        fontWeight: 'underline',
+        padding: '1vw',
+        margin: '1vw'
       }}
     >
       let's get this bread!
     </h1>
-
-    <nav style={{backgroundColor: '#FBD1A7'}}>
+    {/* style={{backgroundColor: '#f2af1d'}} */}
+    <nav>
       {isLoggedIn ? (
         <div>
           {/* The navbar will show these links after you log in */}
