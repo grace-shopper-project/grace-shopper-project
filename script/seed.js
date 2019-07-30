@@ -3,6 +3,7 @@
 const db = require('../server/db')
 const {User} = require('../server/db/models')
 const Product = require('../server/db/models/product')
+const Category = require('../server/db/models/category')
 const faker = require('faker')
 
 async function seed() {
@@ -29,11 +30,11 @@ async function seed() {
   }
 
   const categories = await Promise.all([
-    {name: 'yeast bread'},
-    {name: 'flatbread'},
-    {name: 'bun'},
-    {name: 'sweet bread'},
-    {name: 'crispy bread'}
+    Category.create({name: 'yeast bread'}),
+    Category.create({name: 'flatbread'}),
+    Category.create({name: 'bun'}),
+    Category.create({name: 'sweet bread'}),
+    Category.create({name: 'crispy bread'})
   ])
 
   const products = await Promise.all(productArray)
