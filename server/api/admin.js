@@ -23,8 +23,8 @@ adminRouter.get('/users/:userId', async (req, res, next) => {
   }
 })
 
-// PUT api/admin/users/:userId/makeAdmin
-adminRouter.put('/users/:userId/makeAdmin', async (req, res, next) => {
+// PUT api/admin/users/:userId/make-admin
+adminRouter.put('/users/:userId/make-admin', async (req, res, next) => {
   try {
     const specificUser = await User.findByPk(req.params.userId)
     await specificUser.update({
@@ -42,6 +42,21 @@ adminRouter.delete('/users/:userId', async (req, res, next) => {
     const userToDelete = await User.findByPk(req.params.userId)
     await userToDelete.destroy()
     res.status(204).send('user deleted')
+  } catch (err) {
+    next(err)
+  }
+})
+
+// PUT api/admin/users/:userId/reset-password
+//note: I'm pretty sure this is NOT safe; we need to figure out how to safely get the user to reset their
+//pw during their next login.
+adminRouter.put('/users/:userId/reset-password', async (req, res, next) => {
+  try {
+    const user = await User.findByPk(req.params.userId)
+    await user.update({
+      needsPwReset: true
+    })
+    res.status(204).send('password reset added to user')
   } catch (err) {
     next(err)
   }
