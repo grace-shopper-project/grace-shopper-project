@@ -13,7 +13,6 @@ class AllProducts extends Component {
   }
 
   render() {
-    console.log('PROPS!!!', this.props)
     if (!this.props.products.length) {
       return <h1>LOADING......</h1>
     } else
