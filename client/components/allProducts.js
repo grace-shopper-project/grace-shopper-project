@@ -9,10 +9,11 @@ class AllProducts extends Component {
   }
 
   componentDidMount() {
-    this.fetchProducts()
+    this.props.fetchProducts()
   }
 
   render() {
+    console.log('PROPS!!!', this.props)
     if (!this.props.products.length) {
       return <h1>LOADING......</h1>
     } else
@@ -20,7 +21,9 @@ class AllProducts extends Component {
         <Fragment>
           {this.props.products.map(product => {
             const {imageUrl, name} = product
-            return <ProductCard imageUrl={imageUrl} name={name} />
+            return (
+              <ProductCard key={product.id} imageUrl={imageUrl} name={name} />
+            )
           })}
         </Fragment>
       )

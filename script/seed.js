@@ -22,7 +22,7 @@ async function seed() {
       name: 'Bagel',
       description:
         'Ring-shaped, usually with a dense, chewy interior; usually topped with sesame or poppy seeds baked into the surface.',
-      imageUrl: '../images/bagel.png',
+      imageUrl: '/images/bagel.png',
       price: 2.35,
       inventoryQuantity: 4
     }),
@@ -30,7 +30,8 @@ async function seed() {
       name: 'Baguette',
       description:
         'Thin elongated loaf, made of water, flour, yeast, and salt, instantly recognizable by slits cut in top surface before baking to allow gas expansion.',
-      imageUrl: '../images/baguette.png',
+      imageUrl: '/images/bagel.png',
+      // imageUrl: '../images/baguette.png',
       price: 5.0,
       inventoryQuantity: 10
     }),
@@ -54,7 +55,8 @@ async function seed() {
       name: 'Doughnut',
       description:
         'A doughnut (British English) or donut (American English) is a type of fried dough confection or dessert food. The doughnut is popular in many countries and prepared in various forms as a sweet snack.',
-      imageUrl: '../images/doughnut.png',
+      imageUrl: '/images/bagel.png',
+      // imageUrl: '../images/doughnut.png',
       price: 2.0,
       inventoryQuantity: 15
     })
@@ -64,7 +66,8 @@ async function seed() {
       Product.create({
         name: faker.random.word(),
         description: faker.lorem.paragraph(),
-        imageUrl: faker.image.food(),
+        imageUrl: '/images/bagel.png',
+        // imageUrl: faker.image.food(),
         price: faker.commerce.price(),
         inventoryQuantity: Math.floor(Math.random() * Math.floor(6))
       })
