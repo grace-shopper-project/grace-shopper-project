@@ -10,6 +10,9 @@ label {
   display: block;
 }
 
+.navHeader {
+  background-image: url('shibori.png');
+}
 nav a {
   display: inline-block;
   color: white;
