@@ -10,9 +10,27 @@ label {
   display: block;
 }
 
+.bread {
+  padding: none;
+  margin-left: 3vw;
+  background-image: url('baguette.png');
+  background-size: 75%;
+}
+
+nav {
+  background: #ebc57c;
+}
+
+nav div {
+  display: flex;
+  justify-content: center;
+  flex-flow: row-wrap;
+}
+
 nav a {
   display: inline-block;
-  color: white;
+  font-size: 1.25vw;
+  color: black;
   margin: 1vw;
 }
 
