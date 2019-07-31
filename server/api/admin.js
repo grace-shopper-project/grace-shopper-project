@@ -14,7 +14,7 @@ adminRouter.get('/users', async (req, res, next) => {
 })
 
 // GET api/admin/users/:userId
-adminRouter.get('/users/:userId', checkingIfAdmin, async (req, res, next) => {
+adminRouter.get('/users/:userId', async (req, res, next) => {
   try {
     const specificUser = await User.findByPk(req.params.userId)
     res.json(specificUser)
@@ -24,13 +24,11 @@ adminRouter.get('/users/:userId', checkingIfAdmin, async (req, res, next) => {
 })
 
 // PUT api/admin/users/:userId/makeAdmin
-adminRouter.put('/users/:userId', checkingIfAdmin, async (req, res, next) => {
+adminRouter.put('/users/:userId/makeAdmin', async (req, res, next) => {
   try {
     const specificUser = await User.findByPk(req.params.userId)
     await specificUser.update({
-      where: {
-        isAdmin: true
-      }
+      isAdmin: true
     })
     res.status(200).send('user is now admin')
   } catch (err) {
@@ -39,18 +37,14 @@ adminRouter.put('/users/:userId', checkingIfAdmin, async (req, res, next) => {
 })
 
 // DELETE api/admin/users/:userId
-adminRouter.delete(
-  '/users/:userId',
-  checkingIfAdmin,
-  async (req, res, next) => {
-    try {
-      const userToDelete = await User.findByPk(req.params.userId)
-      await userToDelete.destroy()
-      res.status(204).send('user deleted')
-    } catch (err) {
-      next(err)
-    }
+adminRouter.delete('/users/:userId', async (req, res, next) => {
+  try {
+    const userToDelete = await User.findByPk(req.params.userId)
+    await userToDelete.destroy()
+    res.status(204).send('user deleted')
+  } catch (err) {
+    next(err)
   }
-)
+})
 
 module.exports = adminRouter
