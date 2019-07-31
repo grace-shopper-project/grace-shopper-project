@@ -1,12 +1,13 @@
 const adminRouter = require('express').Router()
 const {User} = require('../db/models')
 const checkingIfAdmin = require('../utils/admin.middleware')
+//add in the checkingIfAdmin after checking the routes
 
 // GET api/admin/users
-adminRouter.get('/users', checkingIfAdmin, async (req, res, next) => {
+adminRouter.get('/users', async (req, res, next) => {
   try {
     const allUsers = await User.findAll()
-    res.send(allUsers)
+    res.json(allUsers)
   } catch (err) {
     next(err)
   }
@@ -16,7 +17,7 @@ adminRouter.get('/users', checkingIfAdmin, async (req, res, next) => {
 adminRouter.get('/users/:userId', checkingIfAdmin, async (req, res, next) => {
   try {
     const specificUser = await User.findByPk(req.params.userId)
-    res.send(specificUser)
+    res.json(specificUser)
   } catch (err) {
     next(err)
   }
