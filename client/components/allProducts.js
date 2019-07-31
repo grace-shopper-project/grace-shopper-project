@@ -9,7 +9,7 @@ class AllProducts extends Component {
   }
 
   componentDidMount() {
-    this.fetchProducts()
+    this.props.fetchProducts()
   }
 
   render() {
@@ -20,7 +20,9 @@ class AllProducts extends Component {
         <Fragment>
           {this.props.products.map(product => {
             const {imageUrl, name} = product
-            return <ProductCard imageUrl={imageUrl} name={name} />
+            return (
+              <ProductCard key={product.id} imageUrl={imageUrl} name={name} />
+            )
           })}
         </Fragment>
       )
