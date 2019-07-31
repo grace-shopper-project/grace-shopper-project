@@ -2,13 +2,35 @@ import React, {Component, Fragment} from 'react'
 import {connect} from 'react-redux'
 import {fetchProducts} from '../store/allProducts.js'
 import ProductCard from './ProductCard'
-import {Dropdown, DropdownButton} from 'react-bootstrap'
+import {Dropdown, DropdownButton, Button} from 'react-bootstrap'
 
 class AllProducts extends Component {
-  // constructor() {
-  //   super()
-  // }
+  constructor() {
+    super()
+    this.state = {
+      searchTerm: '',
+      page: 1
+    }
+    this.changeHandler = this.changeHandler.bind(this)
+    this.clickHandler = this.clickHandler.bind(this)
+  }
 
+  changeHandler(event) {
+    this.setState({
+      searchTerm: event.target.value
+    })
+  }
+
+  clickHandler(event) {
+    let current = this.state.page
+    if (event.target.name === 'next') {
+      this.setState({page: current + 1})
+      this.props.fetchProducts(this.state.page + 1)
+    } else {
+      this.setState({page: current - 1})
+      this.props.fetchProducts(this.state.page - 1)
+    }
+  }
   componentDidMount() {
     this.props.fetchProducts()
   }
@@ -72,6 +94,16 @@ class AllProducts extends Component {
             </div>
           </div>
         )}
+        {this.state.page > 1 && (
+          <Button name="prev" onClick={this.clickHandler}>
+            Prev
+          </Button>
+        )}
+        {this.state.page < Math.ceil(1000 / 50) && (
+          <Button name="next" onClick={this.clickHandler}>
+            Next
+          </Button>
+        )}
       </div>
     )
   }
@@ -85,7 +117,7 @@ const mapState = state => {
 
 const mapDispatch = dispatch => {
   return {
-    fetchProducts: () => dispatch(fetchProducts())
+    fetchProducts: page => dispatch(fetchProducts(page))
   }
 }
 

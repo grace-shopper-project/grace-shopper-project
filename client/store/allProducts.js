@@ -7,10 +7,10 @@ const getAllProducts = products => ({
   products
 })
 
-export const fetchProducts = () => {
+export const fetchProducts = (page = 1) => {
   return async dispatch => {
     try {
-      const {data} = await axios.get('/api/products')
+      const {data} = await axios.get('/api/products', {params: {page}})
       dispatch(getAllProducts(data))
     } catch (err) {
       console.error(err)
