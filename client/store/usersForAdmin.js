@@ -9,7 +9,7 @@ export const getUsers = usersForAdmin => {
   }
 }
 
-export default function(usersState = [], action) {
+export default function adminUserReducer(usersState = [], action) {
   switch (action.type) {
     case GET_USERS:
       return [...action.usersForAdmin]
