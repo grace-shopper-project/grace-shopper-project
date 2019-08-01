@@ -35,6 +35,16 @@ const Navbar = ({handleClick, isLoggedIn}) => (
               <Link to="/products">Products</Link>
             </div>
             <div>
+              <input
+                style={{
+                  justifyContent: 'left',
+                  width: '15vw',
+                  height: '1.75vw',
+                  marginTop: '0.5vw'
+                }}
+              />
+            </div>
+            <div>
               <a href="#" onClick={handleClick}>
                 Logout
               </a>
