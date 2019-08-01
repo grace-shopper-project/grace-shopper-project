@@ -1,4 +1,4 @@
-const reviewRouter = require('express').Router()
+const reviewsRouter = require('express').Router()
 const {Review, Product, User} = require('../db/models')
 
 reviewsRouter.get('/', async (req, res, next) => {

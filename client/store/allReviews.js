@@ -1,7 +1,7 @@
 const axios = require('axios')
 
-const SET_REVIEWS = 'SET_REVIEWS';
-const DELETE_REVIEWS = 'DELETE_REVIEWS';
+const SET_REVIEWS = 'SET_REVIEWS'
+const DELETE_REVIEWS = 'DELETE_REVIEWS'
 
 export const setReviews = reviews => ({
   type: SET_REVIEWS,
@@ -13,22 +13,22 @@ export const deleteReviews = reviewId => ({
   reviewId
 })
 
-
-export const fetchReview =  reviewId => async dispatch =>{
-  try{ 
-  const {data} = await axios.get(`/api/reviews/${reviewId}`)
-   dispatch(setReviews(data))
-  }catch(err) {
+export const fetchReview = reviewId => async dispatch => {
+  try {
+    const {data} = await axios.get(`/api/reviews/${reviewId}`)
+    dispatch(setReviews(data))
+  } catch (err) {
     console.log("There's an error with fetchReview")
   }
- }
+}
 
- export const deleteReviews = reviewId =>  dispatch => {
+// TODO: Looks like this has the same name as the action creator above
+export const deleteReviews1 = reviewId => dispatch => {
   try {
-    dispatch(fetchReview(reviewId));
-    dispatch(deleteReviews(reviewId));
-  }catch(err){
-  console.log("There's an error with the deleteReviews")
+    dispatch(fetchReview(reviewId))
+    dispatch(deleteReviews(reviewId))
+  } catch (err) {
+    console.log("There's an error with the deleteReviews")
   }
 }
 
@@ -55,7 +55,7 @@ const reviewsReducer = (state = [], action) => {
     case SET_REVIEWS:
       return action.reviews
     case DELETE_REVIEWS:
-        return state.filter(review => review.id !== action.reviewId)
+      return state.filter(review => review.id !== action.reviewId)
     default:
       return state
   }
