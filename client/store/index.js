@@ -7,14 +7,14 @@ import productReducer from './products'
 import singleProductReducer from './singleProduct'
 import adminUserReducer from './usersForAdmin'
 import reviewsReducer from './allReviews'
-import singleReviewReducer from './singleReview'
+import reviewReducer from './singleReviews'
 const reducer = combineReducers({
   user: userReducer,
   products: productReducer,
   singleProduct: singleProductReducer,
   usersForAdmin: adminUserReducer,
   allReviews: reviewsReducer,
-  singleReview: singleReviewReducer
+  singleReview: reviewReducer
 })
 
 const middleware = composeWithDevTools(

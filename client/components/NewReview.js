@@ -1,15 +1,10 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {
-  submitReview,
-  fetchReviews,
-  deleteReview,
-  fetchReview
-} from '../store/singleReviews'
-import NewReview from './NewReview'
+import {submitReview} from '../store/singleReviews'
 
 export class NewReview extends React.Component {
-  componentDidMount() {
+  constructor() {
+    super()
     this.state = {
       rating: '',
       title: '',
@@ -92,16 +87,13 @@ export class NewReview extends React.Component {
   }
 }
 
-mapStateToProps = state => ({
+const mapStateToProps = state => ({
   review: state.review,
   isLoggedIn: !!state.user.id
 })
 
-mapDispatchToProps = dispatch => ({
+const mapDispatchToProps = dispatch => ({
   submitReview: review => dispatch(submitReview(review))
 })
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(NewReview)
+export default connect(mapStateToProps, mapDispatchToProps)(NewReview)
