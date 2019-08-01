@@ -1,7 +1,7 @@
 const reviewRouter = require('express').Router()
 const {Review, Product, User} = require('../db/models')
 
-reviewRouter.get('/', async (req, res, next) => {
+reviewsRouter.get('/', async (req, res, next) => {
   try {
     const reviews = await Review.findAll()
     if (reviews) {
@@ -14,7 +14,7 @@ reviewRouter.get('/', async (req, res, next) => {
   }
 })
 
-reviewRouter.get('/:reviewId', async (req, res, next) => {
+reviewsRouter.get('/:reviewId', async (req, res, next) => {
   try {
     let reviewId = await Review.findByPk(req.params.reviewId, {
       include: [User, Product]
@@ -25,7 +25,7 @@ reviewRouter.get('/:reviewId', async (req, res, next) => {
   }
 })
 
-reviewRouter.post('/', async (req, res, next) => {
+reviewsRouter.post('/', async (req, res, next) => {
   try {
     let review = await Review.create(req.body, {returning: true})
     res.json(review)
@@ -34,7 +34,7 @@ reviewRouter.post('/', async (req, res, next) => {
   }
 })
 
-reviewRouter.delete('/:reviewId', async (req, res, next) => {
+reviewsRouter.delete('/:reviewId', async (req, res, next) => {
   try {
     Review.destroy({
       where: {
@@ -46,7 +46,7 @@ reviewRouter.delete('/:reviewId', async (req, res, next) => {
   }
 })
 
-reviewRouter.put('/:reviewId', async (req, res, next) => {
+reviewsRouter.put('/:reviewId', async (req, res, next) => {
   try {
     const review = await Review.findByPk(req.params.reviewId)
     if (!student) {
