@@ -86,6 +86,7 @@ class AllProducts extends Component {
                 return (
                   <ProductCard
                     key={product.id}
+                    id={product.id}
                     imageUrl={imageUrl}
                     name={name}
                   />
