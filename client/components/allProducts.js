@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import {fetchProducts} from '../store/allProducts.js'
+import {fetchProducts} from '../store/products.js'
 import ProductCard from './ProductCard'
 import {Dropdown, DropdownButton, Button} from 'react-bootstrap'
 
