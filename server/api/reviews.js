@@ -1,6 +1,16 @@
 const reviewsRouter = require('express').Router()
 const {Review, Product, User} = require('../db/models')
 
+const mustBeAdmin = (req, res, next) => {
+  if (!req.user) {
+    return next('You must be logged on to delete a review')
+  }
+  if (!req.user.isAdmin) {
+    return next('You must be an admin to delete a review')
+  }
+  next()
+}
+
 reviewsRouter.get('/', async (req, res, next) => {
   try {
     const reviews = await Review.findAll()
@@ -34,7 +44,7 @@ reviewsRouter.post('/', async (req, res, next) => {
   }
 })
 
-reviewsRouter.delete('/:reviewId', async (req, res, next) => {
+reviewsRouter.delete('/:reviewId', mustBeAdmin, async (req, res, next) => {
   try {
     Review.destroy({
       where: {
@@ -46,7 +56,7 @@ reviewsRouter.delete('/:reviewId', async (req, res, next) => {
   }
 })
 
-reviewsRouter.put('/:reviewId', async (req, res, next) => {
+reviewsRouter.put('/:reviewId', mustBeAdmin, async (req, res, next) => {
   try {
     const review = await Review.findByPk(req.params.reviewId)
     if (!student) {
