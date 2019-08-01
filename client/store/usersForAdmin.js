@@ -2,17 +2,17 @@ import axios from 'axios'
 
 const GET_USERS = 'GET_USERS'
 
-export const getUsers = users => {
+export const getUsers = usersForAdmin => {
   return {
     type: GET_USERS,
-    users
+    usersForAdmin
   }
 }
 
 export default function(usersState = [], action) {
   switch (action.type) {
     case GET_USERS:
-      return [...action.users]
+      return [...action.usersForAdmin]
     default:
       return usersState
   }
