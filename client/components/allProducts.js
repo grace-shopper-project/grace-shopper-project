@@ -95,16 +95,25 @@ class AllProducts extends Component {
             </div>
           </div>
         )}
-        {this.state.page > 1 && (
-          <Button name="prev" onClick={this.clickHandler}>
-            Prev
-          </Button>
-        )}
-        {this.state.page < Math.ceil(1000 / 50) && (
-          <Button name="next" onClick={this.clickHandler}>
-            Next
-          </Button>
-        )}
+        <div
+          style={{
+            display: 'flex',
+            flexDirection: 'row',
+            justifyContent: 'center',
+            margin: '2vw'
+          }}
+        >
+          {this.state.page > 1 && (
+            <Button name="prev" onClick={this.clickHandler}>
+              Prev
+            </Button>
+          )}
+          {this.state.page < Math.ceil(1000 / 50) && (
+            <Button name="next" onClick={this.clickHandler}>
+              Next
+            </Button>
+          )}
+        </div>
       </div>
     )
   }

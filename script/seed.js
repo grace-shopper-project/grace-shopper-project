@@ -30,7 +30,7 @@ async function seed() {
       name: 'Baguette',
       description:
         'Thin elongated loaf, made of water, flour, yeast, and salt, instantly recognizable by slits cut in top surface before baking to allow gas expansion.',
-      imageUrl: '/images/bagel.png',
+      imageUrl: '/images/baguette.png',
       // imageUrl: '../images/baguette.png',
       price: 5.0,
       inventoryQuantity: 10
@@ -55,8 +55,223 @@ async function seed() {
       name: 'Doughnut',
       description:
         'A doughnut (British English) or donut (American English) is a type of fried dough confection or dessert food. The doughnut is popular in many countries and prepared in various forms as a sweet snack.',
-      imageUrl: '/images/bagel.png',
-      // imageUrl: '../images/doughnut.png',
+      imageUrl: '/images/doughnut.png',
+      price: 2.0,
+      inventoryQuantity: 15
+    }),
+    Product.create({
+      name: 'Biscuit',
+      description:
+        'A doughnut (British English) or donut (American English) is a type of fried dough confection or dessert food. The doughnut is popular in many countries and prepared in various forms as a sweet snack.',
+      imageUrl: '/images/biscuit.png',
+      price: 2.0,
+      inventoryQuantity: 15
+    }),
+    Product.create({
+      name: 'Burger',
+      description:
+        'A doughnut (British English) or donut (American English) is a type of fried dough confection or dessert food. The doughnut is popular in many countries and prepared in various forms as a sweet snack.',
+      imageUrl: '/images/burger.png',
+      price: 2.0,
+      inventoryQuantity: 15
+    }),
+    Product.create({
+      name: 'Cheesecake',
+      description:
+        'A doughnut (British English) or donut (American English) is a type of fried dough confection or dessert food. The doughnut is popular in many countries and prepared in various forms as a sweet snack.',
+      imageUrl: '/images/cheesecake.png',
+      price: 2.0,
+      inventoryQuantity: 15
+    }),
+    Product.create({
+      name: 'Cherry Cake',
+      description:
+        'A doughnut (British English) or donut (American English) is a type of fried dough confection or dessert food. The doughnut is popular in many countries and prepared in various forms as a sweet snack.',
+      imageUrl: '/images/cherrycake.png',
+      price: 2.0,
+      inventoryQuantity: 15
+    }),
+    Product.create({
+      name: 'Cherry Pie',
+      description:
+        'A doughnut (British English) or donut (American English) is a type of fried dough confection or dessert food. The doughnut is popular in many countries and prepared in various forms as a sweet snack.',
+      imageUrl: '/images/cherrypie.png',
+      price: 2.0,
+      inventoryQuantity: 15
+    }),
+    Product.create({
+      name: 'Chocolate Cake',
+      description:
+        'A doughnut (British English) or donut (American English) is a type of fried dough confection or dessert food. The doughnut is popular in many countries and prepared in various forms as a sweet snack.',
+      imageUrl: '/images/chocolatecake.png',
+      price: 2.0,
+      inventoryQuantity: 15
+    }),
+    Product.create({
+      name: 'Chocolate Tier Cake',
+      description:
+        'A doughnut (British English) or donut (American English) is a type of fried dough confection or dessert food. The doughnut is popular in many countries and prepared in various forms as a sweet snack.',
+      imageUrl: '/images/chocolatetier.png',
+      price: 2.0,
+      inventoryQuantity: 15
+    }),
+    Product.create({
+      name: 'Croissant',
+      description:
+        'A doughnut (British English) or donut (American English) is a type of fried dough confection or dessert food. The doughnut is popular in many countries and prepared in various forms as a sweet snack.',
+      imageUrl: '/images/croissant.png',
+      price: 2.0,
+      inventoryQuantity: 15
+    }),
+    Product.create({
+      name: 'Cupcake',
+      description:
+        'A doughnut (British English) or donut (American English) is a type of fried dough confection or dessert food. The doughnut is popular in many countries and prepared in various forms as a sweet snack.',
+      imageUrl: '/images/cupcake.png',
+      price: 2.0,
+      inventoryQuantity: 15
+    }),
+    Product.create({
+      name: 'Flatbread',
+      description:
+        'A doughnut (British English) or donut (American English) is a type of fried dough confection or dessert food. The doughnut is popular in many countries and prepared in various forms as a sweet snack.',
+      imageUrl: '/images/flatbread.png',
+      price: 2.0,
+      inventoryQuantity: 15
+    }),
+    Product.create({
+      name: 'Funcake',
+      description:
+        'A doughnut (British English) or donut (American English) is a type of fried dough confection or dessert food. The doughnut is popular in many countries and prepared in various forms as a sweet snack.',
+      imageUrl: '/images/funcake.png',
+      price: 2.0,
+      inventoryQuantity: 15
+    }),
+    Product.create({
+      name: 'Gingerbread',
+      description:
+        'A doughnut (British English) or donut (American English) is a type of fried dough confection or dessert food. The doughnut is popular in many countries and prepared in various forms as a sweet snack.',
+      imageUrl: '/images/gingerbread.png',
+      price: 2.0,
+      inventoryQuantity: 15
+    }),
+    Product.create({
+      name: 'Heartcake',
+      description:
+        'A doughnut (British English) or donut (American English) is a type of fried dough confection or dessert food. The doughnut is popular in many countries and prepared in various forms as a sweet snack.',
+      imageUrl: '/images/heartcake.png',
+      price: 2.0,
+      inventoryQuantity: 15
+    }),
+    Product.create({
+      name: 'Hotdog',
+      description:
+        'A doughnut (British English) or donut (American English) is a type of fried dough confection or dessert food. The doughnut is popular in many countries and prepared in various forms as a sweet snack.',
+      imageUrl: '/images/hotdog.png',
+      price: 2.0,
+      inventoryQuantity: 15
+    }),
+    Product.create({
+      name: 'Flatbread',
+      description:
+        'A doughnut (British English) or donut (American English) is a type of fried dough confection or dessert food. The doughnut is popular in many countries and prepared in various forms as a sweet snack.',
+      imageUrl: '/images/flatbread.png',
+      price: 2.0,
+      inventoryQuantity: 15
+    }),
+    Product.create({
+      name: 'Meat Sandwich',
+      description:
+        'A doughnut (British English) or donut (American English) is a type of fried dough confection or dessert food. The doughnut is popular in many countries and prepared in various forms as a sweet snack.',
+      imageUrl: '/images/meatsandwich.png',
+      price: 2.0,
+      inventoryQuantity: 15
+    }),
+    Product.create({
+      name: 'Mooncake',
+      description:
+        'A doughnut (British English) or donut (American English) is a type of fried dough confection or dessert food. The doughnut is popular in many countries and prepared in various forms as a sweet snack.',
+      imageUrl: '/images/mooncake.png',
+      price: 2.0,
+      inventoryQuantity: 15
+    }),
+    Product.create({
+      name: 'Pancake',
+      description:
+        'A doughnut (British English) or donut (American English) is a type of fried dough confection or dessert food. The doughnut is popular in many countries and prepared in various forms as a sweet snack.',
+      imageUrl: '/images/pancake.png',
+      price: 2.0,
+      inventoryQuantity: 15
+    }),
+    Product.create({
+      name: 'Pizza',
+      description:
+        'A doughnut (British English) or donut (American English) is a type of fried dough confection or dessert food. The doughnut is popular in many countries and prepared in various forms as a sweet snack.',
+      imageUrl: '/images/pizza.png',
+      price: 2.0,
+      inventoryQuantity: 15
+    }),
+    Product.create({
+      name: 'Pretzel',
+      description:
+        'A doughnut (British English) or donut (American English) is a type of fried dough confection or dessert food. The doughnut is popular in many countries and prepared in various forms as a sweet snack.',
+      imageUrl: '/images/pretzel.png',
+      price: 2.0,
+      inventoryQuantity: 15
+    }),
+    Product.create({
+      name: 'Sandwich',
+      description:
+        'A doughnut (British English) or donut (American English) is a type of fried dough confection or dessert food. The doughnut is popular in many countries and prepared in various forms as a sweet snack.',
+      imageUrl: '/images/sandwich.png',
+      price: 2.0,
+      inventoryQuantity: 15
+    }),
+    Product.create({
+      name: 'Submarine',
+      description:
+        'A doughnut (British English) or donut (American English) is a type of fried dough confection or dessert food. The doughnut is popular in many countries and prepared in various forms as a sweet snack.',
+      imageUrl: '/images/sub.png',
+      price: 2.0,
+      inventoryQuantity: 15
+    }),
+    Product.create({
+      name: 'Shortcake',
+      description:
+        'A doughnut (British English) or donut (American English) is a type of fried dough confection or dessert food. The doughnut is popular in many countries and prepared in various forms as a sweet snack.',
+      imageUrl: '/images/shortcake.png',
+      price: 2.0,
+      inventoryQuantity: 15
+    }),
+    Product.create({
+      name: 'Tortillas',
+      description:
+        'A doughnut (British English) or donut (American English) is a type of fried dough confection or dessert food. The doughnut is popular in many countries and prepared in various forms as a sweet snack.',
+      imageUrl: '/images/tortillas.png',
+      price: 2.0,
+      inventoryQuantity: 15
+    }),
+    Product.create({
+      name: 'Tomato Sandwich',
+      description:
+        'A doughnut (British English) or donut (American English) is a type of fried dough confection or dessert food. The doughnut is popular in many countries and prepared in various forms as a sweet snack.',
+      imageUrl: '/images/tomatosandwich.png',
+      price: 2.0,
+      inventoryQuantity: 15
+    }),
+    Product.create({
+      name: 'Wholegrain Loaf',
+      description:
+        'A doughnut (British English) or donut (American English) is a type of fried dough confection or dessert food. The doughnut is popular in many countries and prepared in various forms as a sweet snack.',
+      imageUrl: '/images/wholegrain.png',
+      price: 2.0,
+      inventoryQuantity: 15
+    }),
+    Product.create({
+      name: 'Strawberry Cake',
+      description:
+        'A doughnut (British English) or donut (American English) is a type of fried dough confection or dessert food. The doughnut is popular in many countries and prepared in various forms as a sweet snack.',
+      imageUrl: '/images/strawberrycake.png',
       price: 2.0,
       inventoryQuantity: 15
     })
