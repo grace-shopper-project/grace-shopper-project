@@ -24,7 +24,7 @@ router.get('/', async (req, res, next) => {
 router.get('/:id', async (req, res, next) => {
   try {
     const id = Number(req.params.id)
-    const product = await Product.findbyPk(id)
+    const product = await Product.findOne({where: {id}})
     res.json(product)
   } catch (error) {
     next(error)

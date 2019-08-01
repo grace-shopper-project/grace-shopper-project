@@ -12,12 +12,11 @@ label {
 
 .bread {
   padding: 0;
-  margin-top: 2vh;
-  margin-bottom: 0;
-  background-image: url('breader.png');
-  background-position: 20vw;
+  background-image: url('breader4.png');
+  background-attachment: fixed;
+  background-position: -18vw -58vh;
   background-repeat: no-repeat;
-  background-size: 50%;
+  background-size: 125vw;
 }
 
 nav {
