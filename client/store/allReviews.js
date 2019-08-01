@@ -1,19 +1,19 @@
 const axios = require('axios')
 
-const SET_REVIEWS = 'SET_REVIEWS'
-const DELETE_REVIEWS = 'DELETE_REVIEWS'
+const SET_REVIEW = 'SET_REVIEW'
+const DELETE_REVIEW = 'DELETE_REVIEW'
 
 export const setReviews = reviews => ({
-  type: SET_REVIEWS,
+  type: SET_REVIEW,
   reviews
 })
 
-export const deleteReviews = reviewId => ({
-  type: DELETE_REVIEWS,
+export const deleteReview = reviewId => ({
+  type: DELETE_REVIEW,
   reviewId
 })
 
-export const fetchReview = reviewId => async dispatch => {
+export const findReview = reviewId => async dispatch => {
   try {
     const {data} = await axios.get(`/api/reviews/${reviewId}`)
     dispatch(setReviews(data))
@@ -22,10 +22,10 @@ export const fetchReview = reviewId => async dispatch => {
   }
 }
 
-export const deleteReview = reviewId => dispatch => {
+export const removeReview = reviewId => dispatch => {
   try {
-    dispatch(fetchReview(reviewId))
-    dispatch(deleteReviews(reviewId))
+    dispatch(findReview(reviewId))
+    dispatch(deleteReview(reviewId))
   } catch (err) {
     console.log("There's an error with the deleteReviews")
   }
@@ -51,9 +51,9 @@ export const fetchReviews = () => async dispatch => {
 
 const reviewsReducer = (state = [], action) => {
   switch (action.type) {
-    case SET_REVIEWS:
+    case SET_REVIEW:
       return action.reviews
-    case DELETE_REVIEWS:
+    case DELETE_REVIEW:
       return state.filter(review => review.id !== action.reviewId)
     default:
       return state
