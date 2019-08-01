@@ -468,6 +468,7 @@ async function seed() {
       productId: 15
     })
   ]
+
   for (let i = 0; i < 995; i++) {
     productArray.push(
       Product.create({
@@ -481,7 +482,7 @@ async function seed() {
     )
   }
 
-  const categories = await Promise.all([
+  await Promise.all([
     Category.create({name: 'yeast bread'}),
     Category.create({name: 'flatbread'}),
     Category.create({name: 'bun'}),
@@ -489,7 +490,7 @@ async function seed() {
     Category.create({name: 'crispy bread'})
   ])
 
-  const products = await Promise.all(productArray)
+  await Promise.all(productArray)
 
   for (let i = 1; i < 40; i++) {
     reviewArray.push(
