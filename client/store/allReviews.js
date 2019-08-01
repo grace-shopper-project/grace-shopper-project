@@ -23,7 +23,7 @@ export const fetchReview =  reviewId => async dispatch =>{
   }
  }
 
- export const deleteReviews= reviewId => async dispatch => {
+ export const deleteReviews = reviewId =>  dispatch => {
   try {
     dispatch(fetchReview(reviewId));
     dispatch(deleteReviews(reviewId));
