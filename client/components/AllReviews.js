@@ -8,7 +8,6 @@ export class AllReviews extends React.Component {
   }
   render() {
     const reviews = this.props.allReviews
-    // const isAdmin = this.props.isAdmin
 
     return (
       <div>
