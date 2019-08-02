@@ -1,19 +1,19 @@
-// const axios = require('axios')
+const axios = require('axios')
 
-// const SET_REVIEWS = 'SET_REVIEWS'
-// const DELETE_REVIEWS = 'DELETE_REVIEWS'
+const SET_REVIEWS = 'SET_REVIEWS'
+// const DELETE_REVIEW = 'DELETE_REVIEW'
 
-// export const setReviews = reviews => ({
-//   type: SET_REVIEWS,
-//   reviews
-// })
+export const setReviews = allReviews => ({
+  type: SET_REVIEWS,
+  allReviews
+})
 
-// export const deleteReviews = reviewId => ({
-//   type: DELETE_REVIEWS,
+// export const deleteReview = reviewId => ({
+//   type: DELETE_REVIEW,
 //   reviewId
 // })
 
-// export const fetchReview = reviewId => async dispatch => {
+// export const findReview = reviewId => async dispatch => {
 //   try {
 //     const {data} = await axios.get(`/api/reviews/${reviewId}`)
 //     dispatch(setReviews(data))
@@ -22,23 +22,26 @@
 //   }
 // }
 
-// export const deleteReview = reviewId => dispatch => {
+// export const removeReview = reviewId => dispatch => {
 //   try {
-//     dispatch(fetchReview(reviewId))
-//     dispatch(deleteReviews(reviewId))
+//     dispatch(findReview(reviewId))
+//     dispatch(deleteReview(reviewId))
 //   } catch (err) {
 //     console.log("There's an error with the deleteReviews")
 //   }
 // }
 
-// export const fetchReviews = () => async dispatch => {
-//   try {
-//     const {data} = await axios.get('/api/reviews')
-//     dispatch(setReviews(data))
-//   } catch (err) {
-//     console.log("There's an error with fetchReviews")
-//   }
-// }
+export const fetchReviews = () => {
+  return async dispatch => {
+    try {
+      const {data} = await axios.get('/api/reviews/')
+      console.log('THIS BE THE DATA', data)
+      dispatch(setReviews(data))
+    } catch (err) {
+      console.log("There's an error with fetchReviews")
+    }
+  }
+}
 
 // export const writeReview = review =>  {
 //   try {
@@ -49,15 +52,15 @@
 //   }
 // }
 
-// const reviewsReducer = (state = [], action) => {
-//   switch (action.type) {
-//     case SET_REVIEWS:
-//       return action.reviews
-//     case DELETE_REVIEWS:
-//       return state.filter(review => review.id !== action.reviewId)
-//     default:
-//       return state
-//   }
-// }
+const reviewsReducer = (state = [], action) => {
+  switch (action.type) {
+    case SET_REVIEWS:
+      return action.allReviews
+    // case DELETE_REVIEW:
+    //   return state.filter(review => review.id !== action.reviewId)
+    default:
+      return state
+  }
+}
 
-// export default reviewsReducer
+export default reviewsReducer

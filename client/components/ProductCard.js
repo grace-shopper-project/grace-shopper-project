@@ -3,7 +3,6 @@ import {Card, Button} from 'react-bootstrap'
 import {Link} from 'react-router-dom'
 
 const ProductCard = props => {
-  console.log(props)
   const url = `/products/${props.id}`
   return (
     <Card style={{margin: '1vw'}}>

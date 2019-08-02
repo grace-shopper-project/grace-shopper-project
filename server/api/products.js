@@ -1,16 +1,17 @@
 const router = require('express').Router()
-const {Product} = require('../db/models')
+const {Product, Review} = require('../db/models')
 
 router.get('/', async (req, res, next) => {
   let page = req.query.page
   if (!page) page = 1
-  let offset = 40 * (page - 1)
+  let offset = 28 * (page - 1)
   try {
     let allProducts
     if (page) {
       allProducts = await Product.findAll({
-        limit: 40,
-        offset: offset
+        limit: 28,
+        offset: offset,
+        order: [['id', 'ASC']]
       })
     } else {
       allProducts = await Product.count()
@@ -31,6 +32,19 @@ router.get('/:id', async (req, res, next) => {
   }
 })
 
+router.get('/:id/reviews', async (req, res, next) => {
+  try {
+    const review = await Review.findAll({
+      where: {
+        productId: req.params.id
+      },
+      include: [Product]
+    })
+    res.json(review)
+  } catch (error) {
+    next(error)
+  }
+})
 //admin route
 router.post('/', async (req, res, next) => {
   try {
