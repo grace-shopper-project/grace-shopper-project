@@ -1,6 +1,6 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {deleteReviews, fetchReviews} from '../store/allReviews'
+import {fetchReviews} from '../store/allReviews'
 import NewReview from '../components/NewReview'
 import {Link} from 'react-router-dom'
 export class AllReviews extends React.Component {

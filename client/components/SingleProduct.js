@@ -2,7 +2,7 @@ import React from 'react'
 import {connect} from 'react-redux'
 import {fetchSingleProduct} from '../store/singleProduct'
 import {Card} from 'react-bootstrap'
-
+import AllReviews from '../components/AllReviews'
 export class SingleProduct extends React.Component {
   // constructor() {
   //   super()
@@ -112,6 +112,7 @@ export class SingleProduct extends React.Component {
             </Card.Body>
           </Card>
         </div>
+        <AllReviews productId={1} />
       </div>
     )
   }
