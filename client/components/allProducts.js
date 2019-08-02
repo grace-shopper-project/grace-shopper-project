@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {fetchProducts} from '../store/products.js'
 import ProductCard from './ProductCard'
-import {Dropdown, DropdownButton, Button} from 'react-bootstrap'
+import {Button} from 'react-bootstrap'
 
 class AllProducts extends Component {
   constructor() {
@@ -36,44 +36,74 @@ class AllProducts extends Component {
   }
 
   render() {
+    const options = ['option1', 'option2', 'option3']
+    const filters = ['filter1', 'filter2', 'filter3']
     return (
       <div>
         <div
           style={{
-            width: '42vw',
             display: 'flex',
             flexDirection: 'row',
-            justifyContent: 'space-between'
+            padding: '1vw',
+            verticalAlign: 'center'
           }}
         >
-          <div>
-            <DropdownButton
-              id="dropdown-item-button"
-              title="Filter by Category:"
+          <div
+            style={{
+              margin: '1vw',
+              width: '15vw',
+              display: 'flex',
+              flexDirection: 'row'
+            }}
+          >
+            <div
+              style={{width: '15vw', marginTop: '0.25vw'}}
+              className="dropdown"
+              type="submit"
+              onClick={this.handleSubmit}
             >
-              <Dropdown.Item as="button" style={{width: '20vw'}}>
-                Action
-              </Dropdown.Item>
-              <Dropdown.Item as="button" style={{width: '20vw'}}>
-                Another action
-              </Dropdown.Item>
-              <Dropdown.Item as="button" style={{width: '20vw'}}>
-                Something else
-              </Dropdown.Item>
-            </DropdownButton>
+              <select
+                style={{width: '15vw', backgroundColor: '#82bbb5'}}
+                onChange={this.handleChange}
+              >
+                {options.map(function(num) {
+                  return <option key={options.indexOf(num)}>{num}</option>
+                })}
+              </select>
+            </div>
           </div>
           <div>
-            <DropdownButton id="dropdown-item-button" title="Sort by:">
-              <Dropdown.Item as="button" style={{width: '20vw'}}>
-                Action
-              </Dropdown.Item>
-              <Dropdown.Item as="button" style={{width: '20vw'}}>
-                Another action
-              </Dropdown.Item>
-              <Dropdown.Item as="button" style={{width: '20vw'}}>
-                Something else
-              </Dropdown.Item>
-            </DropdownButton>
+            <div
+              style={{
+                width: '15vw',
+                display: 'flex',
+                flexDirection: 'row',
+                padding: '1vw',
+                verticalAlign: 'center',
+                justifyContent: 'space-between'
+              }}
+            >
+              <div
+                style={{
+                  width: '15vw',
+                  marginTop: '0.25vw'
+                }}
+                className="dropdown"
+                type="submit"
+                onClick={this.handleSubmit}
+              >
+                <select
+                  style={{width: '20vw', backgroundColor: '#82bbb5'}}
+                  onChange={this.handleChange}
+                >
+                  {filters.map(function(filter) {
+                    return (
+                      <option key={filters.indexOf(filter)}>{filter}</option>
+                    )
+                  })}
+                </select>
+              </div>
+            </div>
           </div>
         </div>
         {!this.props.products.length ? (
