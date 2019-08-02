@@ -7,11 +7,14 @@ class SingleUserForAdmin extends React.Component {
     const userId = this.props.match.params.id
     this.props.fetchSingleUser(userId)
   }
+  render() {
+    return <div>{this.props.user.name}</div>
+  }
 }
 
 const mapStateToProps = state => {
   return {
-    singleUser: state.SingleUserForAdmin
+    user: state.singleUserForAdmin
   }
 }
 
