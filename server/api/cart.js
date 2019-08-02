@@ -1,6 +1,6 @@
 const cartRouter = require('express').Router()
 const Cart = require('../db/models/cart')
-const CartDetails = require('../db/models/CartDetails')
+const CartDetails = require('../db/models/cartDetails')
 const Product = require('../db/models/product')
 const User = require('../db/models/user')
 
