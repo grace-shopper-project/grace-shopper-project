@@ -1,6 +1,6 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {fetchReviews} from '../store/allReviews'
+import {deleteReview, fetchReviews} from '../store/allReviews'
 import NewReview from '../components/NewReview'
 import {Link} from 'react-router-dom'
 export class AllReviews extends React.Component {
@@ -57,7 +57,7 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = dispatch => ({
   fetchReviews: review => dispatch(fetchReviews(review)),
-  deleteReviews: reviewId => dispatch(deleteReviews(reviewId))
+  deleteReview: reviewId => dispatch(deleteReview(reviewId))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(AllReviews)
