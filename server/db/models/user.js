@@ -16,6 +16,10 @@ const User = db.define('user', {
     type: Sequelize.BOOLEAN,
     defaultValue: true
   },
+  needsPwReset: {
+    type: Sequelize.BOOLEAN,
+    defaultValue: false
+  },
   phone: {
     type: Sequelize.INTEGER
   },

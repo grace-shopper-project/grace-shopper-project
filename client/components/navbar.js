@@ -6,7 +6,7 @@ import {logout} from '../store'
 
 const Navbar = ({handleClick, isLoggedIn}) => (
   <div className="navHeader">
-    <div className="bread">
+    <div className="bread" style={{height: '18vh'}}>
       <h1
         style={{
           textAlign: 'center',
@@ -14,8 +14,9 @@ const Navbar = ({handleClick, isLoggedIn}) => (
           fontSize: '3.5vw',
           color: 'black',
           fontWeight: 'underline',
-          padding: '1vw',
+          // padding: '1vw',
           margin: '1vw',
+          marginTop: '0vw',
           marginBottom: '3vw'
         }}
       >
@@ -33,6 +34,17 @@ const Navbar = ({handleClick, isLoggedIn}) => (
             </div>
             <div>
               <Link to="/products">Products</Link>
+            </div>
+            <div>
+              <img src="search.png" style={{width: '3vw'}} />
+              <input
+                style={{
+                  justifyContent: 'left',
+                  width: '15vw',
+                  height: '1.75vw',
+                  marginTop: '0.5vw'
+                }}
+              />
             </div>
             <div>
               <a href="#" onClick={handleClick}>
@@ -53,12 +65,17 @@ const Navbar = ({handleClick, isLoggedIn}) => (
               <Link to="/products">Products</Link>
             </div>
             <div>
+              <img
+                src="search.png"
+                style={{margin: '0.5vw', width: '2vw', height: '2vw'}}
+              />
               <input
                 style={{
                   justifyContent: 'left',
                   width: '15vw',
                   height: '1.75vw',
-                  marginTop: '0.5vw'
+                  marginTop: '0.5vw',
+                  fontSize: '1vw'
                 }}
               />
             </div>

@@ -2,10 +2,21 @@ import {createStore, combineReducers, applyMiddleware} from 'redux'
 import {createLogger} from 'redux-logger'
 import thunkMiddleware from 'redux-thunk'
 import {composeWithDevTools} from 'redux-devtools-extension'
-import user from './user'
-import products from './allProducts'
+import userReducer from './user'
+import productReducer from './products'
+import singleProductReducer from './singleProduct'
+import adminUserReducer from './usersForAdmin'
+import reviewsReducer from './allReviews'
+import singleReviewReducer from './singleReview'
+const reducer = combineReducers({
+  user: userReducer,
+  products: productReducer,
+  singleProduct: singleProductReducer,
+  usersForAdmin: adminUserReducer,
+  allReviews: reviewsReducer,
+  singleReview: singleReviewReducer
+})
 
-const reducer = combineReducers({user, products})
 const middleware = composeWithDevTools(
   applyMiddleware(thunkMiddleware, createLogger({collapsed: true}))
 )
@@ -13,4 +24,6 @@ const store = createStore(reducer, middleware)
 
 export default store
 export * from './user'
-export * from './allProducts'
+export * from './products'
+export * from './singleProduct'
+export * from './usersForAdmin'

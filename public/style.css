@@ -11,10 +11,12 @@ label {
 }
 
 .bread {
-  padding: none;
-  margin-left: 3vw;
-  background-image: url('baguette.png');
-  background-size: 75%;
+  padding: 0;
+  background-image: url('breader4.png');
+  background-attachment: fixed;
+  background-position: -18vw -58vh;
+  background-repeat: no-repeat;
+  background-size: 125vw;
 }
 
 nav {
@@ -37,4 +39,33 @@ nav a {
 form div {
   margin: 1em;
   display: inline-block;
+}
+
+.deck {
+  padding-top: 2vw;
+  display: flex;
+  width: 100%;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.card {
+  margin: 2px solid black;
+  text-align: center;
+}
+
+.btn {
+  background-color: #82bbb5;
+  font-family: 'Josefin Sans', sans-serif;
+  width: 6vw;
+  font-size: 1vw;
+  text-align: center;
+  padding-top: 0.33vw;
+}
+
+.dropdown-toggle {
+  margin-top: 1vw;
+  width: 20vw;
+  height: 2vw;
+  font-size: 1.25vw;
 }
