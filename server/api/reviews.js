@@ -19,7 +19,7 @@ const mustBeLoggedIn = (req, res, next) => {
 reviewRouter.get('/', async (req, res, next) => {
   try {
     const reviews = await Review.findAll()
-    console.log('REV', reviews)
+    //console.log('REV', reviews)
     if (reviews) {
       res.send(reviews)
     } else {
