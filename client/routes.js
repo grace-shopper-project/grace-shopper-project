@@ -42,7 +42,7 @@ class Routes extends Component {
             <Route path="/home" component={UserHome} />
             <Route path="/products/:id" component={SingleProduct} />
             <Route path="/products" component={AllProducts} />
-            <Route path="/reviews/:id" component={NewReview} />
+            <Route path="/reviews/:reviewId" component={NewReview} />
             <Route path="/reviews" component={AllReviews} />
           </Switch>
         )}

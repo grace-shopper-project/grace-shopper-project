@@ -1,46 +1,42 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {deleteReview, fetchReviews} from '../store/allReviews'
-import NewReview from '../components/NewReview'
+import {fetchReviews} from '../store/allReviews'
 import {Link} from 'react-router-dom'
 export class AllReviews extends React.Component {
-  componentDidMount() {
-    this.props.fetchReviews()
+  async componentDidMount() {
+    await this.props.fetchReviews()
   }
   render() {
-    const reviews = this.props.reviews
-    const isAdmin = this.props.isAdmin
-    console.log(reviews)
+    const reviews = this.props.allReviews
+
     return (
       <div>
         <header>Honest Reviews</header>
         {reviews &&
           reviews.map(review => (
             <div key={review.id}>
+              <p>*{review.rating} stars*</p>
               <Link to={`/reviews/${review.id}`}>
-                <h3>
-                  {review.rating} {review.title}
-                </h3>
+                <h3>{review.title}</h3>
               </Link>
+              <small>{new Date(review.createdAt).toDateString()}</small>
               <p>
-                <small>{review.createdAt}</small>
                 <small>{review.content}</small>
-                {isAdmin ? (
-                  <button
-                    type="button"
-                    onClick={e => {
-                      e.preventDefault()
-                      this.props.deletereview(review.id)
-                    }}
-                  >
-                    X
-                  </button>
-                ) : (
-                  <div />
-                )}
+                {/* {isAdmin ? (
+                      <button
+                        type="button"
+                        onClick={e => {
+                          e.preventDefault()
+                          this.props.deleteReview(review.id)
+                        }}
+                      >
+                        X
+                      </button>
+                    ) : (
+                      <div />
+                    )} */}
               </p>
               <small />
-              <NewReview />
             </div>
           ))}
       </div>
@@ -48,16 +44,15 @@ export class AllReviews extends React.Component {
   }
 }
 const mapStateToProps = (state, ownProps) => {
-  console.log('Props', ownProps)
   return {
-    reviews: state.review,
+    allReviews: state.allReviews,
     isAdmin: state.user.isAdmin
   }
 }
 
 const mapDispatchToProps = dispatch => ({
-  fetchReviews: review => dispatch(fetchReviews(review)),
-  deleteReview: reviewId => dispatch(deleteReview(reviewId))
+  fetchReviews: () => dispatch(fetchReviews())
+  // deleteReview: reviewId => dispatch(deleteReview(reviewId))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(AllReviews)
