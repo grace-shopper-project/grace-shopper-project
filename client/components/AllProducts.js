@@ -14,13 +14,11 @@ class AllProducts extends Component {
     this.changeHandler = this.changeHandler.bind(this)
     this.clickHandler = this.clickHandler.bind(this)
   }
-
   changeHandler(event) {
     this.setState({
       searchTerm: event.target.value
     })
   }
-
   clickHandler(event) {
     let current = this.state.page
     if (event.target.name === 'next') {
@@ -34,7 +32,6 @@ class AllProducts extends Component {
   componentDidMount() {
     this.props.fetchProducts()
   }
-
   render() {
     const options = ['option1', 'option2', 'option3']
     const filters = ['filter1', 'filter2', 'filter3']

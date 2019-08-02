@@ -36,7 +36,7 @@ const Navbar = ({handleClick, isLoggedIn}) => (
               <Link to="/products">Products</Link>
             </div>
             <div>
-              <img src="../../public/search.png" style={{width: '3vw'}} />
+              <img src="/search.png" style={{width: '3vw'}} />
               <input
                 style={{
                   justifyContent: 'left',
@@ -66,7 +66,7 @@ const Navbar = ({handleClick, isLoggedIn}) => (
             </div>
             <div>
               <img
-                src="search.png"
+                src="/search.png"
                 style={{margin: '0.5vw', width: '2vw', height: '2vw'}}
               />
               <input
