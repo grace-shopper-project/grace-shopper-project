@@ -6,18 +6,24 @@ const Product = require('../server/db/models/product')
 const Review = require('../server/db/models/review')
 const Category = require('../server/db/models/category')
 const ProductCategory = require('../server/db/models/productCategory')
+const Cart = require('../server/db/models/cart')
+const OrderDetails = require('../server/db/models/orderDetails')
+const CartDetails = require('../server/db/models/cartDetails')
 const faker = require('faker')
 
 async function seed() {
   await db.sync({force: true})
   console.log('db synced!')
 
+
+
+
   const users = await Promise.all([
     User.create({email: 'cody@email.com', password: '123'}),
     User.create({email: 'murphy@email.com', password: '123'})
     // fakerUsers.map(() => {}) // Do something here
   ])
-
+  await Cart.create({total: 100, userId: 1})
   const productArray = [
     Product.create({
       name: 'Bagel',
@@ -278,6 +284,7 @@ async function seed() {
     })
   ]
 
+
   const reviewArray = [
     Review.create({
       title: 'This is so great!',
@@ -514,6 +521,10 @@ async function seed() {
     )
   }
   await Promise.all(productCategoryArray)
+  await CartDetails.create({cartId: 1, orderId: 2, productId: 3, quantity: 2})
+await CartDetails.create({cartId: 1, orderId: 2, productId: 2, quantity: 2})
+await CartDetails.create({cartId: 1, orderId: 2, productId: 4, quantity: 2})
+
 
   console.log(`seeded ${users.length} users`)
   console.log(`seeded successfully`)
