@@ -69,3 +69,39 @@ form div {
   height: 2vw;
   font-size: 1.25vw;
 }
+
+.productContainer {
+  display: flex;
+  justify-content: center;
+}
+
+.dropdown {
+  display: flex;
+  flex-direction: row;
+  width: 5vw;
+  height: 2vw;
+  justify-content: center;
+  align-items: center;
+}
+
+.dropdown select {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  font-size: 1.25vw;
+  width: 5vw;
+  height: 2.25vw;
+}
+
+.cart {
+  display: flex;
+  font-family: 'Josefin Sans', sans-serif;
+  justify-content: center;
+  border: 2px solid black;
+  border-radius: 5px;
+  font-size: 1.2vw;
+  width: 8vw;
+  height: 2.25vw;
+  padding-top: 0.25vw;
+  background-color: #f29f8f;
+}

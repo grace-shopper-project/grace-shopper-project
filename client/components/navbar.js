@@ -36,7 +36,7 @@ const Navbar = ({handleClick, isLoggedIn}) => (
               <Link to="/products">Products</Link>
             </div>
             <div>
-              <img src="search.png" style={{width: '3vw'}} />
+              <img src="../../public/search.png" style={{width: '3vw'}} />
               <input
                 style={{
                   justifyContent: 'left',
