@@ -9,20 +9,19 @@ cartRouter.get('/', async (req, res, next) => {
     if (req.user) {
       const cart = await Cart.findOne({
         where: {userId: req.user.id},
-        include: [{model: Product, User}]
+        include: [Product, User]
       })
       res.json(cart)
     } else {
-      if (req.session.cart && req.session.cart.length > 0) {
-        res.json(req.session.cart)
-      }
-      res.sendStatus(404)
+      const cart = await Cart.findOne({
+        where: {sessionId: req.sessionID},
+        include: [Product]
+      })
+      res.json(cart)
     }
   } catch (err) {
     next(err)
   }
 })
-
-
 
 module.exports = cartRouter
