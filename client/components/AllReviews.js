@@ -53,7 +53,4 @@ const mapDispatchToProps = dispatch => ({
   deleteReviews: reviewId => dispatch(deleteReviews(reviewId))
 })
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(AllReviews)
+export default connect(mapStateToProps, mapDispatchToProps)(AllReviews)

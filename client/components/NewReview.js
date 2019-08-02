@@ -101,7 +101,4 @@ mapDispatchToProps = dispatch => ({
   submitReview: review => dispatch(submitReview(review))
 })
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(NewReview)
+export default connect(mapStateToProps, mapDispatchToProps)(NewReview)
