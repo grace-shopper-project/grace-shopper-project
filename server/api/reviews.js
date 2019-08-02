@@ -15,13 +15,12 @@ const mustBeLoggedIn = (req, res, next) => {
   }
   next()
 }
-
+//
 reviewRouter.get('/', async (req, res, next) => {
   try {
-    const reviews = await Review.findAll()
-    console.log('REV', reviews)
+    const reviews = await Review.findAll({include: [Product]})
     if (reviews) {
-      res.send(reviews)
+      res.json(reviews)
     } else {
       res.sendStatus(500)
     }

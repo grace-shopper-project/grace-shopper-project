@@ -12,8 +12,14 @@ const getSingleProduct = singleProduct => {
 export function fetchSingleProduct(id) {
   return async dispatch => {
     try {
-      const {data} = await axios.get(`/api/products/${id}`)
-      dispatch(getSingleProduct(data))
+      const productPath = `/api/products/${id}`
+      const responses = await Promise.all([
+        axios.get(productPath),
+        axios.get(`${productPath}/reviews`)
+      ])
+      const [singleProduct, reviews] = responses.map(res => res.data)
+      singleProduct.reviews = reviews
+      dispatch(getSingleProduct(singleProduct))
     } catch (error) {
       console.log(error)
     }
