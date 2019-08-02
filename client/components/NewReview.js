@@ -1,6 +1,6 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {submitReview} from '../store/singleReviews'
+import {submitReview} from '../store/singleReview'
 
 export class NewReview extends React.Component {
   constructor() {
