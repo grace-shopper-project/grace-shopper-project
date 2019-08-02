@@ -4,9 +4,7 @@ const GET_CART = 'GET_CART'
 const ADD_TO_CART = 'ADD_TO_CART'
 const REMOVE_FROM_CART = 'REMOVE_FROM_CART'
 const UPDATE_QUANTITY = 'UPDATE_QUANTITY'
-//allows user to empty cart
-const CLEAR_CART = 'CLEAR_CART'
-
+const CLEAR_CART = 'CLEAR_CART' //allows user to empty cart
 
 const getCart = cart => {
   return {
@@ -15,22 +13,23 @@ const getCart = cart => {
   }
 }
 
-const addToCart = (product, quantity) => {
-  return {
-    type: ADD_TO_CART,
-    product,
-    quantity
-  }
-}
+// const addToCart = (userId, product, quantity) => {
+//   return {
+//     type: ADD_TO_CART,
+//     userId,
+//     product,
+//     quantity
+//   }
+// }
 
-const removeFromCart = product => {
-  return {
-    type: REMOVE_FROM_CART,
-    product
-  }
-}
+// const removeFromCart = product => {
+//   return {
+//     type: REMOVE_FROM_CART,
+//     product
+//   }
+// }
 
-const updateQuantity = (product, quantity) => {
+const updateCart = (product, quantity) => {
   return {
     type: UPDATE_QUANTITY,
     product,
@@ -41,7 +40,6 @@ const updateQuantity = (product, quantity) => {
 const clearCart = () => ({
   type: CLEAR_CART
 })
-
 
 export function fetchCart() {
   return async dispatch => {
@@ -54,20 +52,41 @@ export function fetchCart() {
   }
 }
 
-//need to continue with addToCartThunk and create thunks for deleteCart
+// //unfinished
+// export function addToCartThunk({user, product, quantity}) {
+//   return async dispatch => {
+//     try {
+//       const {data} = await axios.put(`/api/cart`, {user, product, quantity}) //need product and quant info
+//       dispatch(addToCart(data))
+//     } catch (error) {
+//       console.log(error)
+//     }
+//   }
+// }
 
-export function addToCartThunk() {
+// //unfinished
+// export function removefromCartThunk() {
+//   return async dispatch => {
+//     try {
+//       const {data} = await axios.put(`/api/cart`) // need productinfo
+//       dispatch(removeFromCart(data))
+//     } catch (error) {
+//       console.log(error)
+//     }
+//   }
+// }
+
+//unfinished
+export function updateCartThunk() {
   return async dispatch => {
     try {
-      const {data} = await axios.put(`/api/cart`)
-      dispatch(addToCart(data))
+      const {data} = await axios.put(`/api/cart`) //need product and quant info
+      dispatch(updateCart(data))
     } catch (error) {
       console.log(error)
     }
   }
 }
-
-
 
 export default function cartReducer(state = [], action) {
   switch (action.type) {
@@ -81,8 +100,8 @@ export default function cartReducer(state = [], action) {
       })
       return filteredState
     case UPDATE_QUANTITY:
-      const newState = state.map(object =>{
-        if(object.product === action.product){
+      const newState = state.map(object => {
+        if (object.product === action.product) {
           object.quantity = action.quantity
         }
         return object

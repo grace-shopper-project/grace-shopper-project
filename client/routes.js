@@ -11,7 +11,8 @@ import {
   GuestHome,
   SingleProduct,
   AllReviews,
-  NewReview
+  NewReview,
+  Cart
 } from './components'
 import {me} from './store'
 
@@ -33,8 +34,10 @@ class Routes extends Component {
         <Route path="/signup" component={Signup} />
         <Route path="/products/:id" component={SingleProduct} />
         <Route path="/products" component={AllProducts} />
-        <Route path="/admin" component={Admin} />
+        <Route path="/reviews/:reviewId" component={NewReview} />
         <Route path="/reviews" component={AllReviews} />
+        <Route path="/cart" component={Cart} />
+        <Route path="/admin" component={Admin} />
         <Route component={GuestHome} />
         {isLoggedIn && (
           <Switch>
@@ -44,9 +47,10 @@ class Routes extends Component {
             <Route path="/products" component={AllProducts} />
             <Route path="/reviews/:reviewId" component={NewReview} />
             <Route path="/reviews" component={AllReviews} />
+            <Route path="/cart" component={Cart} />
+            <Route component={UserHome} />
           </Switch>
         )}
-        {/* Displays our Login component as a fallback */}
         {/* <Route component={Login} /> */}
       </Switch>
     )
