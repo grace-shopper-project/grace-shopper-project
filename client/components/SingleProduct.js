@@ -18,8 +18,12 @@ export class SingleProduct extends React.Component {
 
   render() {
     const {singleProduct} = this.props
-    const inventory = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-    console.log('PROPS', this.props)
+    const {inventoryQuantity} = this.props.singleProduct
+    let quantity = []
+    for (let i = 0; i < inventoryQuantity; i++) {
+      quantity.push(Number(i + 1))
+    }
+    console.log('QUANTITY', inventoryQuantity)
     return (
       <div>
         {/* <h1 style={{textAlign: 'center', margin: '1vw'}}>Single Product</h1> */}
@@ -95,7 +99,7 @@ export class SingleProduct extends React.Component {
                         onClick={this.handleSubmit}
                       >
                         <select onChange={this.handleChange}>
-                          {inventory.map(function(num) {
+                          {quantity.map(function(num) {
                             return <option key={num}>{num}</option>
                           })}
                         </select>
