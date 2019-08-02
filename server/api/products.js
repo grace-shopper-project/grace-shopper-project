@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const {Product} = require('../db/models')
+const {Product, Review} = require('../db/models')
 
 router.get('/', async (req, res, next) => {
   let page = req.query.page
@@ -32,6 +32,19 @@ router.get('/:id', async (req, res, next) => {
   }
 })
 
+router.get('/:id/reviews', async (req, res, next) => {
+  try {
+    const review = await Review.findAll({
+      where: {
+        productId: req.params.id
+      },
+      include: [Product]
+    })
+    res.json(review)
+  } catch (error) {
+    next(error)
+  }
+})
 //admin route
 router.post('/', async (req, res, next) => {
   try {

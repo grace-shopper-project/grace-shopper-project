@@ -28,9 +28,9 @@ export class NewReview extends React.Component {
       [event.target.name]: event.target.value
     })
   }
-  componentDidMount() {
-    return this.props.data()
-  }
+  // componentDidMount() {
+  //   return this.props.data()
+  // }
   render() {
     return (
       <form id="new-review-form" onSubmit={this.handleSubmit}>
