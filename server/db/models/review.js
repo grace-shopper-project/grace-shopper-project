@@ -6,8 +6,7 @@ const Review = db.define('review', {
     type: Sequelize.TEXT,
     allowNull: false,
     validate: {
-      notEmpty: true,
-      len: [1, 12]
+      notEmpty: true
     }
   },
   content: {

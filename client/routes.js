@@ -9,7 +9,9 @@ import {
   AllProducts,
   Admin,
   GuestHome,
-  SingleProduct
+  SingleProduct,
+  AllReviews,
+  NewReview
 } from './components'
 import {me} from './store'
 
@@ -32,6 +34,7 @@ class Routes extends Component {
         <Route path="/products/:id" component={SingleProduct} />
         <Route path="/products" component={AllProducts} />
         <Route path="/admin" component={Admin} />
+        <Route path="/reviews" component={AllReviews} />
         <Route component={GuestHome} />
         {isLoggedIn && (
           <Switch>
@@ -39,6 +42,8 @@ class Routes extends Component {
             <Route path="/home" component={UserHome} />
             <Route path="/products/:id" component={SingleProduct} />
             <Route path="/products" component={AllProducts} />
+            <Route path="/reviews/:id" component={NewReview} />
+            <Route path="/reviews" component={AllReviews} />
           </Switch>
         )}
         {/* Displays our Login component as a fallback */}
