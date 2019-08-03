@@ -3,19 +3,35 @@ import {connect} from 'react-redux'
 import {fetchSingleProduct} from '../store/singleProduct'
 import {Card} from 'react-bootstrap'
 import {withRouter, Link} from 'react-router-dom'
+import {updateCartThunk} from '../store/cart'
 import history from '../history'
 
 export class SingleProduct extends React.Component {
-  // constructor() {
-  //   super()
-  //   this.state = {
-  //     id,
-  //     quantity
-  //   }
-  // }
+  constructor() {
+    super()
+    this.state = {
+      quantity: ''
+    }
+    this.handleChange = this.handleChange.bind(this)
+    this.handleSubmit = this.handleSubmit.bind(this)
+  }
   componentDidMount() {
     const id = Number(this.props.match.params.id)
     this.props.fetchSingleProduct(id)
+  }
+
+  handleChange(evt){
+    this.setState({
+      [evt.target.name]: evt.target.value
+    })
+  }
+
+  handleSubmit(evt){
+    evt.preventDefault()
+    this.props.addToCart({
+      productId: this.props.match.params.id,
+      quantity: evt.target.value
+    })
   }
 
   render() {
@@ -26,7 +42,7 @@ export class SingleProduct extends React.Component {
     for (let i = 0; i < inventoryQuantity; i++) {
       quantity.push(Number(i + 1))
     }
-    console.log('QUANTITY', inventoryQuantity)
+    console.log('state:', this.state)
     return (
       <div>
         {/* <h1 style={{textAlign: 'center', margin: '1vw'}}>Single Product</h1> */}
@@ -99,17 +115,16 @@ export class SingleProduct extends React.Component {
                         style={{marginTop: '0.25vw'}}
                         className="dropdown"
                         type="submit"
-                        onClick={this.handleSubmit}
                       >
-                        <select onChange={this.handleChange}>
+                        <select name="quantity" onChange={this.handleChange}>
                           {quantity.map(function(num) {
-                            return <option key={num}>{num}</option>
+                            return <option  value={num} key={num}>{num}</option>
                           })}
                         </select>
                       </div>
                     </div>
                     <div style={{justifyContent: 'space-around'}}>
-                      <button className="cart" type="button">
+                      <button className="cart" type="button" onClick={this.handleSubmit}>
                         Add to cart!
                       </button>
                     </div>
@@ -166,7 +181,8 @@ const mapState = state => ({
 
 const mapDispatch = dispatch => {
   return {
-    fetchSingleProduct: id => dispatch(fetchSingleProduct(id))
+    fetchSingleProduct: id => dispatch(fetchSingleProduct(id)),
+    addToCart: cart => dispatch(updateCartThunk(cart))
   }
 }
 

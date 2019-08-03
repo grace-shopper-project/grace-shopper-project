@@ -29,8 +29,6 @@ cartRouter.get('/', async (req, res, next) => {
 cartRouter.put('/', async (req, res, next) => {
   try {
     let cart
-    console.log('req.body:', req.body)
-    console.log('req.user:', req.user)
     req.body = req.body[0]
 
     if (req.body.userId) {
@@ -53,7 +51,6 @@ cartRouter.put('/', async (req, res, next) => {
 
     const inventory = product.inventoryQuantity
 
-    console.log('cart:', cart)
     const cartDetails = await CartDetails.findOne({
       where: {
         cartId: cart.id,
@@ -118,43 +115,3 @@ cartRouter.delete('/:cartId', async (req, res, next) => {
 })
 
 module.exports = cartRouter
-
-//came from get '/' route
-// if (req.user) {
-//   const cart = await Cart.findOne({
-//     where: {userId: req.user.id},
-//     include: [Product, User]
-//   })
-//   if(!cart){
-//     cart = [];
-//     res.json(cart)
-//   }
-//   res.json(cart)
-// } else {
-//   const cart = await Cart.findOne({
-//     where: {sessionId: req.sessionID},
-//     include: [Product]
-//   })
-//   if(!cart){
-//     cart = [];
-//     res.json(cart)
-//   }
-//   res.json(cart)
-// }
-
-// came from put '/' route
-// if (req.body.event === 'add_to_cart') {
-//   const cartDetails = await CartDetails.create({
-//     where: {
-//       cartId: cart.id
-//     }
-//   })
-//   const updatedCartDetails = await cartDetails.update({
-//     productId: req.body.productId,
-//     quantity: req.body.quantity
-//   })
-// }
-
-// const updatedCartDetails = await cartDetails.update({
-//   quantity: req.body.quantity
-// })
