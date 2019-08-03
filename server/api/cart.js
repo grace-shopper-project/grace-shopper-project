@@ -29,10 +29,15 @@ cartRouter.get('/', async (req, res, next) => {
 cartRouter.put('/', async (req, res, next) => {
   try {
     let cart
-    if (req.user) {
+    console.log('req.body:', req.body)
+    console.log('req.user:', req.user)
+    req.body = req.body[0]
+
+    if (req.body.userId) {
+      //changed for postman
       cart = await Cart.findOne({
         where: {
-          userId: req.body.user.id
+          userId: req.body.userId //changed for postman
         }
       })
     } else {
@@ -42,7 +47,13 @@ cartRouter.put('/', async (req, res, next) => {
         }
       })
     }
+    const product = await Product.findOne({
+      where: {id: req.body.productId}
+    })
 
+    const inventory = product.inventoryQuantity
+
+    console.log('cart:', cart)
     const cartDetails = await CartDetails.findOne({
       where: {
         cartId: cart.id,
@@ -52,15 +63,25 @@ cartRouter.put('/', async (req, res, next) => {
     //if we want to update a product quantity or add a product
     if (cartDetails) {
       if (req.body.add) {
-        await cartDetails.update({
-          quantity: (cartDetails.quantity += req.body.quantity)
-        })
+        if (req.body.quantity + cartDetails.quantity <= inventory) {
+          await cartDetails.update({
+            quantity: (cartDetails.quantity += req.body.quantity)
+          })
+        }
       } else {
+        // eslint-disable-next-line no-lonely-if
+        if (req.body.quantity <= inventory) {
+          await cartDetails.update({
+            quantity: req.body.quantity
+          })
+        }
+      }
+    } else {
+      if (req.body.quantity <= inventory) {
         await cartDetails.update({
           quantity: req.body.quantity
         })
       }
-    } else {
       await cartDetails.create({
         quantity: req.body.quantity,
         cartId: cart.id,
@@ -81,6 +102,7 @@ cartRouter.put('/', async (req, res, next) => {
 
 cartRouter.delete('/:cartId', async (req, res, next) => {
   try {
+    req.body = req.body[0] //in for postman
     const cartDetails = await CartDetails.findOne({
       where: {
         cartId: req.params.cartId,
