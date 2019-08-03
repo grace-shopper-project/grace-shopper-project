@@ -20,7 +20,7 @@ export default class GuestHome extends React.Component {
         </h2>
         <br />
         <br />
-        <img src="tasty.jpg" />
+        <img src="/tasty.jpg" />
       </div>
     )
   }

@@ -3,8 +3,6 @@ import Card from 'react-bootstrap/Card'
 import Button from 'react-bootstrap/Button'
 import CardDeck from 'react-bootstrap/CardDeck'
 import {Link} from 'react-router-dom'
-import {fetchSingleUserForAdmin} from '../store/usersForAdmin'
-import {connect} from 'react-redux'
 
 const UserManagement = props => {
   return (
@@ -21,12 +19,7 @@ const UserManagement = props => {
                   {user.isAdmin ? <>Is Admin: Yes</> : <>Is Admin: No</>}
                 </Card.Text>
                 <Link to={`/admin/users/${user.id}`}>
-                  <Button
-                    variant="primary"
-                    onClick={() => props.fetchSingleUser(user.id)}
-                  >
-                    See this User
-                  </Button>
+                  <Button variant="primary">See this User</Button>
                 </Link>
               </Card.Body>
             </Card>
@@ -37,12 +30,4 @@ const UserManagement = props => {
   )
 }
 
-const mapDispatchToProps = dispatch => {
-  return {
-    fetchSingleUser: userId => {
-      return dispatch(fetchSingleUserForAdmin(userId))
-    }
-  }
-}
-
-export default connect(null, mapDispatchToProps)(UserManagement)
+export default UserManagement
