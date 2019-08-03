@@ -30,7 +30,8 @@ export class SingleProduct extends React.Component {
     evt.preventDefault()
     this.props.addToCart({
       productId: this.props.match.params.id,
-      quantity: evt.target.value
+      quantity: evt.target.value,
+      add: true
     })
   }
 
