@@ -18,11 +18,15 @@ class SingleUserForAdmin extends React.Component {
         <p>Name:</p>
         <div>{this.props.user.name}</div>
         <p>Email: {this.props.user.email}</p>
-        <Button
-          onClick={() => this.props.fetchPasswordUpdateRQ(this.props.user.id)}
-        >
-          Schedule Password Reset
-        </Button>
+        {this.props.user.newPwReset ? (
+          <p>Password Updated Scheduled</p>
+        ) : (
+          <Button
+            onClick={() => this.props.fetchPasswordUpdateRQ(this.props.user.id)}
+          >
+            Schedule Password Update
+          </Button>
+        )}
         <p>
           {this.props.user.isAdmin ? (
             <>Currently has administrative rights</>

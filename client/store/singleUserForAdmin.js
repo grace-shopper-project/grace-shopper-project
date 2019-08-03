@@ -54,7 +54,7 @@ export const fetchUpdatedSingleUserForAdmin = userId => {
 
 export const fetchUpdatedSingleUserPassword = userId => {
   return async dispatch => {
-    const {data} = await axios.put(`api/admin/users/${userId}/reset-password`)
+    const {data} = await axios.put(`/api/admin/users/${userId}/reset-password`)
     console.log('call from inside the thunk creator: ', data)
     dispatch(updateSingleUserPassword(data))
   }
