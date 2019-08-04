@@ -18,7 +18,7 @@ class SingleUserForAdmin extends React.Component {
         <p>Name:</p>
         <div>{this.props.user.name}</div>
         <p>Email: {this.props.user.email}</p>
-        {this.props.user.newPwReset ? (
+        {this.props.user.needsPwReset ? (
           <p>Password Updated Scheduled</p>
         ) : (
           <Button
