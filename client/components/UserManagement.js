@@ -9,7 +9,7 @@ class UserManagement extends React.Component {
   render() {
     return (
       <div style={{border: 'solid black 0.1vw'}}>
-        <h1 style={{padding: '2vw', marginTop: '1vh'}}>All Users</h1>
+        <h2 style={{padding: '2vw', marginTop: '1vh'}}>All Users</h2>
         <div className="deck">
           {this.props.usersForAdmin.map(user => {
             return (

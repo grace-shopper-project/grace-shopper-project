@@ -21,10 +21,10 @@ export class SingleProductManagement extends React.Component {
   }
 
   render() {
-    // const {singleProduct} = this.props
+    const {singleProduct} = this.props
     // const {inventoryQuantity} = this.props.singleProduct
-    // const reviews = singleProduct.reviews
-    // let quantity = []
+    const reviews = singleProduct.reviews
+    let quantity = []
     // for (let i = 0; i < inventoryQuantity; i++) {
     //   quantity.push(Number(i + 1))
     // }
@@ -64,7 +64,10 @@ export class SingleProductManagement extends React.Component {
                   className="singleProductInfo"
                   style={{width: '27vw', margin: '2vw'}}
                 >
-                  <Card.Title style={{fontSize: '2vw', margin: '2vw'}}>
+                  <Form>
+                  <Form.Group controlId="formName" style={{fontSize: '2vw', margin: '2vw'}}>
+                    <Form.Lable>Product Name</Form.Lable>
+                    <Form.Control type="text" placeholder={this.state.name} value={this.state.name}/>
                     {singleProduct.name}
                   </Card.Title>
                   <Card.Text style={{fontSize: '1.25vw'}}>
@@ -110,6 +113,7 @@ export class SingleProductManagement extends React.Component {
                         </select>
                       </div>
                     </div>
+                  </Form>
                     <div style={{justifyContent: 'space-around'}}>
                       <button className="cart" type="button">
                         Add to cart!

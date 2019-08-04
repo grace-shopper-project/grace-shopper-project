@@ -13,12 +13,19 @@ class Admin extends React.Component {
   render() {
     return (
       <>
-        <Alert variant="secondary">
-          <Alert.Heading>Welcome to the Administrative Dashboard</Alert.Heading>
-          <p>You manage users, products and orders from this dashboard.</p>
-        </Alert>
-        <UserManagement usersForAdmin={this.props.usersForAdmin} />
-        <ProductManagement />
+        <div style={{alignContent: 'center'}}>
+          <h1>Welcome to the Administrative Dashboard</h1>
+          <h2>You manage users, products and orders from this dashboard.</h2>
+        </div>
+        <div>
+          <UserManagement usersForAdmin={this.props.usersForAdmin} />
+        </div>
+        <div>
+          <div>
+            <ProductManagement />
+          </div>
+          <div>Order Management</div>
+        </div>
       </>
     )
   }
