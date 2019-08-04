@@ -474,7 +474,7 @@ async function seed() {
 
   for (let i = 0; i < 995; i++) {
     productArray.push(
-      await Product.create({
+      Product.create({
         name: faker.random.word(),
         description: faker.lorem.paragraph(),
         imageUrl: '/images/bagel.png',
@@ -497,7 +497,7 @@ async function seed() {
 
   for (let i = 1; i < 40; i++) {
     reviewArray.push(
-      await Review.create({
+      Review.create({
         title: faker.random.word(),
         content: faker.lorem.paragraph(),
         rating: Math.ceil(Math.random() * Math.floor(5)),
