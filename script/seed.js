@@ -15,12 +15,12 @@ async function seed() {
   await db.sync({force: true})
   console.log('db synced!')
 
-
-
-
   const users = await Promise.all([
     User.create({email: 'cody@email.com', password: '123'}),
-    User.create({email: 'murphy@email.com', password: '123'})
+    User.create({email: 'murphy@email.com', password: '123'}),
+    User.create({email: 'john@email.com', password: '123'}),
+    User.create({email: 'luke@email.com', password: '123'}),
+    User.create({email: 'mark@email.com', password: '123'})
     // fakerUsers.map(() => {}) // Do something here
   ])
   await Cart.create({total: 100, userId: 1})
@@ -284,195 +284,222 @@ async function seed() {
     })
   ]
 
-
   const reviewArray = [
     Review.create({
       title: 'This is so great!',
       content:
         'This was the greatest! I had such a good and fantastic time eating this!',
       rating: 5,
-      productId: 1
+      productId: 1,
+      userId: 1
     }),
     Review.create({
       title: 'This is horrible!',
       content:
         'Horrible! It arrived stale and nasty EDIT: after my review the owners contacted me and gave me fresh bread for FREE! I recommend this place 10/10',
       rating: 4,
-      productId: 2
+      productId: 2,
+      userId: 2
     }),
     Review.create({
       title: 'Yummy!',
       content: 'Very yummy food, love going to this place',
       rating: 5,
-      productId: 1
+      productId: 1,
+      userId: 1
     }),
     Review.create({
       title: 'Shipping could be better!',
       content:
         'The shipping was kind of slower than I expected, must be because the the place sells like hotcakes',
       rating: 4,
-      productId: 2
+      productId: 2,
+      userId: 1
     }),
     Review.create({
       title: 'BREEEEAAAAADDD!',
       content:
         'So many types of bread to choose from, this site is like bread heaven!! I LOOOVE BREEAAD!!',
       rating: 5,
-      productId: 1
+      productId: 1,
+      userId: 1
     }),
     Review.create({
       title: 'This is so great!',
       content:
         'This was the greatest! I had such a good and fantastic time eating this!',
       rating: 5,
-      productId: 1
+      productId: 1,
+      userId: 1
     }),
     Review.create({
       title: 'How is this so good?',
       content:
         'If you do anything in this world! Please order this it changed my life! My family and I can’t live without it I often dream about it!',
       rating: 5,
-      productId: 2
+      productId: 2,
+      userId: 3
     }),
     Review.create({
       title: 'I love bread...',
       content: 'YAAAAAAYYYY! BREAD!',
       rating: 4,
-      productId: 2
+      productId: 2,
+      userId: 4
     }),
     Review.create({
       title: "Where's the discount?",
       content:
         'Soft and fresh just how I like them, wish they could give discounts though!',
       rating: 3,
-      productId: 3
+      productId: 3,
+      userId: 4
     }),
     Review.create({
       title: 'Excellent customer service',
       content: 'Great customer service they always respond so quickly',
       rating: 5,
-      productId: 4
+      productId: 4,
+      userId: 5
     }),
     Review.create({
       title: 'They put rainbows in their products',
       content:
         'I usually don’t like bread, but this bread is magical! I cannot believe bread like this can exist',
       rating: 5,
-      productId: 4
+      productId: 4,
+      userId: 5
     }),
     Review.create({
       title: 'They put rainbows in their products',
       content:
         'I usually don’t like bread, but this bread is magical! I cannot believe bread like this can exist',
       rating: 5,
-      productId: 4
+      productId: 4,
+      userId: 4
     }),
     Review.create({
       title: 'More gluten-free PLEEEAAASSSE!',
       content:
         'I would just like it if they had more gluten-free breads for my niece down in Mississippi. She’s like Oprah just can’t get enough of it but then something happened where she landed in a dirty lake and now she can’t eat anything with gluten in it. It’s so tragic!',
       rating: 3,
-      productId: 5
+      productId: 5,
+      userId: 3
     }),
     Review.create({
       title: 'The sweetest!',
       content: 'So sweet and delectable, thanks “let get this bread””',
       rating: 5,
-      productId: 5
+      productId: 5,
+      userId: 1
     }),
     Review.create({
       title: 'This is so great!',
       content:
         'This was the greatest! I had such a good and fantastic time eating this!',
       rating: 5,
-      productId: 1
+      productId: 1,
+      userId: 2
     }),
     Review.create({
       title: 'This is horrible!',
       content:
         'Horrible! It arrived stale and nasty EDIT: after my review the owners contacted me and gave me fresh bread for FREE! I recommend this place 10/10',
       rating: 4,
-      productId: 2
+      productId: 2,
+      userId: 3
     }),
     Review.create({
       title: 'Yummy!',
       content: 'Very yummy food, love going to this place',
       rating: 5,
-      productId: 1
+      productId: 1,
+      userId: 3
     }),
     Review.create({
       title: 'Shipping could be better!',
       content:
         'The shipping was kind of slower than I expected, must be because the the place sells like hotcakes',
       rating: 4,
-      productId: 5
+      productId: 5,
+      userId: 4
     }),
     Review.create({
       title: 'BREEEEAAAAADDD!',
       content:
         'So many types of bread to choose from, this site is like bread heaven!! I LOOOVE BREEAAD!!',
       rating: 5,
-      productId: 6
+      productId: 6,
+      userId: 5
     }),
     Review.create({
       title: 'This is so great!',
       content:
         'This was the greatest! I had such a good and fantastic time eating this!',
       rating: 5,
-      productId: 7
+      productId: 7,
+      userId: 5
     }),
     Review.create({
       title: 'How is this so good?',
       content:
         'If you do anything in this world! Please order this it changed my life! My family and I can’t live without it I often dream about it!',
       rating: 5,
-      productId: 8
+      productId: 8,
+      userId: 5
     }),
     Review.create({
       title: 'I love bread...',
       content: 'YAAAAAAYYYY! BREAD!',
       rating: 4,
-      productId: 9
+      productId: 9,
+      userId: 1
     }),
     Review.create({
       title: "Where's the discount?",
       content:
         'Soft and fresh just how I like them, wish they could give discounts though!',
       rating: 3,
-      productId: 10
+      productId: 10,
+      userId: 2
     }),
     Review.create({
       title: 'Excellent customer service',
       content: 'Great customer service they always respond so quickly',
       rating: 5,
-      productId: 11
+      productId: 11,
+      userId: 3
     }),
     Review.create({
       title: 'They put rainbows in their products',
       content:
         'I usually don’t like bread, but this bread is magical! I cannot believe bread like this can exist',
       rating: 5,
-      productId: 12
+      productId: 12,
+      userId: 4
     }),
     Review.create({
       title: 'They put rainbows in their products',
       content:
         'I usually don’t like bread, but this bread is magical! I cannot believe bread like this can exist',
       rating: 5,
-      productId: 13
+      productId: 13,
+      userId: 5
     }),
     Review.create({
       title: 'More gluten-free PLEEEAAASSSE!',
       content:
         'I would just like it if they had more gluten-free breads for my niece down in Mississippi. She’s like Oprah just can’t get enough of it but then something happened where she landed in a dirty lake and now she can’t eat anything with gluten in it. It’s so tragic!',
       rating: 3,
-      productId: 14
+      productId: 14,
+      userId: 5
     }),
     Review.create({
       title: 'The sweetest!',
       content: 'So sweet and delectable, thanks “let get this bread””',
       rating: 5,
-      productId: 15
+      productId: 15,
+      userId: 1
     })
   ]
 
@@ -505,7 +532,8 @@ async function seed() {
         title: faker.random.word(),
         content: faker.lorem.paragraph(),
         rating: Math.ceil(Math.random() * Math.floor(5)),
-        productId: i
+        productId: i,
+        userId: i
       })
     )
   }
@@ -522,9 +550,8 @@ async function seed() {
   }
   await Promise.all(productCategoryArray)
   await CartDetails.create({cartId: 1, orderId: 2, productId: 3, quantity: 2})
-await CartDetails.create({cartId: 1, orderId: 2, productId: 2, quantity: 2})
-await CartDetails.create({cartId: 1, orderId: 2, productId: 4, quantity: 2})
-
+  await CartDetails.create({cartId: 1, orderId: 2, productId: 2, quantity: 2})
+  await CartDetails.create({cartId: 1, orderId: 2, productId: 4, quantity: 2})
 
   console.log(`seeded ${users.length} users`)
   console.log(`seeded successfully`)

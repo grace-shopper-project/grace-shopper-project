@@ -45,6 +45,15 @@ router.get('/:id/reviews', async (req, res, next) => {
     next(error)
   }
 })
+
+router.post('/:id/reviews', async (req, res, next) => {
+  try {
+    const review = await Review.create(req.body)
+    res.json(review)
+  } catch (error) {
+    next(error)
+  }
+})
 //admin route
 router.post('/', async (req, res, next) => {
   try {

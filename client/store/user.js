@@ -1,12 +1,13 @@
 import axios from 'axios'
 import history from '../history'
+import {Next} from 'react-bootstrap/PageItem'
 
 /**
  * ACTION TYPES
  */
 const GET_USER = 'GET_USER'
 const REMOVE_USER = 'REMOVE_USER'
-
+const SET_REVIEWS = 'SET_REVIEWS'
 /**
  * INITIAL STATE
  */

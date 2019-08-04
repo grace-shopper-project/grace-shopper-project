@@ -1,9 +1,13 @@
 import React from 'react'
 import {connect} from 'react-redux'
+import StarRating from 'react-bootstrap-star-rating'
 import {fetchSingleProduct} from '../store/singleProduct'
+import {fetchReview} from '../store/singleReview'
 import {Card} from 'react-bootstrap'
 import {withRouter, Link} from 'react-router-dom'
 import history from '../history'
+
+import productReducer from '../store/products'
 
 export class SingleProduct extends React.Component {
   // constructor() {
@@ -15,18 +19,21 @@ export class SingleProduct extends React.Component {
   // }
   componentDidMount() {
     const id = Number(this.props.match.params.id)
+    console.log('PPPPPPP', this.props)
     this.props.fetchSingleProduct(id)
+    // this.props.submitReview(id)
   }
 
   render() {
     const {singleProduct} = this.props
     const {inventoryQuantity} = this.props.singleProduct
     const reviews = singleProduct.reviews
+    console.log('REVIEW', reviews)
     let quantity = []
     for (let i = 0; i < inventoryQuantity; i++) {
       quantity.push(Number(i + 1))
     }
-    console.log('QUANTITY', inventoryQuantity)
+
     return (
       <div>
         {/* <h1 style={{textAlign: 'center', margin: '1vw'}}>Single Product</h1> */}
@@ -119,6 +126,7 @@ export class SingleProduct extends React.Component {
             </Card.Body>
           </Card>
         </div>
+        <p>Product #:{singleProduct.id}</p>
         {singleProduct.reviews ? (
           <div>
             <h5>Honest Reviews</h5>
@@ -134,7 +142,7 @@ export class SingleProduct extends React.Component {
             <div>
               {reviews.map(review => (
                 <div key={review.id}>
-                  <small> *{review.rating} stars*</small>
+                  <StarRating defaultValue={review.rating} />
                   <Link to={`/reviews/${review.id}`}>
                     <small>{review.title}</small>
                   </Link>
@@ -147,14 +155,20 @@ export class SingleProduct extends React.Component {
         ) : (
           <div>Sorry no reviews yet! Be the first one to review!</div>
         )}
-        <button
-          type="button"
-          onClick={() => {
-            history.push('/reviews/:reviewId')
-          }}
-        >
-          Add A Review
-        </button>
+        {singleProduct.reviews ? (
+          <div>
+            <button
+              type="button"
+              onClick={() => {
+                history.push(`/reviews/new`)
+              }}
+            >
+              Add A Review
+            </button>
+          </div>
+        ) : (
+          <div />
+        )}
       </div>
     )
   }
@@ -162,11 +176,14 @@ export class SingleProduct extends React.Component {
 
 const mapState = state => ({
   singleProduct: state.singleProduct
+  // reviews: state.singleProduct.reviews
 })
 
 const mapDispatch = dispatch => {
   return {
-    fetchSingleProduct: id => dispatch(fetchSingleProduct(id))
+    // submitReview: review => dispatch(submitReview(review)),
+    fetchSingleProduct: id => dispatch(fetchSingleProduct(id)),
+    fetchReviewForm: reviewId => dispatch(fetchReview(reviewId))
   }
 }
 
