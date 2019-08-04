@@ -1,10 +1,16 @@
 import axios from 'axios'
 
 const GET_ALL_PRODUCTS = 'GET_ALL_PRODUCTS'
+const SEARCH_PRODUCTS = 'SEARCH_PRODUCTS'
 
 const getAllProducts = products => ({
   type: GET_ALL_PRODUCTS,
   products
+})
+
+const searchProducts = searchedProducts => ({
+  type: SEARCH_PRODUCTS,
+  searchedProducts
 })
 
 export const fetchProducts = (page = 1) => {
@@ -18,10 +24,25 @@ export const fetchProducts = (page = 1) => {
   }
 }
 
+export const fetchSearchedProducts = searchName => {
+  return async dispatch => {
+    try {
+      const {data} = await axios.get('/api/products/search', {
+        params: {searchName}
+      })
+      dispatch(searchProducts(data))
+    } catch (err) {
+      console.log(err)
+    }
+  }
+}
+
 export default function productReducer(state = [], action) {
   switch (action.type) {
     case GET_ALL_PRODUCTS:
       return action.products
+    case SEARCH_PRODUCTS:
+      return action.searchedProducts
     default:
       return state
   }
