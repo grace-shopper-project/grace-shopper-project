@@ -11,11 +11,11 @@ class ProductManagement extends React.Component {
   render() {
     return (
       <>
-        <h3>Products</h3>
+        <h3 style={{textAlign: 'center', marginBlockEnd: '0'}}>All Products</h3>
         {!this.props.products.length ? (
           <h1>LOADING......</h1>
         ) : (
-          <div style={{width: '100vw'}}>
+          <div>
             <div className="deck">
               {this.props.products.map(product => {
                 const {imageUrl, name} = product

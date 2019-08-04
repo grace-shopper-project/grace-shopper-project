@@ -14,17 +14,29 @@ class Admin extends React.Component {
     return (
       <>
         <div style={{alignContent: 'center'}}>
-          <h1>Welcome to the Administrative Dashboard</h1>
-          <h2>You manage users, products and orders from this dashboard.</h2>
+          <h2>Welcome to the Administrative Dashboard</h2>
+          <h3>You manage users, products and orders from this dashboard.</h3>
         </div>
-        <div>
-          <UserManagement usersForAdmin={this.props.usersForAdmin} />
-        </div>
-        <div>
-          <div>
-            <ProductManagement />
+        <div style={{display: 'flex', flexDirection: 'row', margin: '1vw'}}>
+          <div style={{width: '27%', height: '90vh', overflow: 'scroll'}}>
+            <UserManagement usersForAdmin={this.props.usersForAdmin} />
           </div>
-          <div>Order Management</div>
+          <div
+            style={{
+              display: 'flex',
+              flexDirection: 'column',
+              minWidth: '70%',
+              maxWidth: '70%',
+              margin: '2vw'
+            }}
+          >
+            <div style={{height: '40vh', border: 'solid black 1px'}}>
+              Order Management
+            </div>
+            <div style={{overflow: 'scroll', height: '40vh'}}>
+              <ProductManagement />
+            </div>
+          </div>
         </div>
       </>
     )

@@ -8,34 +8,57 @@ import {connect} from 'react-redux'
 class UserManagement extends React.Component {
   render() {
     return (
-      <div style={{border: 'solid black 0.1vw'}}>
-        <h2 style={{padding: '2vw', marginTop: '1vh'}}>All Users</h2>
+      <div>
+        <h3
+          style={{marginTop: '1vh', textAlign: 'center', marginBlockEnd: '0'}}
+        >
+          All Users
+        </h3>
         <div className="deck">
           {this.props.usersForAdmin.map(user => {
             return (
               <Card
                 style={{
-                  width: '20vw',
+                  width: '28vw',
+                  marginBottom: '1vh',
                   border: 'solid black 1px',
-                  marginBottom: '1vh'
+                  borderRadius: '5px',
+                  paddingTop: '1vw',
+                  paddingBottom: '1vw'
                 }}
                 key={user.id}
               >
-                <Card.Body>
+                <Card.Body style={{fontSize: '1.25vw'}}>
                   <Card.Title>{user.name}</Card.Title>
                   <Card.Text>{user.email}</Card.Text>
                   <Card.Text>
                     {user.isAdmin ? <>Is Admin: Yes</> : <>Is Admin: No</>}
                   </Card.Text>
                   <Link to={`/admin/users/${user.id}`}>
-                    <Button variant="primary">Edit</Button>
+                    <button
+                      type="button"
+                      style={{
+                        backgroundColor: '#86af2d',
+                        fontFamily: 'Josefin Sans, sans-serif',
+                        padding: '0.5vw',
+                        marginRight: '0.5vw'
+                      }}
+                    >
+                      Edit
+                    </button>
                   </Link>
-                  <Button
-                    variant="danger"
+                  <button
+                    type="button"
+                    style={{
+                      backgroundColor: '#ed4934',
+                      fontFamily: 'Josefin Sans, sans-serif',
+                      padding: '0.5vw',
+                      marginLeft: '0.5vw'
+                    }}
                     onClick={() => this.props.deleteUser(user.id)}
                   >
                     Delete
-                  </Button>
+                  </button>
                 </Card.Body>
               </Card>
             )
