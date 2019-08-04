@@ -19,7 +19,7 @@ const reducer = combineReducers({
   usersForAdmin: adminUserReducer,
   singleUserForAdmin: adminSingleUserReducer,
   allReviews: reviewsReducer,
-  singleReview: reviewReducer
+  singleReview: reviewReducer,
 })
 
 const middleware = composeWithDevTools(
