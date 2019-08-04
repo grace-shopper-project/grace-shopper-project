@@ -15,9 +15,6 @@ async function seed() {
   await db.sync({force: true})
   console.log('db synced!')
 
-
-
-
   const users = await Promise.all([
     User.create({email: 'cody@email.com', password: '123'}),
     User.create({email: 'murphy@email.com', password: '123'})
@@ -284,7 +281,6 @@ async function seed() {
     })
   ]
 
-
   const reviewArray = [
     Review.create({
       title: 'This is so great!',
@@ -489,6 +485,20 @@ async function seed() {
     )
   }
 
+  for (let i = 0; i < 100; i++) {
+    users.push(
+      User.create({
+        name: faker.name.findName(),
+        isAdmin: faker.random.boolean(),
+        isGuest: faker.random.boolean(),
+        needsPwReset: faker.random.boolean(),
+        phone: faker.phone.phoneNumber(),
+        email: faker.internet.email(),
+        password: faker.lorem.word()
+      })
+    )
+  }
+
   await Promise.all([
     Category.create({name: 'yeast bread'}),
     Category.create({name: 'flatbread'}),
@@ -522,9 +532,8 @@ async function seed() {
   }
   await Promise.all(productCategoryArray)
   await CartDetails.create({cartId: 1, orderId: 2, productId: 3, quantity: 2})
-await CartDetails.create({cartId: 1, orderId: 2, productId: 2, quantity: 2})
-await CartDetails.create({cartId: 1, orderId: 2, productId: 4, quantity: 2})
-
+  await CartDetails.create({cartId: 1, orderId: 2, productId: 2, quantity: 2})
+  await CartDetails.create({cartId: 1, orderId: 2, productId: 4, quantity: 2})
 
   console.log(`seeded ${users.length} users`)
   console.log(`seeded successfully`)
