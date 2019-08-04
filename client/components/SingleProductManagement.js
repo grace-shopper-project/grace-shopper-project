@@ -11,7 +11,8 @@ export class SingleProductManagement extends React.Component {
     this.state = {
       name: this.props.singleProduct.name,
       description: this.props.singleProduct.description,
-      quantity: this.props.singleProduct.description
+      quantity: this.props.singleProduct.description,
+      price: this.props.singleProduct.price
     }
   }
   componentDidMount() {
@@ -20,14 +21,14 @@ export class SingleProductManagement extends React.Component {
   }
 
   render() {
-    const {singleProduct} = this.props
-    const {inventoryQuantity} = this.props.singleProduct
-    const reviews = singleProduct.reviews
-    let quantity = []
-    for (let i = 0; i < inventoryQuantity; i++) {
-      quantity.push(Number(i + 1))
-    }
-    console.log('QUANTITY', inventoryQuantity)
+    // const {singleProduct} = this.props
+    // const {inventoryQuantity} = this.props.singleProduct
+    // const reviews = singleProduct.reviews
+    // let quantity = []
+    // for (let i = 0; i < inventoryQuantity; i++) {
+    //   quantity.push(Number(i + 1))
+    // }
+    // console.log('QUANTITY', inventoryQuantity)
     return (
       <div>
         {/* <h1 style={{textAlign: 'center', margin: '1vw'}}>Single Product</h1> */}
