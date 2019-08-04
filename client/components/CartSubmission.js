@@ -1,9 +1,10 @@
+// enter your shipping address and billing info
 import React from 'react'
 import {connect} from 'react-redux'
 import {fetchCart} from '../store/cart'
-import {CartDetail} from './CartDetail'
+// import {CartDetail} from './CartDetail'
 
-export class Cart extends React.Component {
+export class CartSubmission extends React.Component {
   constructor() {
     super()
     this.state = []
@@ -37,15 +38,33 @@ export class Cart extends React.Component {
           >
             <h1>Order:</h1>
             {/* <CartDetail /> */}
+          </div>
+          <div
+            style={{
+              display: 'flex',
+              flexDirection: 'column',
+              justifyContent: 'flex-start'
+            }}
+          >
             <div
               style={{
-                width: '10vw',
-                height: '2vw',
+                width: '30vw',
+                height: '26vw',
                 border: '2px solid black',
-                justifyContent: 'flex-end'
+                margin: '2vw'
               }}
             >
-              Purchase cart!
+              <h1>Shipping Info: </h1>
+            </div>
+            <div
+              style={{
+                width: '30vw',
+                height: '26vw',
+                border: '2px solid black',
+                margin: '2vw'
+              }}
+            >
+              <h1>Billing Info: </h1>
             </div>
           </div>
         </div>
@@ -66,4 +85,4 @@ const mapDispatch = dispatch => {
   }
 }
 
-export default connect(mapState, mapDispatch)(Cart)
+export default connect(mapState, mapDispatch)(CartSubmission)

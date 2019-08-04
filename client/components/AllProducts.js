@@ -109,13 +109,14 @@ class AllProducts extends Component {
           <div style={{width: '100vw'}}>
             <div className="deck">
               {this.props.products.map(product => {
-                const {imageUrl, name} = product
+                const {imageUrl, name, price} = product
                 return (
                   <ProductCard
                     key={product.id}
                     id={product.id}
                     imageUrl={imageUrl}
                     name={name}
+                    price={price}
                   />
                 )
               })}
