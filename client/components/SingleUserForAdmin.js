@@ -2,10 +2,12 @@ import React from 'react'
 import {
   fetchSingleUserForAdmin,
   fetchUpdatedSingleUserForAdmin,
+  fetchRemoveAdminRights,
   fetchUpdatedSingleUserPassword
 } from '../store/singleUserForAdmin'
 import {connect} from 'react-redux'
 import Button from 'react-bootstrap/Button'
+import {Link} from 'react-router-dom'
 
 class SingleUserForAdmin extends React.Component {
   componentDidMount() {
@@ -15,11 +17,10 @@ class SingleUserForAdmin extends React.Component {
   render() {
     return (
       <>
-        <p>Name:</p>
-        <div>{this.props.user.name}</div>
+        <p>Name: {this.props.user.name}</p>
         <p>Email: {this.props.user.email}</p>
         {this.props.user.needsPwReset ? (
-          <p>Password Updated Scheduled</p>
+          <p>Password Update Scheduled</p>
         ) : (
           <Button
             onClick={() => this.props.fetchPasswordUpdateRQ(this.props.user.id)}
@@ -29,21 +30,33 @@ class SingleUserForAdmin extends React.Component {
         )}
         <p>
           {this.props.user.isAdmin ? (
-            <>Currently has administrative rights</>
+            <>
+              <span>Currently has administrative rights</span>
+              <Button
+                onClick={() =>
+                  this.props.fetchRemoveAdminRights(this.props.user.id)
+                }
+              >
+                Disable Admin Rights
+              </Button>
+            </>
           ) : (
             <>
-              <>Does not have administrative rights</>
+              <span>Does not have administrative rights</span>
               <Button
                 variant="primary"
                 onClick={() =>
                   this.props.fetchUpdatedSingleUser(this.props.user.id)
                 }
               >
-                Allow Administrative Rights
+                Allow Admin Rights
               </Button>
             </>
           )}
         </p>
+        <Link to="/admin">
+          <Button>Back to Admin Dashboard</Button>
+        </Link>
       </>
     )
   }
@@ -65,6 +78,9 @@ const mapDispatchToProps = dispatch => {
     },
     fetchPasswordUpdateRQ: userId => {
       return dispatch(fetchUpdatedSingleUserPassword(userId))
+    },
+    fetchRemoveAdminRights: userId => {
+      return dispatch(fetchRemoveAdminRights(userId))
     }
   }
 }

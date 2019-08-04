@@ -23,6 +23,17 @@ adminRouter.get('/users/:userId', async (req, res, next) => {
   }
 })
 
+// DELETE api/admin/users/:userId
+adminRouter.delete('/users/:userId', async (req, res, next) => {
+  try {
+    const id = Number(req.params.userId)
+    await User.destroy({where: {id}})
+    res.status(204).send('user deleted')
+  } catch (err) {
+    next(err)
+  }
+})
+
 // PUT api/admin/users/:userId/make-admin
 adminRouter.put('/users/:userId/make-admin', async (req, res, next) => {
   try {

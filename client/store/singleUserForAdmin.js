@@ -2,26 +2,34 @@ import axios from 'axios'
 
 const GET_SINGLE_USER = 'GET_SPECIFIC_USER'
 const UPDATE_SINGLE_USER = 'UPDATE_SINGLE_USER'
+const REMOVE_ADMIN_RIGHTS = 'REMOVE_ADMIN_RIGHTS'
 const UPDATE_SINGLE_USER_PW = 'UPDATE_SINGLE_USER_PW'
 
-export const getSingleUser = singleUserForAdmin => {
+const getSingleUser = singleUserForAdmin => {
   return {
     type: GET_SINGLE_USER,
     singleUserForAdmin
   }
 }
 
-export const updateSingleUser = updatedUser => {
+const updateSingleUser = updatedUser => {
   return {
     type: UPDATE_SINGLE_USER,
     updatedUser
   }
 }
 
-export const updateSingleUserPassword = updatedUserPw => {
+const updateSingleUserPassword = updatedUserPw => {
   return {
     type: UPDATE_SINGLE_USER_PW,
     updatedUserPw
+  }
+}
+
+const removeAdminRights = updatedUser => {
+  return {
+    type: REMOVE_ADMIN_RIGHTS,
+    updatedUser
   }
 }
 
@@ -33,6 +41,8 @@ export default function adminSingleUserReducer(singleUserState = [], action) {
       return action.updatedUser
     case UPDATE_SINGLE_USER_PW:
       return action.updatedUserPw
+    case REMOVE_ADMIN_RIGHTS:
+      return action.updatedUser
     default:
       return singleUserState
   }
@@ -55,7 +65,13 @@ export const fetchUpdatedSingleUserForAdmin = userId => {
 export const fetchUpdatedSingleUserPassword = userId => {
   return async dispatch => {
     const {data} = await axios.put(`/api/admin/users/${userId}/reset-password`)
-    console.log('call from inside the thunk creator: ', data)
     dispatch(updateSingleUserPassword(data))
+  }
+}
+
+export const fetchRemoveAdminRights = userId => {
+  return async dispatch => {
+    const {data} = await axios.put(`/api/admin/users/${userId}/remove-admin`)
+    dispatch(removeAdminRights(data))
   }
 }

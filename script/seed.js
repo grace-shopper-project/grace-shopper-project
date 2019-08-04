@@ -492,7 +492,7 @@ async function seed() {
         isAdmin: faker.random.boolean(),
         isGuest: faker.random.boolean(),
         needsPwReset: faker.random.boolean(),
-        phone: faker.phone.phoneNumber(),
+        phone: faker.random.number(),
         email: faker.internet.email(),
         password: faker.lorem.word()
       })
