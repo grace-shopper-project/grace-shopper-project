@@ -36,7 +36,7 @@ class Navbar extends React.Component {
   render() {
     return (
       <>
-        <div className="navHeader">
+        <div>
           <div className="bread" style={{height: '18vh'}}>
             <h1
               style={{
@@ -58,9 +58,9 @@ class Navbar extends React.Component {
             {this.props.isLoggedIn ? (
               <div>
                 {/* The navbar will show these links after you log in */}
-                <div style={{width: '25%'}} />
-                <div>
-                  <div style={{width: '50%'}}>
+                <div style={{width: '30%'}} />
+                <div style={{width: '40%'}}>
+                  <div>
                     <Link
                       to="/home"
                       onClick={() => this.setState({inputEntry: ''})}
@@ -73,8 +73,11 @@ class Navbar extends React.Component {
                       Products
                     </Link>
                   </div>
-                  <div>
-                    <img src="/search.png" style={{width: '3vw'}} />
+                  <div style={{padding: '0.5vw'}}>
+                    <img
+                      src="/search.png"
+                      style={{margin: '0.5vw', width: '2vw', height: '2vw'}}
+                    />
                     <input
                       type="text"
                       name="inputEntry"
@@ -88,6 +91,14 @@ class Navbar extends React.Component {
                         marginTop: '0.5vw'
                       }}
                     />
+                  </div>
+                </div>
+                <div style={{width: '30%'}}>
+                  <div>
+                    <Link to="/user/:id">Your Account</Link>
+                  </div>
+                  <div>
+                    <Link to="/cart">Your Cart</Link>
                   </div>
                   <div>
                     <a href="#" onClick={this.props.handleClick}>
@@ -112,7 +123,7 @@ class Navbar extends React.Component {
                   <div onClick={this.handleProductOnClick}>
                     <Link to="/products">Products</Link>
                   </div>
-                  <div>
+                  <div style={{padding: '0.5vw'}}>
                     <img
                       src="/search.png"
                       style={{margin: '0.5vw', width: '2vw', height: '2vw'}}
