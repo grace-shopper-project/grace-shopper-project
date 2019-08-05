@@ -6,8 +6,7 @@ import {fetchReview} from '../store/singleReview'
 import {Card} from 'react-bootstrap'
 import {withRouter, Link} from 'react-router-dom'
 import history from '../history'
-
-import productReducer from '../store/products'
+import {submitReviews} from '../store/allReviews'
 
 export class SingleProduct extends React.Component {
   // constructor() {
@@ -183,8 +182,15 @@ const mapDispatch = dispatch => {
   return {
     // submitReview: review => dispatch(submitReview(review)),
     fetchSingleProduct: id => dispatch(fetchSingleProduct(id)),
-    fetchReviewForm: reviewId => dispatch(fetchReview(reviewId))
+    fetchReviewForm: reviewId => dispatch(fetchReview(reviewId)),
+    submitReviews: (review, productId) =>
+      dispatch(submitReviews(review, productId))
   }
 }
 
 export default withRouter(connect(mapState, mapDispatch)(SingleProduct))
+
+// this.props.submitReviews(
+//   singleProduct.reviews,
+//   singleProduct.id
+// )

@@ -9,7 +9,11 @@ const Order = db.define('order', {
     defaultValue: 'cart'
   },
   address: Sequelize.STRING,
-  subtotal: Sequelize.INTEGER
+  subtotal: Sequelize.INTEGER,
+  items: {
+    type: Sequelize.ARRAY(Sequelize.JSON),
+    allowNull: false
+  }
 })
 
 Order.beforeUpdate(async orderInstance => {

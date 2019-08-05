@@ -1,7 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {submitReviews} from '../store/allReviews'
-
+import {fetchReview} from '../store/singleReview'
 import axios from 'axios'
 
 export class NewReview extends React.Component {
@@ -64,6 +64,9 @@ export class NewReview extends React.Component {
     if (this.props.data) return this.props.data()
   }
   render() {
+    console.log('PROPS', this.props.singleProduct.id)
+    let productId = this.props.singleProduct.id
+    let review = this.props.singleProduct.reviews
     return (
       //rating
       <form id="new-review-form" onSubmit={this.handleSubmit}>
@@ -156,6 +159,9 @@ export class NewReview extends React.Component {
               !this.state.title ||
               !this.state.content
             }
+            onClick={() => {
+              this.props.submitReviews(review, productId)
+            }}
           >
             Submit Review!
           </button>
@@ -177,7 +183,9 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = dispatch => {
   // fetchReview: () => dispatch(fetchReviews()),
   return {
-    submitReviews: review => dispatch(submitReviews(review))
+    submitReviews: (review, productId) =>
+      dispatch(submitReviews(review, productId)),
+    fetchReview: reviewId => dispatch(fetchReview(reviewId))
   }
 }
 

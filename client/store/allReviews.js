@@ -61,9 +61,12 @@ export const fetchReviews = () => {
   }
 }
 
-export const submitReviews = review => async dispatch => {
+export const submitReviews = (review, productId) => async dispatch => {
   try {
-    const response = await axios.post('/api/reviews', review)
+    const response = await axios.post(
+      `/api/products/${productId}/reviews`,
+      review
+    )
     console.log(response)
     dispatch(newReview(response.data))
   } catch (err) {

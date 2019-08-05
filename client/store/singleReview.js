@@ -2,12 +2,16 @@ const axios = require('axios')
 
 const ADD_REVIEWS = 'ADD_REVIEWS'
 const SET_REVIEW = 'SET_REVIEW'
-
+const DELETE_REVIEW = 'DELETE_REVIEW'
 export const addReview = review => ({
   type: ADD_REVIEWS,
   review
 })
 
+export const deleteReview = reviewId => ({
+  type: DELETE_REVIEW,
+  reviewId
+})
 export const setSingleReview = review => ({
   type: SET_REVIEW,
   review
