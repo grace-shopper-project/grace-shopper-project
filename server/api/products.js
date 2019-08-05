@@ -1,5 +1,6 @@
 const router = require('express').Router()
 const {Product, Review} = require('../db/models')
+const Sequelize = require('sequelize')
 
 router.get('/', async (req, res, next) => {
   let page = req.query.page
@@ -16,6 +17,33 @@ router.get('/', async (req, res, next) => {
     } else {
       allProducts = await Product.count()
     }
+    res.json(allProducts)
+  } catch (err) {
+    next(err)
+  }
+})
+
+router.get('/search', async (req, res, next) => {
+  // let page = req.query.page
+  let searchName = req.query.searchName.toLowerCase()
+  // if (!page) page = 1
+  // let offset = 28 * (page - 1)
+  try {
+    //   let allProducts
+    //   if (page) {
+    let allProducts = await Product.findAll({
+      // limit: 28,
+      // offset: offset,
+      where: {
+        name: {
+          [Sequelize.Op.substring]: searchName
+        }
+      },
+      order: [['id', 'ASC']]
+    })
+    // } else {
+    //   allProducts = await Product.count()
+    // }
     res.json(allProducts)
   } catch (err) {
     next(err)

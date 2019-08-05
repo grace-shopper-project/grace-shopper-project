@@ -24,7 +24,7 @@ async function seed() {
     // fakerUsers.map(() => {}) // Do something here
   ])
   await Cart.create({total: 100, userId: 1})
-  const productArray = [
+  const productArray = await Promise.all([
     Product.create({
       name: 'Bagel',
       description:
@@ -282,7 +282,7 @@ async function seed() {
       price: 2.0,
       inventoryQuantity: 15
     })
-  ]
+  ])
 
   const reviewArray = [
     Review.create({

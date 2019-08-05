@@ -42,7 +42,6 @@ form div {
 }
 
 .deck {
-  padding-top: 2vw;
   display: flex;
   width: 100%;
   flex-wrap: wrap;
