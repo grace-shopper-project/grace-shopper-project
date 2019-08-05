@@ -10,11 +10,6 @@ export const setReviews = allReviews => ({
   allReviews
 })
 
-export const newReview = review => ({
-  type: ADD_REVIEW,
-  review
-})
-
 export const removeReview = reviewId => ({
   type: REMOVE_REVIEW,
   reviewId
@@ -58,19 +53,6 @@ export const fetchReviews = () => {
     } catch (err) {
       console.log("There's an error with fetchReviews")
     }
-  }
-}
-
-export const submitReviews = (review, productId) => async dispatch => {
-  try {
-    const response = await axios.post(
-      `/api/products/${productId}/reviews`,
-      review
-    )
-    console.log(response)
-    dispatch(newReview(response.data))
-  } catch (err) {
-    console.log("There's an error with submitReviews!")
   }
 }
 

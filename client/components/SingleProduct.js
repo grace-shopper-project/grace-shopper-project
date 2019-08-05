@@ -6,7 +6,6 @@ import {fetchReview} from '../store/singleReview'
 import {Card} from 'react-bootstrap'
 import {withRouter, Link} from 'react-router-dom'
 import history from '../history'
-import {submitReviews} from '../store/allReviews'
 
 export class SingleProduct extends React.Component {
   // constructor() {

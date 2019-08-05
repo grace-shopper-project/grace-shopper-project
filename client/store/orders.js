@@ -22,10 +22,7 @@ export const fetchOrders = userId => {
   return async dispatch => {
     try {
       const orderPath = `/api/users/${userId}`
-      const responses = await Promise.all([
-        axios.get(orderPath),
-        axios.get(`${orderPath}/orders`)
-      ])
+      const responses = await Promise.all([axios.get(`${orderPath}/orders`)])
       const [users, orders] = responses.map(res => res.data)
       users.orders = users
       dispatch(setOrder(orders))

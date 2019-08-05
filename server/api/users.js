@@ -24,11 +24,11 @@ router.get('/:id', async (req, res, next) => {
     next(err)
   }
 })
-router.get('/:id/reviews', async (req, res, next) => {
+router.get('/:userId/reviews', async (req, res, next) => {
   try {
     const review = await Review.findAll({
       where: {
-        userId: req.params.id
+        userId: req.params.userId
       },
       include: [User]
     })
@@ -48,6 +48,20 @@ router.get('/', async (req, res, next) => {
       attributes: ['id', 'email']
     })
     res.json(users)
+  } catch (err) {
+    next(err)
+  }
+})
+
+router.delete('/:reviewId', async (req, res, next) => {
+  try {
+    const review = await Review.findByPk(req.params.reviewId)
+    review.destroy({
+      where: {
+        id: req.params.userId
+      }
+    })
+    res.json(review)
   } catch (err) {
     next(err)
   }

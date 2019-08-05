@@ -1,6 +1,6 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {submitReviews} from '../store/allReviews'
+import {submitReviews} from '../store/singleProduct'
 import {fetchReview} from '../store/singleReview'
 import axios from 'axios'
 
