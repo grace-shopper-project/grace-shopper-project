@@ -25,7 +25,13 @@ const Navbar = ({handleClick, isLoggedIn}) => (
     </div>
     <nav>
       {isLoggedIn ? (
-        <div>
+        <div
+          style={{
+            display: 'flex',
+            flexDirection: 'row',
+            justifyContent: 'space-between'
+          }}
+        >
           {/* The navbar will show these links after you log in */}
           <div style={{width: '25%'}} />
           <div>
@@ -36,7 +42,10 @@ const Navbar = ({handleClick, isLoggedIn}) => (
               <Link to="/products">Products</Link>
             </div>
             <div>
-              <img src="/search.png" style={{width: '3vw'}} />
+              <img
+                src="/search.png"
+                style={{margin: '0.5vw', width: '2vw', height: '2vw'}}
+              />
               <input
                 style={{
                   justifyContent: 'left',
@@ -52,9 +61,33 @@ const Navbar = ({handleClick, isLoggedIn}) => (
               </a>
             </div>
           </div>
+          <div style={{width: '25%', alignContent: 'flex-end'}}>
+            <div
+              style={{
+                display: 'flex',
+                flexDirection: 'row'
+              }}
+            >
+              <Link to="/cart">Your Cart</Link>
+            </div>
+            <div
+              style={{
+                display: 'flex',
+                flexDirection: 'row'
+              }}
+            >
+              <Link to="/user/:id">Your Account</Link>
+            </div>
+          </div>
         </div>
       ) : (
-        <div>
+        <div
+          style={{
+            display: 'flex',
+            flexDirection: 'row',
+            justifyContent: 'space-between'
+          }}
+        >
           <div style={{width: '30%'}} />
           {/* The navbar will show these links before you log in */}
           <div style={{width: '40%', justifyContent: 'center'}}>
