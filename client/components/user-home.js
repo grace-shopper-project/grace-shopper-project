@@ -13,7 +13,7 @@ export const UserHome = props => {
   return (
     <div>
       <h3>Welcome, {email}</h3>
-      <h5>User #: {user.id}</h5>
+      {/* <h5>User #: {user.id}</h5> */}
       <button
         type="button"
         onClick={() => {
