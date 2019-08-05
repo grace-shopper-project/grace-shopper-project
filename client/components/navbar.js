@@ -61,7 +61,12 @@ class Navbar extends React.Component {
                 <div style={{width: '25%'}} />
                 <div>
                   <div style={{width: '50%'}}>
-                    <Link to="/home">Home</Link>
+                    <Link
+                      to="/home"
+                      onClick={() => this.setState({inputEntry: ''})}
+                    >
+                      Home
+                    </Link>
                   </div>
                   <div>
                     <Link to="/products" onClick={this.handleProductOnClick}>
@@ -97,7 +102,12 @@ class Navbar extends React.Component {
                 {/* The navbar will show these links before you log in */}
                 <div style={{width: '40%', justifyContent: 'center'}}>
                   <div>
-                    <Link to="/home">Home</Link>
+                    <Link
+                      to="/home"
+                      onClick={() => this.setState({inputEntry: ''})}
+                    >
+                      Home
+                    </Link>
                   </div>
                   <div onClick={this.handleProductOnClick}>
                     <Link to="/products">Products</Link>
