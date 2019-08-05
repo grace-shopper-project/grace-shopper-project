@@ -57,7 +57,7 @@ orderRouter.delete('/:orderId', (req, res, next) => {
   try {
     Cart.destroy({
       where: {
-        id: req.body.cartId
+        orderId: req.body.cartId
       }
     })
   } catch (err) {

@@ -5,8 +5,6 @@ import {fetchReviews} from '../store/allReviews'
 import {Card} from 'react-bootstrap'
 import history from '../history'
 import {withRouter, Link} from 'react-router-dom'
-import {AllReviews} from './AllReviews'
-import {OrderedSet} from 'immutable'
 
 export class SingleUser extends React.Component {
   componentDidMount() {
