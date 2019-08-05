@@ -10,9 +10,12 @@ import reviewsReducer from './allReviews'
 import reviewReducer from './singleReview'
 import singleUserReducer from './singleUser'
 import orderReducer from './orders'
+import cartReducer from './cart'
+
 const reducer = combineReducers({
   user: userReducer,
   products: productReducer,
+  cart: cartReducer,
   singleProduct: singleProductReducer,
   usersForAdmin: adminUserReducer,
   allReviews: reviewsReducer,
@@ -35,3 +38,4 @@ export * from './allReviews'
 export * from './singleReview'
 export * from './singleUser'
 export * from './orders'
+export * from './cart'
