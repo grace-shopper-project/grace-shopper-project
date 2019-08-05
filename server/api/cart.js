@@ -29,16 +29,15 @@ cartRouter.get('/', async (req, res, next) => {
 cartRouter.put('/', async (req, res, next) => {
   try {
     let cart
-    req.body = req.body[0]
-
-    if (req.body.userId) {
-      //changed for postman
+    const quantity = Number(req.body.quantity)
+    if (req.user) {
       cart = await Cart.findOne({
         where: {
-          userId: req.body.userId //changed for postman
+          userId: req.user.id
         }
       })
     } else {
+      console.log('sessionId', req.sessionID)
       cart = await Cart.findOne({
         where: {
           sessionId: req.sessionID
@@ -60,33 +59,28 @@ cartRouter.put('/', async (req, res, next) => {
     //if we want to update a product quantity or add a product
     if (cartDetails) {
       if (req.body.add) {
-        if (req.body.quantity + cartDetails.quantity <= inventory) {
+        if (quantity + cartDetails.quantity <= inventory) {
+          console.log('ihjwbfgihwbnfvihjwdnviwjefnviwehfbv iwehb')
           await cartDetails.update({
-            quantity: (cartDetails.quantity += req.body.quantity)
+            quantity: (cartDetails.quantity += quantity)
           })
         }
       } else {
         // eslint-disable-next-line no-lonely-if
         if (req.body.quantity <= inventory) {
           await cartDetails.update({
-            quantity: req.body.quantity
+            quantity: quantity
           })
         }
       }
     } else {
-      if (req.body.quantity <= inventory) {
-        await cartDetails.update({
-          quantity: req.body.quantity
-        })
-      }
-      await cartDetails.create({
-        quantity: req.body.quantity,
+      await CartDetails.create({
+        quantity: quantity,
         cartId: cart.id,
-        productId: req.body.productId
+        productId: Number(req.body.productId)
       })
     }
 
-    //need to get the new cart
     const updatedCart = await Cart.findByPk(cart.id, {
       include: [Product]
     })
@@ -97,17 +91,31 @@ cartRouter.put('/', async (req, res, next) => {
   }
 })
 
-cartRouter.delete('/:cartId', async (req, res, next) => {
+cartRouter.delete('/', async (req, res, next) => {
   try {
-    req.body = req.body[0] //in for postman
+    let cart
+    console.log(req)
+    if (req.user.id) {
+      cart = await Cart.findOne({
+        where: {
+          userId: req.user.id
+        }
+      })
+    } else {
+      cart = await Cart.findOne({
+        where: {
+          sessionId: req.sessionID
+        }
+      })
+    }
     const cartDetails = await CartDetails.findOne({
       where: {
-        cartId: req.params.cartId,
+        cartId: cart.id,
         productId: req.body.productId
       }
     })
     if (cartDetails) await cartDetails.destroy()
-    const updatedCart = await Cart.findByPk(req.params.cartId)
+    const updatedCart = await Cart.findByPk(cart.id)
     res.json(updatedCart)
   } catch (err) {
     next(err)
