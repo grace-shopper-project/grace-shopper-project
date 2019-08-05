@@ -1,9 +1,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
-import {Link} from 'react-router-dom'
+import {Link, withRouter} from 'react-router-dom'
 import {logout} from '../store'
-import {fetchSearchedProducts} from '../store/products'
+import {fetchSearchedProducts, fetchProducts} from '../store/products'
 
 class Navbar extends React.Component {
   constructor() {
@@ -21,7 +21,9 @@ class Navbar extends React.Component {
 
   async handleOnKeyPress(event) {
     if (event.key === 'Enter') {
-      await this.props.fetchSearchedProducts(this.state.inputEntry)
+      event.preventDefault()
+      await this.props.history.push('/products')
+      this.props.fetchSearchedProducts(this.state.inputEntry)
     }
   }
 
@@ -89,7 +91,7 @@ class Navbar extends React.Component {
                   <div>
                     <Link to="/home">Home</Link>
                   </div>
-                  <div>
+                  <div onClick={this.props.fetchProducts}>
                     <Link to="/products">Products</Link>
                   </div>
                   <div>
@@ -149,11 +151,14 @@ const mapDispatch = dispatch => {
     },
     fetchSearchedProducts: searchParam => {
       dispatch(fetchSearchedProducts(searchParam))
+    },
+    fetchProducts: () => {
+      dispatch(fetchProducts())
     }
   }
 }
 
-export default connect(mapState, mapDispatch)(Navbar)
+export default withRouter(connect(mapState, mapDispatch)(Navbar))
 
 /**
  * PROP TYPES
