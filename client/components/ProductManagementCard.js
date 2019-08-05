@@ -14,6 +14,7 @@ const ProductManagementCard = props => {
       {/* will eventually link button to the singleProduct page */}
       <Link to={url}>
         <button
+          type="button"
           style={{
             backgroundColor: '#86af2d',
             fontFamily: 'Josefin Sans, sans-serif',
