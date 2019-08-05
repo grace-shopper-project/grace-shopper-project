@@ -1,7 +1,6 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {fetchCart} from '../store/cart'
-import {CartDetail} from './CartDetail'
+import {fetchCart, removeFromCartThunk} from '../store/cart'
 import {Card} from 'react-bootstrap'
 
 export class Cart extends React.Component {
@@ -10,42 +9,13 @@ export class Cart extends React.Component {
     this.state = []
   }
 
-  componentDidMount() {
-    this.props.fetchCart()
-  }
+  // componentDidUpdate(prevProps, prevState) {
+  //   if(prevState.cart.products.length !== this.state.cart.products.length){
+  //     this.props.fetchCart()
+  //   }
+  // }
 
   render() {
-    const fakeCart = [
-      {
-        quantity: 1,
-        cartId: 10,
-        productId: 3,
-        productName: 'Birthday Cake',
-        productPrice: 20
-      },
-      {
-        quantity: 5,
-        cartId: 10,
-        productId: 4,
-        productName: 'Cookie',
-        productPrice: 3
-      },
-      {
-        quantity: 5,
-        cartId: 10,
-        productId: 13,
-        productName: 'Cupcake',
-        productPrice: 2
-      },
-      {
-        quantity: 13,
-        cartId: 10,
-        productId: 5,
-        productName: 'Doughnut',
-        productPrice: 2
-      }
-    ]
-
     return (
       <div style={{textAlign: 'center'}}>
         <div>
@@ -72,7 +42,7 @@ export class Cart extends React.Component {
               <h3 style={{textAlign: 'left', margin: '2vw'}}>Subtotal: </h3>
             </div>
             <div className="deck">
-              {fakeCart.map(item => {
+              {!this.props.cart.products  ? (<h1>Your cart is empty!</h1>) : this.props.cart.products.map(item => {
                 return (
                   <Card
                     key={item.id}
@@ -101,7 +71,7 @@ export class Cart extends React.Component {
                           }}
                         >
                           <img
-                            src="favicon.ico"
+                            src={item.imageUrl}
                             style={{
                               height: '8vw',
                               width: '10vw',
@@ -120,10 +90,10 @@ export class Cart extends React.Component {
                           }}
                         >
                           <div>
-                            <h4>Product: {item.productName}</h4>
-                            <h4>Price: ${item.productPrice}</h4>
+                            <h4>Product: {item.name}</h4>
+                            <h4>Price: ${item.price}</h4>
                             <div>
-                              <h4>Quantity: {item.quantity}</h4>
+                              <h4>Quantity: {item.cartDetails.quantity}</h4>
                             </div>
                             <div
                               style={{
@@ -158,7 +128,7 @@ export class Cart extends React.Component {
                                     padding: '0.5vw',
                                     marginLeft: '0.5vw'
                                   }}
-                                  // onClick = {() => this.props.removeProductFromCart(productId)}
+                                  onClick = {() => this.props.removeFromCart(item.id)}
                                 >
                                   Delete
                                 </button>
@@ -211,7 +181,8 @@ const mapState = state => {
 
 const mapDispatch = dispatch => {
   return {
-    fetchCart: cart => dispatch(fetchCart(cart))
+    fetchCart: cart => dispatch(fetchCart(cart)),
+    removeFromCart: productId => dispatch(removeFromCartThunk(productId))
   }
 }
 
