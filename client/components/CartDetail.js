@@ -1,7 +1,7 @@
 import React from 'react'
 import {connect} from 'react-router-dom'
 
-export class CartDetail extends React.Component {
+export default class CartDetail extends React.Component {
   render() {
     const product = this.props.cartDetail.product
     const price = this.props.cartDetail.price
