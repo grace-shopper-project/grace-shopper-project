@@ -104,3 +104,7 @@ form div {
   padding-top: 0.25vw;
   background-color: #f29f8f;
 }
+
+.checked {
+  color: orange;
+}
