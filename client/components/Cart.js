@@ -1,6 +1,6 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {fetchCart} from '../store/cart'
+import {fetchCart, removeFromCartThunk} from '../store/cart'
 import {Card} from 'react-bootstrap'
 
 export class Cart extends React.Component {
@@ -9,42 +9,13 @@ export class Cart extends React.Component {
     this.state = []
   }
 
-  componentDidMount() {
-    this.props.fetchCart()
-  }
+  // componentDidUpdate(prevProps, prevState) {
+  //   if(prevState.cart.products.length !== this.state.cart.products.length){
+  //     this.props.fetchCart()
+  //   }
+  // }
 
   render() {
-    const fakeCart = [
-      {
-        quantity: 1,
-        cartId: 10,
-        productId: 3,
-        productName: 'Birthday Cake',
-        productPrice: 20
-      },
-      {
-        quantity: 5,
-        cartId: 10,
-        productId: 4,
-        productName: 'Cookie',
-        productPrice: 3
-      },
-      {
-        quantity: 5,
-        cartId: 10,
-        productId: 13,
-        productName: 'Cupcake',
-        productPrice: 2
-      },
-      {
-        quantity: 13,
-        cartId: 10,
-        productId: 5,
-        productName: 'Doughnut',
-        productPrice: 2
-      }
-    ]
-
     const inventory = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
 
     return (
@@ -72,158 +43,135 @@ export class Cart extends React.Component {
               <h3 style={{textAlign: 'left', margin: '2vw'}}>Cart ID: </h3>
               <h3 style={{textAlign: 'left', margin: '2vw'}}>Subtotal: </h3>
             </div>
-            <div
-              className="deck"
-              style={{
-                height: '60'
-              }}
-            >
-              {fakeCart.map(item => {
-                return (
-                  <Card
-                    key={item.id}
-                    style={{
-                      height: '13vw',
-                      width: '34vw',
-                      marginBottom: '1vh',
-                      border: 'solid black 1px',
-                      borderRadius: '5px'
-                      // paddingBottom: '1vw'
-                    }}
-                  >
-                    <Card.Body style={{fontSize: '1.25vw'}}>
-                      <div
-                        style={{
-                          display: 'flex',
-                          flexDirection: 'row',
-                          justifyContent: 'space-around'
-                        }}
-                      >
-                        <div
-                          style={{
-                            justifyContent: 'left',
-                            width: '35%',
-                            marginLeft: '1vw'
-                          }}
-                        >
-                          <img
-                            src="favicon.ico"
-                            style={{
-                              height: '8vw',
-                              width: '8vw',
-                              verticalAlign: 'center',
-                              margin: '0.75vw'
-                            }}
-                          />
-
-                          <div>
-                            <button
-                              type="button"
-                              style={{
-                                backgroundColor: '#ed4934',
-                                fontFamily: 'Josefin Sans, sans-serif',
-                                fontSize: '1vw',
-                                padding: '0.5vw'
-                                // margin: '1vw'
-                              }}
-                              // onClick = {() => this.props.removeProductFromCart(productId)}
-                            >
-                              Remove from cart
-                            </button>
-                          </div>
-                        </div>
+            <div className="deck">
+              {!this.props.cart.products ? (
+                <h1>Your cart is empty!</h1>
+              ) : (
+                this.props.cart.products.map(item => {
+                  return (
+                    <Card
+                      key={item.id}
+                      style={{
+                        height: '13vw',
+                        width: '34vw',
+                        marginBottom: '1vh',
+                        border: 'solid black 1px',
+                        borderRadius: '5px'
+                        // paddingBottom: '1vw'
+                      }}
+                    >
+                      <Card.Body style={{fontSize: '1.25vw'}}>
                         <div
                           style={{
                             display: 'flex',
-                            flexDirection: 'column',
-                            textAlign: 'left',
-                            width: '60%',
-                            height: '10vw',
-                            // paddingTop: '1vw',
-                            marginLeft: '3vw'
+                            flexDirection: 'row',
+                            justifyContent: 'space-around'
                           }}
                         >
-                          <div style={{padding: '1vw'}}>
-                            <h4
+                          <div
+                            style={{
+                              justifyContent: 'left',
+                              width: '35%',
+                              marginLeft: '1vw'
+                            }}
+                          >
+                            <img
+                              src={item.imageUrl}
                               style={{
-                                marginBlockStart: '0vw',
-                                marginBlockEnd: '0vw',
-                                paddingTop: '1vw',
-                                paddingBottom: '1vw'
+                                height: '8vw',
+                                width: '8vw',
+                                verticalAlign: 'center',
+                                margin: '0.75vw'
                               }}
-                            >
-                              Product: {item.productName}
-                            </h4>
-                            <h4
-                              style={{
-                                marginBlockStart: '0vw',
-                                marginBlockEnd: '0vw',
-                                paddingBottom: '1vw'
-                              }}
-                            >
-                              Price: ${item.productPrice}
-                            </h4>
-                            <h4
-                              style={{
-                                marginBlockStart: '0vw',
-                                marginBlockEnd: '0vw'
-                              }}
-                            >
-                              Quantity: {item.quantity}
-                            </h4>
-                            <div
-                              style={{
-                                display: 'flex',
-                                flexDirection: 'row',
-                                textAlign: 'center',
-                                alignItems: 'center',
-                                paddingTop: '0.75vw'
-                              }}
-                            >
-                              <h4
+                            />
+
+                            <div>
+                              <button
+                                type="button"
                                 style={{
-                                  marginBlockStart: '0vw',
-                                  marginBlockEnd: '0vw'
+                                  backgroundColor: '#ed4934',
+                                  fontFamily: 'Josefin Sans, sans-serif',
+                                  fontSize: '1vw',
+                                  padding: '0.5vw'
+                                  // margin: '1vw'
                                 }}
+                                onClick = {() => this.props.removeFromCart(item.id)}
                               >
-                                {' '}
-                                Change Quantity:{' '}
-                              </h4>
+                                Remove from cart
+                              </button>
+                            </div>
+                          </div>
+                          <div
+                            style={{
+                              display: 'flex',
+                              flexDirection: 'column',
+                              textAlign: 'left',
+                              width: '60%',
+                              height: '10vw',
+                              // paddingTop: '1vw',
+                              marginLeft: '3vw'
+                            }}
+                          >
+                            <div>
+                              <h4>Product: {item.name}</h4>
+                              <h4>Price: ${item.price}</h4>
+                              <div>
+                                <h4>Quantity: {item.cartDetails.quantity}</h4>
+                              </div>
                               <div
                                 style={{
-                                  width: '4vw',
-                                  height: '2vw',
-                                  marginTop: '0.25vw',
-                                  marginLeft: '1vw'
+                                  display: 'flex',
+                                  flexDirection: 'row',
+                                  textAlign: 'center',
+                                  alignItems: 'center',
+                                  paddingTop: '0.75vw'
                                 }}
-                                className="dropdown"
-                                type="submit"
-                                onClick={this.handleSubmit}
                               >
-                                <select
+                                <h4
+                                  style={{
+                                    marginBlockStart: '0vw',
+                                    marginBlockEnd: '0vw'
+                                  }}
+                                >
+                                  {' '}
+                                  Change Quantity:{' '}
+                                </h4>
+                                <div
                                   style={{
                                     width: '4vw',
-                                    height: '2vw'
+                                    height: '2vw',
+                                    marginTop: '0.25vw',
+                                    marginLeft: '1vw'
                                   }}
-                                  onChange={this.handleChange}
+                                  className="dropdown"
+                                  type="submit"
+                                  onClick={this.handleSubmit}
                                 >
-                                  {inventory.map(function(num) {
-                                    return (
-                                      <option key={inventory.indexOf(num)}>
-                                        {num}
-                                      </option>
-                                    )
-                                  })}
-                                </select>
+                                  <select
+                                    style={{
+                                      width: '4vw',
+                                      height: '2vw'
+                                    }}
+
+                                  >
+                                    {inventory.map(function(num) {
+                                      return (
+                                        <option key={inventory.indexOf(num)}>
+                                          {num}
+                                        </option>
+                                      )
+                                    })}
+                                  </select>
+                                </div>
                               </div>
                             </div>
                           </div>
                         </div>
-                      </div>
-                    </Card.Body>
-                  </Card>
-                )
-              })}
+                      </Card.Body>
+                    </Card>
+                  )
+                })
+              )}
             </div>
             {/* <CartDetail /> */}
             <div
@@ -265,7 +213,8 @@ const mapState = state => {
 
 const mapDispatch = dispatch => {
   return {
-    fetchCart: cart => dispatch(fetchCart(cart))
+    fetchCart: cart => dispatch(fetchCart(cart)),
+    removeFromCart: productId => dispatch(removeFromCartThunk(productId))
   }
 }
 

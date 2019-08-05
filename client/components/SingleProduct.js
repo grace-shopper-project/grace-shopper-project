@@ -10,7 +10,7 @@ export class SingleProduct extends React.Component {
   constructor() {
     super()
     this.state = {
-      quantity: ''
+      quantity: 1
     }
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
@@ -30,7 +30,7 @@ export class SingleProduct extends React.Component {
     evt.preventDefault()
     this.props.addToCart({
       productId: this.props.match.params.id,
-      quantity: evt.target.value,
+      quantity: this.state.quantity,
       add: true
     })
   }
