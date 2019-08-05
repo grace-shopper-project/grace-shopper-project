@@ -32,13 +32,13 @@ export class Cart extends React.Component {
             className="orderList"
             style={{
               width: '44vw',
-              height: '75vw',
+              height: '72vw',
               border: '1px solid black',
               margin: '2vw'
             }}
           >
             <div>
-              <h3 style={{textAlign: 'left', margin: '2vw'}}>Order #: </h3>
+              <h3 style={{textAlign: 'left', margin: '2vw'}}>Cart ID: </h3>
               <h3 style={{textAlign: 'left', margin: '2vw'}}>Subtotal: </h3>
             </div>
             <div className="deck">
@@ -47,12 +47,12 @@ export class Cart extends React.Component {
                   <Card
                     key={item.id}
                     style={{
-                      height: '12vw',
-                      width: '40vw',
+                      height: '13vw',
+                      width: '34vw',
                       marginBottom: '1vh',
                       border: 'solid black 1px',
-                      borderRadius: '5px',
-                      paddingBottom: '1vw'
+                      borderRadius: '5px'
+                      // paddingBottom: '1vw'
                     }}
                   >
                     <Card.Body style={{fontSize: '1.25vw'}}>
@@ -66,19 +66,35 @@ export class Cart extends React.Component {
                         <div
                           style={{
                             justifyContent: 'left',
-                            width: '30%'
-                            // marginLeft: 'vw'
+                            width: '35%',
+                            marginLeft: '1vw'
                           }}
                         >
                           <img
                             src={item.imageUrl}
                             style={{
                               height: '8vw',
-                              width: '10vw',
+                              width: '8vw',
                               verticalAlign: 'center',
-                              margin: '1vw'
+                              margin: '0.75vw'
                             }}
                           />
+
+                          <div>
+                            <button
+                              type="button"
+                              style={{
+                                backgroundColor: '#ed4934',
+                                fontFamily: 'Josefin Sans, sans-serif',
+                                fontSize: '1vw',
+                                padding: '0.5vw'
+                                // margin: '1vw'
+                              }}
+                              // onClick = {() => this.props.removeProductFromCart(productId)}
+                            >
+                              Remove from cart
+                            </button>
+                          </div>
                         </div>
                         <div
                           style={{
@@ -86,7 +102,9 @@ export class Cart extends React.Component {
                             flexDirection: 'column',
                             textAlign: 'left',
                             width: '60%',
-                            height: '10vw'
+                            height: '10vw',
+                            // paddingTop: '1vw',
+                            marginLeft: '3vw'
                           }}
                         >
                           <div>
@@ -97,41 +115,48 @@ export class Cart extends React.Component {
                             </div>
                             <div
                               style={{
-                                height: '4vw',
                                 display: 'flex',
                                 flexDirection: 'row',
-                                justifyContent: 'flex-end',
-                                paddingBottom: '3vw'
+                                textAlign: 'center',
+                                alignItems: 'center',
+                                paddingTop: '0.75vw'
                               }}
                             >
-                              <div>
-                                {/* <Link to= "editcart"/> */}
-                                <button
-                                  type="button"
+                              <h4
+                                style={{
+                                  marginBlockStart: '0vw',
+                                  marginBlockEnd: '0vw'
+                                }}
+                              >
+                                {' '}
+                                Change Quantity:{' '}
+                              </h4>
+                              <div
+                                style={{
+                                  width: '4vw',
+                                  height: '2vw',
+                                  marginTop: '0.25vw',
+                                  marginLeft: '1vw'
+                                }}
+                                className="dropdown"
+                                type="submit"
+                                onClick={this.handleSubmit}
+                              >
+                                <select
                                   style={{
-                                    backgroundColor: '#86af2d',
-                                    fontFamily: 'Josefin Sans, sans-serif',
-                                    padding: '0.5vw',
-                                    marginRight: '0.5vw'
-                                  }}
-                                  // onClick
-                                >
-                                  Edit
-                                </button>
-                              </div>
-                              <div>
-                                <button
-                                  type="button"
-                                  style={{
-                                    backgroundColor: '#ed4934',
-                                    fontFamily: 'Josefin Sans, sans-serif',
-                                    padding: '0.5vw',
-                                    marginLeft: '0.5vw'
+                                    width: '4vw',
+                                    height: '2vw'
                                   }}
                                   onClick = {() => this.props.removeFromCart(item.id)}
                                 >
-                                  Delete
-                                </button>
+                                  {inventory.map(function(num) {
+                                    return (
+                                      <option key={inventory.indexOf(num)}>
+                                        {num}
+                                      </option>
+                                    )
+                                  })}
+                                </select>
                               </div>
                             </div>
                           </div>
@@ -160,6 +185,7 @@ export class Cart extends React.Component {
                   borderRadius: '15px',
                   textAlign: 'center',
                   padding: '1vw',
+                  marginTop: '1vw',
                   backgroundColor: '#3C70C0'
                 }}
               >
