@@ -60,7 +60,6 @@ cartRouter.put('/', async (req, res, next) => {
     if (cartDetails) {
       if (req.body.add) {
         if (quantity + cartDetails.quantity <= inventory) {
-          console.log('ihjwbfgihwbnfvihjwdnviwjefnviwehfbv iwehb')
           await cartDetails.update({
             quantity: (cartDetails.quantity += quantity)
           })
@@ -94,8 +93,7 @@ cartRouter.put('/', async (req, res, next) => {
 cartRouter.delete('/', async (req, res, next) => {
   try {
     let cart
-    console.log(req)
-    if (req.user.id) {
+    if (req.user) {
       cart = await Cart.findOne({
         where: {
           userId: req.user.id
