@@ -1,9 +1,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
-import {Link} from 'react-router-dom'
+import {Link, withRouter} from 'react-router-dom'
 import {logout} from '../store'
-import {fetchSearchedProducts} from '../store/products'
+import {fetchSearchedProducts, fetchProducts} from '../store/products'
 
 class Navbar extends React.Component {
   constructor() {
@@ -13,6 +13,7 @@ class Navbar extends React.Component {
     }
     this.handleOnChange = this.handleOnChange.bind(this)
     this.handleOnKeyPress = this.handleOnKeyPress.bind(this)
+    this.handleProductOnClick = this.handleProductOnClick.bind(this)
   }
 
   handleOnChange(event) {
@@ -21,8 +22,15 @@ class Navbar extends React.Component {
 
   async handleOnKeyPress(event) {
     if (event.key === 'Enter') {
-      await this.props.fetchSearchedProducts(this.state.inputEntry)
+      event.preventDefault()
+      await this.props.history.push('/products')
+      this.props.fetchSearchedProducts(this.state.inputEntry)
     }
+  }
+
+  async handleProductOnClick() {
+    await this.setState({inputEntry: ''})
+    this.props.fetchProducts()
   }
 
   render() {
@@ -56,7 +64,9 @@ class Navbar extends React.Component {
                     <Link to="/home">Home</Link>
                   </div>
                   <div>
-                    <Link to="/products">Products</Link>
+                    <Link to="/products" onClick={this.handleProductOnClick}>
+                      Products
+                    </Link>
                   </div>
                   <div>
                     <img src="/search.png" style={{width: '3vw'}} />
@@ -89,7 +99,7 @@ class Navbar extends React.Component {
                   <div>
                     <Link to="/home">Home</Link>
                   </div>
-                  <div>
+                  <div onClick={this.handleProductOnClick}>
                     <Link to="/products">Products</Link>
                   </div>
                   <div>
@@ -149,11 +159,14 @@ const mapDispatch = dispatch => {
     },
     fetchSearchedProducts: searchParam => {
       dispatch(fetchSearchedProducts(searchParam))
+    },
+    fetchProducts: () => {
+      dispatch(fetchProducts())
     }
   }
 }
 
-export default connect(mapState, mapDispatch)(Navbar)
+export default withRouter(connect(mapState, mapDispatch)(Navbar))
 
 /**
  * PROP TYPES
