@@ -12,7 +12,7 @@ export const UserHome = props => {
   console.log(props)
   return (
     <div>
-      {/* <h3>Welcome, {email}</h3> */}
+      <h3>Welcome, {email}</h3>
       {/* <h5>User #: {user.id}</h5> */}
       <button
         type="button"
