@@ -18,19 +18,6 @@ export const deleteOrder = orderId => ({
   type: DELETE_ORDER,
   orderId
 })
-export const fetchOrders = userId => {
-  return async dispatch => {
-    try {
-      const orderPath = `/api/users/${userId}`
-      const responses = await Promise.all([axios.get(`${orderPath}/orders`)])
-      const [users, orders] = responses.map(res => res.data)
-      users.orders = users
-      dispatch(setOrder(orders))
-    } catch (err) {
-      console.log("There's an error with fetchOrder")
-    }
-  }
-}
 
 export const newOrder = (userId, order) => {
   return async dispatch => {
