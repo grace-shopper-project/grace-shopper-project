@@ -21,7 +21,7 @@ const AuthForm = props => {
         marginRight: '30vw',
         height: '8vw',
         width: '40vw',
-        border: '2px solid black'
+        border: '3px dashed #3C70C0'
       }}
     >
       <div>
