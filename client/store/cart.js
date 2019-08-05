@@ -22,10 +22,10 @@ const getCart = cart => {
 //   }
 // }
 
-const removeFromCart = cart => {
+const removeFromCart = productId => {
   return {
     type: REMOVE_FROM_CART,
-    cart
+    productId
   }
 }
 
@@ -64,11 +64,14 @@ export function fetchCart() {
 // }
 
 //unfinished
-export function removefromCartThunk(cart) {
+export function removeFromCartThunk(productId) {
   return async dispatch => {
     try {
-      const {data} = await axios.put(`/api/cart/${cart.id}`) // need productinfo
-      dispatch(removeFromCart(data))
+      console.log('product id:', productId)
+      const {data} = await axios.delete(`/api/cart/`, {
+        data: {productId: productId}
+      }) // need productinfo
+      dispatch(removeFromCart(productId))
     } catch (error) {
       console.log(error)
     }
@@ -79,6 +82,7 @@ export function removefromCartThunk(cart) {
 export function updateCartThunk(cart) {
   return async dispatch => {
     try {
+      console.log('cart:', cart)
       const {data} = await axios.put(`/api/cart`, cart) //need product and quant info
       dispatch(updateCart(data))
     } catch (error) {
@@ -87,18 +91,17 @@ export function updateCartThunk(cart) {
   }
 }
 
-
-export default function cartReducer(state = [], action) {
+export default function cartReducer(state = {}, action) {
   switch (action.type) {
     case GET_CART:
       return action.cart
     case ADD_TO_CART:
       return [...state, {product: action.product, quantity: action.quantity}]
     case REMOVE_FROM_CART:
-      // const filteredState = state.filter(object => {
-      //   return object.product !== action.product
-      // })
-      return action.cart
+      const filteredState = state.products.filter(product => {
+        return product.id !== action.productId
+      })
+      return {...state, products: filteredState}
     case UPDATE_CART:
       // const newState = state.map(object => {
       //   if (object.product === action.product) {
