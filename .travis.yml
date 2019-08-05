@@ -1,28 +1,27 @@
 language: node_js
 node_js:
-  - node # uses most recent stable node version
+  - node
 services:
-  - postgresql # starts up postgres
+  - postgresql
 addons:
-  postgresql: '10' # recent postgres version on Travis
-dist: xenial # uses xenial environment
+  postgresql: '10'
+dist: xenial
 notifications:
   email:
-    on_success: change # default: change (only when going from broken to fixed)
-    on_failure: always # default: always (which is annoying, as it should be)
+    on_success: change
+    on_failure: always
 install:
-  - npm ci # faster, goes only from package-lock
+  - npm ci
 before_script:
-  - psql -c 'create database "grace-shopper-project-test";' -U postgres # remember to change this name if you change it elsewhere (e.g. package.json)
+  - psql -c 'create database "grace-shopper-project-test";' -U postgres
 script:
-  - npm test # test the code
-  - npm run build-client # make the bundle
-
-# before_deploy:
-#   - rm -rf node_modules # omit from the tarball, since we skip cleanup
-# deploy:
-#   skip_cleanup: true # prevents travis from deleting the build
-#   provider: heroku
-#   app: YOUR-HEROKU-APP-NAME-HERE # see README
-#   api_key:
-#     secure: YOUR-***ENCRYPTED***-API-KEY-HERE # see README
+  - npm test
+  - npm run build-client
+before_deploy:
+  - rm -rf node_modules # omit from the tarball, since we skip cleanup
+deploy:
+  skip_cleanup: true # prevents travis from deleting the build
+  provider: heroku
+  app: get-this-bread-shop # see README
+  api_key:
+    secure: BoCEfNUnLXQ8BvNOMzEI/aeXdGKJZGBvC+DFBw2blZn2XCKI+jAhEmqNIPNY3sL2CNH7YDrVBQfW/OWm0wzAk/nbDLEWtAih0Ds9bjwg5GPF5bW90R5X0pkh1NEtULBb9WVSklNEwyXSfEsCu8Ga76cTFa8tiqPThv4SafavCN+NFkzK30YZJOJOqKOvtaZyXL0zUvRHlSWq7iO03jLWPOZLkxCM99JuuQgXOCrGTJpPTfFCFw5KAfHmKsKfuJJ5YHojJldYV6q1CfQAbvMoCraIwEoOUHYi3+FOa1GKeTwY/BtP7oixekX43bVOwh5O4SXmfie3ZuehDDRmIC/3esB+cPJyW0uKz2CQwI9aKuvFIZts0NsVUKKeZIFrHnFEVswamsvIq0xJbXdBC9kgRT8p3nfMy7r/L78oQ9Vvbi2RbGr+R8epRNUpiyNz+wFHhjcTchEzYR7zPj4t9a6emY3bP+aDbPQhNhw9w6Baftzg1w51uxFkevLCvl0Fdkzmpo2FmIj1n+NFdaerVzbZ4wfltyTiZJzwkvhp5YhFyvhuFn9KYHs7DycalQ74OFL1e562R1R/bts/z6q7G06IBOQP5oItLCWDUWGNMuoHyRx3Wvez+8U3E544yoxLEyEzvZX+h4veBRYQx82GRLU4X0Yea4FYicpTdKu1WhexbjM=

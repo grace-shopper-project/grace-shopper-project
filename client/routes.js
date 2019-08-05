@@ -39,9 +39,8 @@ class Routes extends Component {
         <Route path="/signup" component={Signup} />
         <Route path="/products/:id" component={SingleProduct} />
         <Route exact path="/products" component={AllProducts} />
-        <Route path="/reviews/new" component={NewReview} />
         <Route exact path="/reviews" component={AllReviews} />
-        <Route path="/cart" component={Cart} />
+        <Route exact path="/cart" component={Cart} />
         <Route path="/cart/info" component={CartInfo} />
 
         {isLoggedIn && (
@@ -54,11 +53,7 @@ class Routes extends Component {
               onDelete={this.deleteReviews}
             />
             <Route path="/users/:id" component={SingleUser} />
-            <Route path="/products/:id" component={SingleProduct} />
-            <Route path="/products" component={AllProducts} />
-            <Route exact path="/reviews" component={AllReviews} />
             <Route path="/reviews/new" component={NewReview} />
-            <Route path="/cart" component={Cart} />
             {/* { isAdmin && (
                 <Switch>
                   <Route path="/admin" component={Admin} />

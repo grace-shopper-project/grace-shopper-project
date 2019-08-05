@@ -2,6 +2,7 @@ import React from 'react'
 import {connect} from 'react-redux'
 import {fetchCart, removeFromCartThunk} from '../store/cart'
 import {Card} from 'react-bootstrap'
+import {Link} from 'react-router-dom'
 
 export class Cart extends React.Component {
   constructor() {
@@ -95,7 +96,9 @@ export class Cart extends React.Component {
                                   padding: '0.5vw'
                                   // margin: '1vw'
                                 }}
-                                onClick = {() => this.props.removeFromCart(item.id)}
+                                onClick={() =>
+                                  this.props.removeFromCart(item.id)
+                                }
                               >
                                 Remove from cart
                               </button>
@@ -152,7 +155,6 @@ export class Cart extends React.Component {
                                       width: '4vw',
                                       height: '2vw'
                                     }}
-
                                   >
                                     {inventory.map(function(num) {
                                       return (
@@ -181,7 +183,8 @@ export class Cart extends React.Component {
                 justifyContent: 'center'
               }}
             >
-              <button
+              <Link
+                to="/cart/info"
                 type="submit"
                 style={{
                   fontFamily: 'Josefin Sans, sans-serif',
@@ -196,7 +199,7 @@ export class Cart extends React.Component {
                 }}
               >
                 Proceed to checkout!
-              </button>
+              </Link>
             </div>
           </div>
         </div>
