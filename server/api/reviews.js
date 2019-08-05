@@ -1,6 +1,5 @@
 const reviewRouter = require('express').Router()
 const {Review, Product, User} = require('../db/models')
-//TODO: dont forget to add productId in the path
 
 const mustBeAdmin = (req, res, next) => {
   if (!req.user && !req.user.isAdmin) {
@@ -18,7 +17,7 @@ const mustBeLoggedIn = (req, res, next) => {
 //
 reviewRouter.get('/', async (req, res, next) => {
   try {
-    const reviews = await Review.findAll({include: [Product]})
+    const reviews = await Review.findAll({include: [User, Product]})
     if (reviews) {
       res.json(reviews)
     } else {

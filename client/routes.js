@@ -12,6 +12,7 @@ import {
   SingleProduct,
   AllReviews,
   NewReview,
+  SingleUser,
   Cart,
   CartInfo
 } from './components'
@@ -37,20 +38,26 @@ class Routes extends Component {
         <Route path="/login" component={Login} />
         <Route path="/signup" component={Signup} />
         <Route path="/products/:id" component={SingleProduct} />
-        <Route path="/products" component={AllProducts} />
-        <Route path="/reviews/:reviewId" component={NewReview} />
-        <Route path="/reviews" component={AllReviews} />
-        <Route path="/cart/info" component={CartInfo} />
+        <Route exact path="/products" component={AllProducts} />
+        <Route path="/reviews/new" component={NewReview} />
+        <Route exact path="/reviews" component={AllReviews} />
         <Route path="/cart" component={Cart} />
+        <Route path="/cart/info" component={CartInfo} />
 
         {isLoggedIn && (
           <Switch>
             {/* Routes placed here are only available after logging in */}
-            <Route path="/home" component={UserHome} />
+            <Route
+              exact
+              path="/users"
+              component={UserHome}
+              onDelete={this.deleteReviews}
+            />
+            <Route path="/users/:id" component={SingleUser} />
             <Route path="/products/:id" component={SingleProduct} />
             <Route path="/products" component={AllProducts} />
-            <Route path="/reviews/:reviewId" component={NewReview} />
-            <Route path="/reviews" component={AllReviews} />
+            <Route exact path="/reviews" component={AllReviews} />
+            <Route path="/reviews/new" component={NewReview} />
             <Route path="/cart" component={Cart} />
             {/* { isAdmin && (
                 <Switch>

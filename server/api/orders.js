@@ -1,6 +1,30 @@
 const orderRouter = require('express').Router()
-const {Order, Cart} = require('../db/models')
+const {Order, Cart, User, Product, OrderDetails} = require('../db/models')
 
+orderRouter.get('/', async (req, res, next) => {
+  try {
+    const orders = await Order.findAll({
+      include: [User, Product]
+    })
+    res.json(orders)
+  } catch (err) {
+    next(err)
+  }
+})
+
+orderRouter.get('/:orderId/items', async (req, res, next) => {
+  try {
+    const items = await OrderDetails.findAll({
+      where: {
+        orderId: req.params.orderId
+      },
+      include: [{model: Product, attributes: ['id', 'price']}]
+    })
+    res.json(items)
+  } catch (err) {
+    next(err)
+  }
+})
 orderRouter.post('/', async (req, res, next) => {
   try {
     const orders = await Order.create({
