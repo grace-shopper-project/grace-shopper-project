@@ -41,7 +41,6 @@ export class CartInfo extends React.Component {
               style={{
                 width: '34vw',
                 height: '53vw',
-
                 marginBottom: '2vw'
               }}
             >
