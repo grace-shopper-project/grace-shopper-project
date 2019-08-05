@@ -3,7 +3,7 @@ const axios = require('axios')
 const GET_CART = 'GET_CART'
 const ADD_TO_CART = 'ADD_TO_CART'
 const REMOVE_FROM_CART = 'REMOVE_FROM_CART'
-const UPDATE_QUANTITY = 'UPDATE_QUANTITY'
+const UPDATE_CART = 'UPDATE_CART'
 const CLEAR_CART = 'CLEAR_CART' //allows user to empty cart
 
 const getCart = cart => {
@@ -22,24 +22,23 @@ const getCart = cart => {
 //   }
 // }
 
-// const removeFromCart = product => {
-//   return {
-//     type: REMOVE_FROM_CART,
-//     product
-//   }
-// }
-
-const updateCart = (product, quantity) => {
+const removeFromCart = cart => {
   return {
-    type: UPDATE_QUANTITY,
-    product,
-    quantity
+    type: REMOVE_FROM_CART,
+    cart
   }
 }
 
-const clearCart = () => ({
-  type: CLEAR_CART
-})
+const updateCart = cart => {
+  return {
+    type: UPDATE_CART,
+    cart
+  }
+}
+
+// const clearCart = () => ({
+//   type: CLEAR_CART
+// })
 
 export function fetchCart() {
   return async dispatch => {
@@ -64,29 +63,30 @@ export function fetchCart() {
 //   }
 // }
 
-// //unfinished
-// export function removefromCartThunk() {
-//   return async dispatch => {
-//     try {
-//       const {data} = await axios.put(`/api/cart`) // need productinfo
-//       dispatch(removeFromCart(data))
-//     } catch (error) {
-//       console.log(error)
-//     }
-//   }
-// }
-
 //unfinished
-export function updateCartThunk() {
+export function removefromCartThunk(cart) {
   return async dispatch => {
     try {
-      const {data} = await axios.put(`/api/cart`) //need product and quant info
+      const {data} = await axios.put(`/api/cart/${cart.id}`) // need productinfo
+      dispatch(removeFromCart(data))
+    } catch (error) {
+      console.log(error)
+    }
+  }
+}
+
+//unfinished
+export function updateCartThunk(cart) {
+  return async dispatch => {
+    try {
+      const {data} = await axios.put(`/api/cart`, cart) //need product and quant info
       dispatch(updateCart(data))
     } catch (error) {
       console.log(error)
     }
   }
 }
+
 
 export default function cartReducer(state = [], action) {
   switch (action.type) {
@@ -95,18 +95,19 @@ export default function cartReducer(state = [], action) {
     case ADD_TO_CART:
       return [...state, {product: action.product, quantity: action.quantity}]
     case REMOVE_FROM_CART:
-      const filteredState = state.filter(object => {
-        return object.product !== action.product
-      })
-      return filteredState
-    case UPDATE_QUANTITY:
-      const newState = state.map(object => {
-        if (object.product === action.product) {
-          object.quantity = action.quantity
-        }
-        return object
-      })
-      return newState
+      // const filteredState = state.filter(object => {
+      //   return object.product !== action.product
+      // })
+      return action.cart
+    case UPDATE_CART:
+      // const newState = state.map(object => {
+      //   if (object.product === action.product) {
+      //     object.quantity = action.quantity
+      //   }
+      //   return object
+      // })
+      // return newState
+      return action.cart
     case CLEAR_CART:
       return []
     default:

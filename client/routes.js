@@ -12,10 +12,12 @@ import {
   SingleProduct,
   AllReviews,
   NewReview,
-  Cart
+  Cart,
+  CartInfo
 } from './components'
 import {me} from './store'
 import SingleUserForAdmin from './components/SingleUserForAdmin'
+import {fetchCart} from './store/cart'
 
 /**
  * COMPONENT
@@ -23,10 +25,12 @@ import SingleUserForAdmin from './components/SingleUserForAdmin'
 class Routes extends Component {
   componentDidMount() {
     this.props.loadInitialData()
+    this.props.fetchCart()
   }
 
   render() {
     const {isLoggedIn} = this.props
+    // const {isAdmin} = this.props
 
     return (
       <Switch>
@@ -37,6 +41,7 @@ class Routes extends Component {
         <Route path="/products" component={AllProducts} />
         <Route path="/reviews/:reviewId" component={NewReview} />
         <Route path="/reviews" component={AllReviews} />
+        <Route path="/cart/info" component={CartInfo} />
         <Route path="/cart" component={Cart} />
         <Route
           exact
@@ -45,6 +50,7 @@ class Routes extends Component {
         />
         <Route path="/admin" component={Admin} />
         <Route component={GuestHome} />
+
         {isLoggedIn && (
           <Switch>
             {/* Routes placed here are only available after logging in */}
@@ -54,10 +60,15 @@ class Routes extends Component {
             <Route path="/reviews/:reviewId" component={NewReview} />
             <Route path="/reviews" component={AllReviews} />
             <Route path="/cart" component={Cart} />
+            {/* { isAdmin && (
+                <Switch>
+                  <Route path="/admin" component={Admin} />
+                </Switch>
+              )} */}
             <Route component={UserHome} />
           </Switch>
         )}
-        {/* <Route component={Login} /> */}
+        <Route component={GuestHome} />
       </Switch>
     )
   }
@@ -78,6 +89,9 @@ const mapDispatch = dispatch => {
   return {
     loadInitialData() {
       dispatch(me())
+    },
+    fetchCart() {
+      dispatch(fetchCart())
     }
   }
 }

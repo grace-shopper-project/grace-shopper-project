@@ -8,7 +8,7 @@ const ProductCard = props => {
     <Card style={{margin: '1vw'}}>
       <Card.Img variant="top" src={props.imageUrl} style={{width: '12vw'}} />
       <Card.Title style={{marginTop: '1vw'}}>{props.name}</Card.Title>
-      <Card.Text>placeholder</Card.Text>
+      <Card.Text>${props.price}</Card.Text>
       {/* will eventually link button to the singleProduct page */}
       <Link to={url}>
         <Button variant="primary">See more</Button>
