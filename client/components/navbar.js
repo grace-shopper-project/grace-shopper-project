@@ -4,6 +4,7 @@ import {connect} from 'react-redux'
 import {Link, withRouter} from 'react-router-dom'
 import {logout} from '../store'
 import {fetchSearchedProducts, fetchProducts} from '../store/products'
+import {fetchCart} from '../store/cart'
 
 class Navbar extends React.Component {
   constructor() {
@@ -98,7 +99,7 @@ class Navbar extends React.Component {
                     <Link to="/user/:id">Your Account</Link>
                   </div>
                   <div>
-                    <Link to="/cart">Your Cart</Link>
+                    <Link onClick={this.props.fetchCart} to="/cart">Your Cart</Link>
                   </div>
                   <div>
                     <a href="#" onClick={this.props.handleClick}>
@@ -152,7 +153,7 @@ class Navbar extends React.Component {
                     <Link to="/signup">Sign Up</Link>
                   </div>
                   <div style={{marginRight: '1.5vw'}}>
-                    <Link to="/cart">Your Cart</Link>
+                    <Link onClick={this.props.fetchCart} to="/cart">Your Cart</Link>
                   </div>
                 </div>
               </div>
@@ -183,7 +184,8 @@ const mapDispatch = dispatch => {
     },
     fetchProducts: () => {
       dispatch(fetchProducts())
-    }
+    },
+    fetchCart: () => dispatch(fetchCart())
   }
 }
 
