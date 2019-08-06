@@ -54,7 +54,7 @@ export class ShippingInfo extends React.Component {
       const id = this.props.cart.id
       const newOrder = await axios.post('/api/orders', {address, subtotal, id}) //update axios post route on backend
       this.props.addNewOrder(newOrder.data) //make addNewStudent function and pass it down as props
-      this.setState({...defaultState, isClicked: true})
+      this.setState({defaultState})
     } catch (error) {
       console.log(error)
     }
@@ -171,7 +171,7 @@ export class ShippingInfo extends React.Component {
           >
 
               <div>
-                <Checkout info={this.state} />
+                <Checkout  />
                 <h1>HEY</h1>
               </div>
 
