@@ -144,9 +144,9 @@ export class ShippingInfo extends React.Component {
               />
             </div>
             <button
+              className="jos"
               type="submit"
               style={{
-                fontFamily: 'Josefin Sans, sans-serif',
                 fontSize: '1.25vw',
                 color: 'white',
                 height: '3vw',

@@ -15,7 +15,8 @@ import {
   SingleUserReview,
   SingleUserOrder,
   Cart,
-  CartInfo
+  CartInfo,
+  OrderConfirmation
 } from './components'
 import {me} from './store'
 import SingleUserForAdmin from './components/SingleUserForAdmin'
@@ -45,6 +46,7 @@ class Routes extends Component {
         <Route exact path="/cart" component={Cart} />
         <Route path="/cart/info" component={CartInfo} />
         <Route path="/cart" component={Cart} />
+        <Route path="/orderconfirmation" component={OrderConfirmation} />
         <Route
           exact
           path="/admin/users/:userId"

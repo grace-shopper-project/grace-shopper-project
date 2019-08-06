@@ -1,7 +1,46 @@
-body {
-  font-family: 'Josefin Sans', sans-serif;
+@font-face {
+  font-family: 'corbenbold';
+  src: url('../fonts/corben-bold-webfont.woff2') format('woff2'),
+    url('../fonts/corben-bold-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
 }
 
+@font-face {
+  font-family: 'corbenregular';
+  src: url('../fonts/corben-regular-webfont.woff2') format('woff2'),
+    url('../fonts/corben-regular-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'josefin_sansbold';
+  src: url('../fonts/josefinsans-bold-webfont.woff2') format('woff2'),
+    url('../fonts/josefinsans-bold-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'josefin_sansregular';
+  src: url('../fonts/josefinsans-regular-webfont.woff2') format('woff2'),
+    url('../fonts/josefinsans-regular-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+* {
+  font-family: 'josefin_sansregular';
+}
+
+.corb {
+  font-family: 'corbenregular';
+}
+
+.jos {
+  font-family: 'josefin_sansregular';
+}
 a {
   text-decoration: none;
 }
@@ -56,7 +95,6 @@ form div {
 
 .btn {
   background-color: #82bbb5;
-  font-family: 'Josefin Sans', sans-serif;
   width: 6vw;
   font-size: 1vw;
   text-align: center;
@@ -95,7 +133,6 @@ form div {
 
 .cart {
   display: flex;
-  font-family: 'Josefin Sans', sans-serif;
   justify-content: center;
   border: 2px solid black;
   border-radius: 5px;
@@ -112,4 +149,11 @@ form div {
 
 a.purchase {
   color: white;
+}
+
+.popup {
+  position: fixed;
+  right: 10vw;
+  top: 15vw;
+  z-index: 3000;
 }
