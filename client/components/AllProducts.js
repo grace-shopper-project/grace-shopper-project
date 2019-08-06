@@ -133,6 +133,7 @@ const mapDispatch = dispatch => {
   return {
     fetchProducts: page => dispatch(fetchProducts(page)),
     fetchCategories: () => dispatch(fetchCategories()),
+
     filteredProducts: (categoryId, page) =>
       dispatch(fetchFilteredProducts(categoryId, page))
   }
