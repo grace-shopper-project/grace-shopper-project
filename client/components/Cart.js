@@ -23,42 +23,50 @@ export class Cart extends React.Component {
   handleSubmit(productId) {
     this.props.updateCart({
       productId: productId,
-      quantity: this.state.quantity,
+      quantity: this.state.quantity
     })
   }
 
   render() {
-    return (
-      <div style={{textAlign: 'center'}}>
-        <div>
-          <h1 style={{textAlign: 'center'}}>Your Cart: </h1>
-        </div>
-        <div
-          style={{
-            display: 'flex',
-            flexDirection: 'row',
-            justifyContent: 'center'
-          }}
-        >
+    if (!this.props.cart.products) {
+      return <h1>Your Cart is empty!</h1>
+    } else
+      return (
+        <div style={{textAlign: 'center'}}>
+          <div>
+            <h1 style={{textAlign: 'center'}}>Your Cart: </h1>
+          </div>
           <div
-            className="orderList"
             style={{
-              width: '44vw',
-              height: '72vw',
-              border: '3px dashed #3C70C0',
-              margin: '2vw',
-              overflow: 'scroll'
+              display: 'flex',
+              flexDirection: 'row',
+              justifyContent: 'center'
             }}
           >
-            <div>
-              <h4 style={{textAlign: 'left', margin: '2vw'}}>Cart ID: </h4>
-              <h4 style={{textAlign: 'left', margin: '2vw'}}>Subtotal: </h4>
-            </div>
-            <div className="deck">
-              {!this.props.cart.products ? (
-                <h1>Your cart is empty!</h1>
-              ) : (
-                this.props.cart.products.map(item => {
+            <div
+              className="orderList"
+              style={{
+                width: '44vw',
+                height: '72vw',
+                border: '3px dashed #3C70C0',
+                margin: '2vw',
+                overflow: 'scroll'
+              }}
+            >
+              <div>
+                <h4 style={{textAlign: 'left', margin: '2vw'}}>Cart ID: </h4>
+                <h4 style={{textAlign: 'left', margin: '2vw'}}>
+                  {`Subtotal: $${this.props.cart.products.reduce(
+                    (accum, val) => {
+                      accum += val.cartDetails.total
+                      return accum
+                    },
+                    0
+                  )}`}{' '}
+                </h4>
+              </div>
+              <div className="deck">
+                {this.props.cart.products.map(item => {
                   return (
                     <Card
                       key={item.id}
@@ -148,41 +156,40 @@ export class Cart extends React.Component {
                       </Card.Body>
                     </Card>
                   )
-                })
-              )}
-            </div>
+                })}
+              </div>
 
-            <div
-              style={{
-                display: 'flex',
-                flexDirection: 'row',
-                justifyContent: 'center'
-              }}
-            >
-              <Link
-                className="purchase"
-                to="/cart/info"
-                type="submit"
+              <div
                 style={{
-                  fontFamily: 'Josefin Sans, sans-serif',
-                  fontSize: '1.5vw',
-                  height: '3.5vw',
-                  border: '2px solid black',
-                  borderRadius: '15px',
-                  textAlign: 'center',
-                  padding: '0.75vw',
-                  marginTop: '1vw',
-                  marginBottom: '1vw',
-                  backgroundColor: '#3C70C0'
+                  display: 'flex',
+                  flexDirection: 'row',
+                  justifyContent: 'center'
                 }}
               >
-                Proceed to checkout!
-              </Link>
+                <Link
+                  className="purchase"
+                  to="/cart/info"
+                  type="submit"
+                  style={{
+                    fontFamily: 'Josefin Sans, sans-serif',
+                    fontSize: '1.5vw',
+                    height: '3.5vw',
+                    border: '2px solid black',
+                    borderRadius: '15px',
+                    textAlign: 'center',
+                    padding: '0.75vw',
+                    marginTop: '1vw',
+                    marginBottom: '1vw',
+                    backgroundColor: '#3C70C0'
+                  }}
+                >
+                  Proceed to checkout!
+                </Link>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-    )
+      )
   }
 }
 
