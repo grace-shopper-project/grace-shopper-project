@@ -52,7 +52,7 @@ class Routes extends Component {
           component={SingleUserForAdmin}
         />
         <Route path="/admin" component={Admin} />
-        <Route component={GuestHome} />
+        {/* <Route component={GuestHome} /> */}
 
         {isLoggedIn && (
           <Switch>

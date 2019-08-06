@@ -96,7 +96,7 @@ class Navbar extends React.Component {
                 </div>
                 <div style={{width: '30%'}}>
                   <div>
-                    <Link to="/user/:id">Your Account</Link>
+                    <Link to={`/users/${this.props.userId}`}>Your Account</Link>
                   </div>
                   <div>
                     <Link onClick={this.props.fetchCart} to="/cart">Your Cart</Link>
@@ -170,7 +170,8 @@ class Navbar extends React.Component {
  */
 const mapState = state => {
   return {
-    isLoggedIn: !!state.user.id
+    isLoggedIn: !!state.user.id,
+    userId: state.user.id
   }
 }
 
