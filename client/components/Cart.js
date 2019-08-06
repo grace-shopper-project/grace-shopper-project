@@ -3,6 +3,7 @@ import {connect} from 'react-redux'
 import {fetchCart, removeFromCartThunk} from '../store/cart'
 import {Card} from 'react-bootstrap'
 import {Link} from 'react-router-dom'
+import {capitalize} from '../../server/utils/helpers'
 
 export class Cart extends React.Component {
   constructor() {
