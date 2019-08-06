@@ -41,24 +41,22 @@ orderRouter.get('/:orderId', async (req, res, next) => {
 })
 orderRouter.post('/', async (req, res, next) => {
   try {
-    const orders = await Order.create({
+    const order = await Order.create({
       address: req.body.address,
-      subTotal: req.body.subTotal,
+      subtotal: req.body.subtotal,
       userId: req.user.id
     })
     const cart = await Cart.findByPk(req.body.id, {
       include: [Product]
     })
-    const orderDetails = cart.products.map(
-      async product =>
-        await orderDetails.create({
-          orderId: orders.id,
-          productId: product.id,
-          quantity: product.cartDetails.quantity
-        })
-    )
-
-    res.json(orders, cart, orderDetails)
+    const orderDetails = cart.products.map(async product => {
+      await OrderDetails.create({
+        orderId: order.id,
+        productId: product.id,
+        quantity: product.cartDetails.quantity
+      })
+    })
+    res.json(order, cart, orderDetails)
   } catch (err) {
     next(err)
   }

@@ -2,6 +2,7 @@ import React from 'react'
 import {connect} from 'react-redux'
 import {fetchCart} from '../store/cart'
 import axios from 'axios'
+import Checkout from './Checkout'
 
 const defaultState = {
   firstName: '',
@@ -10,8 +11,9 @@ const defaultState = {
   streetAddress2: '',
   city: '',
   state: '',
-  zipCode: '',
-  phone: ''
+  zipCode: 0,
+  phone: '',
+  isClicked: false
 }
 
 export class ShippingInfo extends React.Component {
@@ -32,11 +34,27 @@ export class ShippingInfo extends React.Component {
   }
 
   async handleSubmit(event) {
+    console.log('In handle submit')
     event.preventDefault()
     try {
-      const newOrder = await axios.post('/api/orders', this.state) //update axios post route on backend
+      let streetAddress = ''
+      if (this.state.streetAddress2 === '') {
+        streetAddress = this.state.streetAddress1
+      } else {
+        streetAddress = `${this.state.streetAddress1}, ${
+          this.state.streetAddress2
+        }`
+      }
+      const address = `${streetAddress}, ${this.state.city}, ${
+        this.state.state
+      } ${this.state.zipCode}`
+      const subtotal = Number(
+        document.querySelector('.checkoutSubtotal').innerText.split('$')[1]
+      )
+      const id = this.props.cart.id
+      const newOrder = await axios.post('/api/orders', {address, subtotal, id}) //update axios post route on backend
       this.props.addNewOrder(newOrder.data) //make addNewStudent function and pass it down as props
-      this.setState(defaultState)
+      this.setState({...defaultState, isClicked: true})
     } catch (error) {
       console.log(error)
     }
@@ -118,22 +136,13 @@ export class ShippingInfo extends React.Component {
             <div className="input">
               <label htmlFor="zipcode">Zip Code:</label>
               <input
-                type="text"
-                name="zipcode"
-                value={this.state.zipcode}
+                type="integer"
+                name="zipCode"
+                value={this.state.zipCode}
                 onChange={this.handleChange}
                 style={{width: '25%'}}
               />
             </div>
-          </form>
-          <div
-            className="purchase"
-            style={{
-              display: 'flex',
-              flexDirection: 'row',
-              justifyContent: 'center'
-            }}
-          >
             <button
               type="submit"
               style={{
@@ -151,6 +160,21 @@ export class ShippingInfo extends React.Component {
             >
               Submit Order!
             </button>
+          </form>
+          <div
+            className="purchase"
+            style={{
+              display: 'flex',
+              flexDirection: 'row',
+              justifyContent: 'center'
+            }}
+          >
+
+              <div>
+                <Checkout info={this.state} />
+                <h1>HEY</h1>
+              </div>
+
           </div>
         </div>
       </div>
@@ -160,14 +184,7 @@ export class ShippingInfo extends React.Component {
 
 const mapState = state => {
   return {
-    firstName: state.firstName,
-    lastName: state.lastName,
-    streetAddress1: state.streetAddress1,
-    streetAddress2: state.streetAddress2,
-    city: state.city,
-    state: state.state,
-    zipCode: state.zipCode,
-    phone: state.phone
+    cart: state.cart
   }
 }
 
