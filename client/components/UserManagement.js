@@ -2,10 +2,37 @@ import React from 'react'
 import Card from 'react-bootstrap/Card'
 import Button from 'react-bootstrap/Button'
 import {Link} from 'react-router-dom'
-import {fetchDeleteSingleUserForAdmin} from '../store/usersForAdmin'
+import {
+  fetchDeleteSingleUserForAdmin,
+  fetchUsersForAdmin,
+  fetchSearchedUsers
+} from '../store/usersForAdmin'
 import {connect} from 'react-redux'
 
 class UserManagement extends React.Component {
+  constructor() {
+    super()
+    this.state = {
+      userSearch: ''
+    }
+    this.handleOnChange = this.handleOnChange.bind(this)
+    this.handleKeyPress = this.handleKeyPress.bind(this)
+  }
+  componentDidMount() {
+    this.props.fetchUsers()
+  }
+
+  handleOnChange(event) {
+    this.setState({userSearch: event.target.value})
+  }
+
+  async handleKeyPress(event) {
+    if (event.key === 'Enter') {
+      event.preventDefault()
+      await this.props.fetchSearchedUsers(this.state.userSearch)
+    }
+  }
+
   render() {
     return (
       <div>
@@ -14,6 +41,13 @@ class UserManagement extends React.Component {
         >
           All Users
         </h3>
+        <input
+          type="text"
+          value={this.state.userSearch}
+          placeholder="search for user"
+          onChange={this.handleOnChange}
+          onKeyPress={this.handleKeyPress}
+        />
         <div className="deck">
           {this.props.usersForAdmin.map(user => {
             return (
@@ -73,6 +107,12 @@ const mapDispatchToProps = dispatch => {
   return {
     deleteUser: userId => {
       dispatch(fetchDeleteSingleUserForAdmin(userId))
+    },
+    fetchUsers: () => {
+      dispatch(fetchUsersForAdmin())
+    },
+    fetchSearchedUsers: userSearch => {
+      dispatch(fetchSearchedUsers(userSearch))
     }
   }
 }

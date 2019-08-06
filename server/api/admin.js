@@ -1,6 +1,7 @@
 const adminRouter = require('express').Router()
 const {User} = require('../db/models')
 const checkingIfAdmin = require('../utils/admin.middleware')
+const Sequelize = require('sequelize')
 //add in the checkingIfAdmin after checking the routes
 
 // GET api/admin/users
@@ -8,6 +9,22 @@ adminRouter.get('/users', async (req, res, next) => {
   try {
     const allUsers = await User.findAll()
     res.json(allUsers)
+  } catch (err) {
+    next(err)
+  }
+})
+
+// GET api/admin/users/search
+adminRouter.get('/users/search', async (req, res, next) => {
+  try {
+    const searchedUsers = await User.findAll({
+      where: {
+        name: {
+          [Sequelize.Op.substring]: req.query.userSearch
+        }
+      }
+    })
+    res.json(searchedUsers)
   } catch (err) {
     next(err)
   }
