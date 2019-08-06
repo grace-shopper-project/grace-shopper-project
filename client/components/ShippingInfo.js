@@ -127,6 +127,7 @@ export class ShippingInfo extends React.Component {
             </div>
           </form>
           <div
+            className="purchase"
             style={{
               display: 'flex',
               flexDirection: 'row',
@@ -138,12 +139,13 @@ export class ShippingInfo extends React.Component {
               style={{
                 fontFamily: 'Josefin Sans, sans-serif',
                 fontSize: '1.25vw',
+                color: 'white',
                 height: '3vw',
                 border: '2px solid black',
                 borderRadius: '15px',
                 textAlign: 'center',
-                padding: '1vw',
-                marginTop: '4vw',
+                padding: '0.75vw',
+                marginTop: '2vw',
                 backgroundColor: '#3C70C0'
               }}
             >
