@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
-import {fetchReviewsForUsers} from '../store/userReviews'
+import {fetchReviewsForUsers, deleteReviews} from '../store/userReviews'
 import {fetchOrdersForUsers} from '../store/userOrders'
 import {AllReviews} from './AllReviews'
 import {Route, Switch, Link} from 'react-router-dom'
@@ -20,7 +20,10 @@ class UserHome extends React.Component {
   render() {
     return (
       <div>
-        <SingleUserReview reviewsForUser={this.props.reviewsForUser} />
+        <SingleUserReview
+          reviewsForUser={this.props.reviewsForUser}
+          deleteReviews={this.props.deleteReviews}
+        />
         <SingleUserOrder ordersForUser={this.props.ordersForUser} />
       </div>
     )
@@ -29,7 +32,8 @@ class UserHome extends React.Component {
 const mapDispatch = dispatch => {
   return {
     fetchReviewsForUsers: () => dispatch(fetchReviewsForUsers()),
-    fetchOrdersForUsers: () => dispatch(fetchOrdersForUsers())
+    fetchOrdersForUsers: () => dispatch(fetchOrdersForUsers()),
+    deleteReviews: reviewId => dispatch(deleteReviews(reviewId))
   }
 }
 

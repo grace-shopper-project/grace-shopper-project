@@ -10,6 +10,7 @@ import Button from 'react-bootstrap/Button'
 import CardDeck from 'react-bootstrap/CardDeck'
 
 const SingleUserReview = props => {
+  console.log('PROPS FOR REVIEWS', props)
   return (
     <>
       <h1>Reviews</h1>
@@ -22,6 +23,12 @@ const SingleUserReview = props => {
                 <Card.Text>{review.content}</Card.Text>
                 <Button variant="primary">See this User</Button>
               </Card.Body>
+              <button
+                type="button"
+                onClick={() => props.deleteReviews(review.id)}
+              >
+                X
+              </button>
             </Card>
           )
         })}
