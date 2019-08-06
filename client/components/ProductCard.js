@@ -16,7 +16,12 @@ const ProductCard = props => {
         <div>
           <button
             type="button"
-            style={{width: '7vw', fontSize: '1vw'}}
+            style={{
+              width: '7vw',
+              fontSize: '1vw',
+              backgroundColor: '#f29f8f',
+              color: 'white'
+            }}
             onClick={() =>
               props.addToCart({
                 productId: props.id,
@@ -28,13 +33,14 @@ const ProductCard = props => {
             Add to cart
           </button>
         </div>
-        <Link to={url}>
+        <Link className="purchase" to={url}>
           <button
             type="button"
             style={{
               width: '6vw',
               fontSize: '1vw',
-              marginLeft: '1vw'
+              marginLeft: '1vw',
+              backgroundColor: '#82bbb5'
             }}
           >
             See more
