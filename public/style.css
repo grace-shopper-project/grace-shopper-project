@@ -150,3 +150,10 @@ form div {
 a.purchase {
   color: white;
 }
+
+.popup {
+  position: fixed;
+  right: 10vw;
+  top: 15vw;
+  z-index: 3000;
+}

@@ -19,7 +19,7 @@ export default class GuestHome extends React.Component {
           You must be hungry!
         </h2>
         <br />
-        <div>
+        <div style={{justifyContent: 'center'}}>
           <Toasty />
         </div>
         <br />
