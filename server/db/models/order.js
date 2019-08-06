@@ -10,10 +10,6 @@ const Order = db.define('order', {
   },
   address: Sequelize.STRING,
   subtotal: Sequelize.FLOAT
-  // items: {
-  //   type: Sequelize.ARRAY(Sequelize.JSON),
-  //   allowNull: false
-  // }
 })
 
 Order.beforeUpdate(async orderInstance => {

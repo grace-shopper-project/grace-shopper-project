@@ -4,9 +4,13 @@ const {Order, Cart, User, Product, OrderDetails} = require('../db/models')
 orderRouter.get('/', async (req, res, next) => {
   try {
     const orders = await Order.findAll({
-      include: [User, Product]
+      include: [User]
     })
-    res.json(orders)
+    if (orders) {
+      res.json(orders)
+    } else {
+      res.sendStatus(500)
+    }
   } catch (err) {
     next(err)
   }
@@ -25,15 +29,23 @@ orderRouter.get('/:orderId/items', async (req, res, next) => {
     next(err)
   }
 })
+orderRouter.get('/:orderId', async (req, res, next) => {
+  try {
+    let orderId = await Order.findByPk(req.params.orderId, {
+      include: [User, Product]
+    })
+    res.json(orderId)
+  } catch (err) {
+    next(err)
+  }
+})
 orderRouter.post('/', async (req, res, next) => {
   try {
-    console.log('req.body $$$$$$$$$$$', req.body)
     const order = await Order.create({
       address: req.body.address,
       subtotal: req.body.subtotal,
       userId: req.user.id
     })
-
     const cart = await Cart.findByPk(req.body.id, {
       include: [Product]
     })
@@ -67,7 +79,7 @@ orderRouter.delete('/:orderId', (req, res, next) => {
   try {
     Cart.destroy({
       where: {
-        id: req.body.cartId
+        orderId: req.body.cartId
       }
     })
   } catch (err) {
