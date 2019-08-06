@@ -1,7 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {fetchCart} from '../store/cart'
-import {Card} from 'react-bootstrap'
+import {capitalize} from '../../server/utils/helpers'
 
 export class CartDetails extends React.Component {
   constructor() {

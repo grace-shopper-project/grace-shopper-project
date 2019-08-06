@@ -9,7 +9,7 @@ const Order = db.define('order', {
     defaultValue: 'processing'
   },
   address: Sequelize.STRING,
-  subtotal: Sequelize.INTEGER
+  subtotal: Sequelize.FLOAT
 })
 
 Order.beforeUpdate(async orderInstance => {

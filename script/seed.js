@@ -523,6 +523,20 @@ async function seed() {
     )
   }
 
+  for (let i = 0; i < 100; i++) {
+    users.push(
+      User.create({
+        name: faker.name.findName(),
+        isAdmin: faker.random.boolean(),
+        isGuest: faker.random.boolean(),
+        needsPwReset: faker.random.boolean(),
+        phone: faker.random.number(),
+        email: faker.internet.email(),
+        password: faker.lorem.word()
+      })
+    )
+  }
+
   await Promise.all([
     Category.create({name: 'yeast bread'}),
     Category.create({name: 'flatbread'}),

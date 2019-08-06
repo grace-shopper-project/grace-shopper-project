@@ -4,6 +4,7 @@ import {connect} from 'react-redux'
 import {Link, withRouter} from 'react-router-dom'
 import {logout} from '../store'
 import {fetchSearchedProducts, fetchProducts} from '../store/products'
+import {fetchCart} from '../store/cart'
 
 class Navbar extends React.Component {
   constructor() {
@@ -36,7 +37,7 @@ class Navbar extends React.Component {
   render() {
     return (
       <>
-        <div className="navHeader">
+        <div>
           <div className="bread" style={{height: '18vh'}}>
             <h1
               style={{
@@ -58,9 +59,9 @@ class Navbar extends React.Component {
             {this.props.isLoggedIn ? (
               <div>
                 {/* The navbar will show these links after you log in */}
-                <div style={{width: '25%'}} />
-                <div>
-                  <div style={{width: '50%'}}>
+                <div style={{width: '30%'}} />
+                <div style={{width: '40%'}}>
+                  <div>
                     <Link
                       to="/home"
                       onClick={() => this.setState({inputEntry: ''})}
@@ -73,8 +74,11 @@ class Navbar extends React.Component {
                       Products
                     </Link>
                   </div>
-                  <div>
-                    <img src="/search.png" style={{width: '3vw'}} />
+                  <div style={{padding: '0.5vw'}}>
+                    <img
+                      src="/search.png"
+                      style={{margin: '0.5vw', width: '2vw', height: '2vw'}}
+                    />
                     <input
                       type="text"
                       name="inputEntry"
@@ -88,6 +92,14 @@ class Navbar extends React.Component {
                         marginTop: '0.5vw'
                       }}
                     />
+                  </div>
+                </div>
+                <div style={{width: '30%'}}>
+                  <div>
+                    <Link to={`/users/${this.props.userId}`}>Your Account</Link>
+                  </div>
+                  <div>
+                    <Link onClick={this.props.fetchCart} to="/cart">Your Cart</Link>
                   </div>
                   <div>
                     <a href="#" onClick={this.props.handleClick}>
@@ -112,7 +124,7 @@ class Navbar extends React.Component {
                   <div onClick={this.handleProductOnClick}>
                     <Link to="/products">Products</Link>
                   </div>
-                  <div>
+                  <div style={{padding: '0.5vw'}}>
                     <img
                       src="/search.png"
                       style={{margin: '0.5vw', width: '2vw', height: '2vw'}}
@@ -141,7 +153,7 @@ class Navbar extends React.Component {
                     <Link to="/signup">Sign Up</Link>
                   </div>
                   <div style={{marginRight: '1.5vw'}}>
-                    <Link to="/cart">Your Cart</Link>
+                    <Link onClick={this.props.fetchCart} to="/cart">Your Cart</Link>
                   </div>
                 </div>
               </div>
@@ -158,7 +170,8 @@ class Navbar extends React.Component {
  */
 const mapState = state => {
   return {
-    isLoggedIn: !!state.user.id
+    isLoggedIn: !!state.user.id,
+    userId: state.user.id
   }
 }
 
@@ -172,7 +185,8 @@ const mapDispatch = dispatch => {
     },
     fetchProducts: () => {
       dispatch(fetchProducts())
-    }
+    },
+    fetchCart: () => dispatch(fetchCart())
   }
 }
 

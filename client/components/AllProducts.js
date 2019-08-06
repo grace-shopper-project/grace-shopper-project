@@ -1,8 +1,10 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import {fetchProducts} from '../store/products.js'
+import {fetchProducts, fetchFilteredProducts} from '../store/products.js'
+import {fetchCategories} from '../store/categories.js'
 import ProductCard from './ProductCard'
 import {Button} from 'react-bootstrap'
+import {capitalize} from '../../server/utils/helpers'
 
 class AllProducts extends Component {
   constructor() {
@@ -13,11 +15,17 @@ class AllProducts extends Component {
     }
     this.changeHandler = this.changeHandler.bind(this)
     this.clickHandler = this.clickHandler.bind(this)
+    this.handleChange = this.handleChange.bind(this)
   }
   changeHandler(event) {
     this.setState({
       searchTerm: event.target.value
     })
+  }
+
+  handleChange(evt) {
+    evt.preventDefault()
+    this.props.filteredProducts(evt.target.value, this.state.page)
   }
   clickHandler(event) {
     let current = this.state.page
@@ -31,76 +39,41 @@ class AllProducts extends Component {
   }
   componentDidMount() {
     this.props.fetchProducts()
+    this.props.fetchCategories()
   }
   render() {
-    const options = ['option1', 'option2', 'option3']
-    const filters = ['filter1', 'filter2', 'filter3']
     return (
       <div>
         <div
           style={{
+            margin: '1vw',
+            width: '15vw',
             display: 'flex',
-            flexDirection: 'row',
-            padding: '1vw',
-            verticalAlign: 'center'
+            flexDirection: 'row'
           }}
         >
           <div
-            style={{
-              margin: '1vw',
-              width: '15vw',
-              display: 'flex',
-              flexDirection: 'row'
-            }}
+            style={{width: '15vw', marginTop: '0.50vw'}}
+            className="dropdown"
+            type="submit"
+            onClick={this.handleSubmit}
           >
-            <div
-              style={{width: '15vw', marginTop: '0.25vw'}}
-              className="dropdown"
-              type="submit"
-              onClick={this.handleSubmit}
-            >
-              <select
-                style={{width: '15vw', backgroundColor: '#82bbb5'}}
-                onChange={this.handleChange}
-              >
-                {options.map(function(num) {
-                  return <option key={options.indexOf(num)}>{num}</option>
-                })}
-              </select>
-            </div>
-          </div>
-          <div>
-            <div
+            <select
               style={{
                 width: '15vw',
-                display: 'flex',
-                flexDirection: 'row',
-                padding: '1vw',
-                verticalAlign: 'center',
-                justifyContent: 'space-between'
+                backgroundColor: '#82bbb5'
               }}
+              onChange={this.handleChange}
             >
-              <div
-                style={{
-                  width: '15vw',
-                  marginTop: '0.25vw'
-                }}
-                className="dropdown"
-                type="submit"
-                onClick={this.handleSubmit}
-              >
-                <select
-                  style={{width: '20vw', backgroundColor: '#82bbb5'}}
-                  onChange={this.handleChange}
-                >
-                  {filters.map(function(filter) {
-                    return (
-                      <option key={filters.indexOf(filter)}>{filter}</option>
-                    )
-                  })}
-                </select>
-              </div>
-            </div>
+              <option default>Filter By Category:</option>
+              {this.props.categories.map((category, idx) => {
+                return (
+                  <option value={idx + 1} key={idx}>
+                    {category.name}
+                  </option>
+                )
+              })}
+            </select>
           </div>
         </div>
         {!this.props.products.length ? (
@@ -110,12 +83,14 @@ class AllProducts extends Component {
             <div className="deck">
               {this.props.products.map(product => {
                 const {imageUrl, name, price} = product
+                const properName = capitalize(name)
+
                 return (
                   <ProductCard
                     key={product.id}
                     id={product.id}
                     imageUrl={imageUrl}
-                    name={name}
+                    name={properName}
                     price={price}
                   />
                 )
@@ -149,13 +124,17 @@ class AllProducts extends Component {
 
 const mapState = state => {
   return {
-    products: state.products
+    products: state.products,
+    categories: state.categories
   }
 }
 
 const mapDispatch = dispatch => {
   return {
-    fetchProducts: page => dispatch(fetchProducts(page))
+    fetchProducts: page => dispatch(fetchProducts(page)),
+    fetchCategories: () => dispatch(fetchCategories()),
+    filteredProducts: (categoryId, page) =>
+      dispatch(fetchFilteredProducts(categoryId, page))
   }
 }
 

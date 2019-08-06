@@ -18,6 +18,7 @@ import {
   CartInfo
 } from './components'
 import {me} from './store'
+import SingleUserForAdmin from './components/SingleUserForAdmin'
 import {fetchCart} from './store/cart'
 
 /**
@@ -43,6 +44,14 @@ class Routes extends Component {
         <Route exact path="/reviews" component={AllReviews} />
         <Route exact path="/cart" component={Cart} />
         <Route path="/cart/info" component={CartInfo} />
+        <Route path="/cart" component={Cart} />
+        <Route
+          exact
+          path="/admin/users/:userId"
+          component={SingleUserForAdmin}
+        />
+        <Route path="/admin" component={Admin} />
+        {/* <Route component={GuestHome} /> */}
 
         {isLoggedIn && (
           <Switch>

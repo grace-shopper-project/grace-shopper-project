@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const {Product, Review} = require('../db/models')
+const {Product, Review, Category} = require('../db/models')
 const Sequelize = require('sequelize')
 
 router.get('/', async (req, res, next) => {
@@ -22,6 +22,7 @@ router.get('/', async (req, res, next) => {
     next(err)
   }
 })
+
 
 router.get('/search', async (req, res, next) => {
   // let page = req.query.page

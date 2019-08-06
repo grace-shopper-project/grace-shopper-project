@@ -6,6 +6,7 @@ import userReducer from './user'
 import productReducer from './products'
 import singleProductReducer from './singleProduct'
 import adminUserReducer from './usersForAdmin'
+import adminSingleUserReducer from './singleUserForAdmin'
 import reviewsReducer from './allReviews'
 import reviewReducer from './singleReview'
 import singleUserReducer from './singleUser'
@@ -13,6 +14,7 @@ import userReviewsReducer from './userReviews'
 import userOrdersReducer from './userOrders'
 import orderReducer from './orders'
 import cartReducer from './cart'
+import categoryReducer from './categories'
 
 const reducer = combineReducers({
   user: userReducer,
@@ -20,12 +22,14 @@ const reducer = combineReducers({
   cart: cartReducer,
   singleProduct: singleProductReducer,
   usersForAdmin: adminUserReducer,
+  singleUserForAdmin: adminSingleUserReducer,
   allReviews: reviewsReducer,
   singleReview: reviewReducer,
   singleUser: singleUserReducer,
   order: orderReducer,
   reviewsForUser: userReviewsReducer,
-  ordersForUser: userOrdersReducer
+  ordersForUser: userOrdersReducer,
+  categories: categoryReducer
 })
 
 const middleware = composeWithDevTools(
@@ -38,6 +42,7 @@ export * from './user'
 export * from './products'
 export * from './singleProduct'
 export * from './usersForAdmin'
+export * from './singleUserForAdmin'
 export * from './allReviews'
 export * from './singleReview'
 export * from './singleUser'
