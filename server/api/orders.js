@@ -4,9 +4,13 @@ const {Order, Cart, User, Product, OrderDetails} = require('../db/models')
 orderRouter.get('/', async (req, res, next) => {
   try {
     const orders = await Order.findAll({
-      include: [User, Product]
+      include: [User]
     })
-    res.json(orders)
+    if (orders) {
+      res.json(orders)
+    } else {
+      res.sendStatus(500)
+    }
   } catch (err) {
     next(err)
   }
@@ -25,16 +29,36 @@ orderRouter.get('/:orderId/items', async (req, res, next) => {
     next(err)
   }
 })
+orderRouter.get('/:orderId', async (req, res, next) => {
+  try {
+    let orderId = await Order.findByPk(req.params.orderId, {
+      include: [User, Product]
+    })
+    res.json(orderId)
+  } catch (err) {
+    next(err)
+  }
+})
 orderRouter.post('/', async (req, res, next) => {
   try {
     const orders = await Order.create({
-      status: req.body.status,
       address: req.body.address,
       subTotal: req.body.subTotal,
-      userId: req.body.userId
+      userId: req.user.id
     })
+    const cart = await Cart.findByPk(req.body.id, {
+      include: [Product]
+    })
+    const orderDetails = cart.products.map(
+      async product =>
+        await orderDetails.create({
+          orderId: orders.id,
+          productId: product.id,
+          quantity: product.cartDetails.quantity
+        })
+    )
 
-    res.json(orders)
+    res.json(orders, cart, orderDetails)
   } catch (err) {
     next(err)
   }
