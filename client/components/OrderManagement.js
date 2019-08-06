@@ -14,9 +14,7 @@ class OrderManagement extends React.Component {
   }
 
   handleClick(event) {
-    event.preventDefault()
-    console.log('call from handleClick value: ', event.target.value)
-    this.props.fetchSearchedOrders(event.target.value)
+    this.props.fetchSearchedOrders(event.target.innerText)
   }
 
   render() {

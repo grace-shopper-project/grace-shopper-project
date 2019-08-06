@@ -114,6 +114,7 @@ adminRouter.get('/orders', async (req, res, next) => {
 
 adminRouter.get('/orders/search', async (req, res, next) => {
   try {
+    console.log('CALL FROM INSIDE API ROUTE; STATUS: ', req.query.status)
     const status = req.query.status
     const allOrders = await Order.findAll({
       where: {
