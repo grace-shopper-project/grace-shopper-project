@@ -13,6 +13,7 @@ import singleUserReducer from './singleUser'
 import orderReducer from './orders'
 import cartReducer from './cart'
 import categoryReducer from './categories'
+import toastReducer from './toast'
 
 const reducer = combineReducers({
   user: userReducer,
@@ -25,7 +26,8 @@ const reducer = combineReducers({
   singleReview: reviewReducer,
   singleUser: singleUserReducer,
   order: orderReducer,
-  categories: categoryReducer
+  categories: categoryReducer,
+  toast: toastReducer
 })
 
 const middleware = composeWithDevTools(
@@ -44,3 +46,4 @@ export * from './singleReview'
 export * from './singleUser'
 export * from './orders'
 export * from './cart'
+export * from './toast'

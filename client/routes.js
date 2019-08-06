@@ -20,6 +20,7 @@ import {
 import {me} from './store'
 import SingleUserForAdmin from './components/SingleUserForAdmin'
 import {fetchCart} from './store/cart'
+import {sendToast} from './store/toast'
 
 /**
  * COMPONENT

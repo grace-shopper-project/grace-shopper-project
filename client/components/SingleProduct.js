@@ -3,6 +3,7 @@ import {connect} from 'react-redux'
 import StarRating from 'react-bootstrap-star-rating'
 import {fetchSingleProduct} from '../store/singleProduct'
 import {fetchReview} from '../store/singleReview'
+import {sendToast} from '../store/toast'
 import {Card} from 'react-bootstrap'
 import {withRouter, Link} from 'react-router-dom'
 import {updateCartThunk} from '../store/cart'
@@ -35,6 +36,7 @@ export class SingleProduct extends React.Component {
       quantity: this.state.quantity,
       add: true
     })
+    this.props.sendToast('show')
   }
 
   render() {
@@ -249,7 +251,8 @@ const mapDispatch = dispatch => {
     fetchReviewForm: reviewId => dispatch(fetchReview(reviewId)),
     // submitReviews: (review, productId) =>
     //   dispatch(submitReviews(review, productId)),
-    addToCart: cart => dispatch(updateCartThunk(cart))
+    addToCart: cart => dispatch(updateCartThunk(cart)),
+    sendToast: status => dispatch(sendToast(status))
   }
 }
 
