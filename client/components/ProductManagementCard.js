@@ -25,12 +25,18 @@ const ProductManagementCard = props => {
           Edit
         </button>
       </Link>
-      <Button
-        variant="danger"
+      <button
+        type="button"
         onClick={() => props.fetchDeleteProduct(props.id)}
+        style={{
+          backgroundColor: '#ed4934',
+          fontFamily: 'Josefin Sans, sans-serif',
+          padding: '0.5vw',
+          marginLeft: '0.5vw'
+        }}
       >
         Delete
-      </Button>
+      </button>
     </Card>
   )
 }

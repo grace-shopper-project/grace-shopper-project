@@ -4,6 +4,7 @@ import {fetchProducts, fetchFilteredProducts} from '../store/products.js'
 import {fetchCategories} from '../store/categories.js'
 import ProductCard from './ProductCard'
 import {Button} from 'react-bootstrap'
+import {capitalize} from '../../server/utils/helpers'
 
 class AllProducts extends Component {
   constructor() {
@@ -41,8 +42,6 @@ class AllProducts extends Component {
     this.props.fetchCategories()
   }
   render() {
-    const options = ['Filter by Category']
-
     return (
       <div>
         <div
@@ -66,7 +65,7 @@ class AllProducts extends Component {
               }}
               onChange={this.handleChange}
             >
-              <option default>filter by category:</option>
+              <option default>Filter By Category:</option>
               {this.props.categories.map((category, idx) => {
                 return (
                   <option value={idx + 1} key={idx}>
@@ -84,12 +83,14 @@ class AllProducts extends Component {
             <div className="deck">
               {this.props.products.map(product => {
                 const {imageUrl, name, price} = product
+                const properName = capitalize(name)
+
                 return (
                   <ProductCard
                     key={product.id}
                     id={product.id}
                     imageUrl={imageUrl}
-                    name={name}
+                    name={properName}
                     price={price}
                   />
                 )

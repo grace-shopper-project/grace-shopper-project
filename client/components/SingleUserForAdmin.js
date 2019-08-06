@@ -43,7 +43,7 @@ class SingleUserForAdmin extends React.Component {
                 Schedule Password Update
               </Button>
             )}
-            <p>
+            <p style={{position: 'relative', top: '10vh'}}>
               {this.props.user.isAdmin ? (
                 <>
                   <span>This user currently has administrative rights</span>

@@ -3,6 +3,7 @@ import {Card} from 'react-bootstrap'
 import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
 import {updateCartThunk} from '../store/cart'
+// import {capitalize} from '../../server/utils/helpers'
 
 const ProductCard = props => {
   const url = `/products/${props.id}`
