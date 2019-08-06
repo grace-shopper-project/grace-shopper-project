@@ -105,10 +105,11 @@ export class Cart extends React.Component {
 
                             <div>
                               <button
+                                className="jos"
                                 type="button"
                                 style={{
                                   backgroundColor: '#ed4934',
-                                  fontFamily: 'Josefin Sans, sans-serif',
+
                                   fontSize: '1vw',
                                   padding: '0.5vw'
                                 }}
@@ -167,11 +168,10 @@ export class Cart extends React.Component {
                 }}
               >
                 <Link
-                  className="purchase"
+                  className="purchase jos"
                   to="/cart/info"
                   type="submit"
                   style={{
-                    fontFamily: 'Josefin Sans, sans-serif',
                     fontSize: '1.5vw',
                     height: '3.5vw',
                     border: '2px solid black',

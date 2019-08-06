@@ -65,9 +65,10 @@ class UserManagement extends React.Component {
                   <Link to={`/admin/users/${user.id}`}>
                     <button
                       type="button"
+                      className="jos"
                       style={{
                         backgroundColor: '#86af2d',
-                        fontFamily: 'Josefin Sans, sans-serif',
+                        
                         padding: '0.5vw',
                         marginRight: '0.5vw'
                       }}
@@ -77,9 +78,9 @@ class UserManagement extends React.Component {
                   </Link>
                   <button
                     type="button"
+                    className="jos"
                     style={{
                       backgroundColor: '#ed4934',
-                      fontFamily: 'Josefin Sans, sans-serif',
                       padding: '0.5vw',
                       marginLeft: '0.5vw'
                     }}

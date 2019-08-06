@@ -17,6 +17,7 @@ import cartReducer from './cart'
 import categoryReducer from './categories'
 import orderManagementReducer from './orderManagement'
 import singleOrderManagementReducer from './singleOrderMgmt'
+import toastReducer from './toast'
 
 const reducer = combineReducers({
   user: userReducer,
@@ -32,6 +33,7 @@ const reducer = combineReducers({
   categories: categoryReducer,
   allOrdersForAdmin: orderManagementReducer,
   singOrderForAdmin: singleOrderManagementReducer,
+  toast: toastReducer,
   reviewsForUser: userReviewsReducer,
   ordersForUser: userOrdersReducer
 })
@@ -54,5 +56,6 @@ export * from './orders'
 export * from './cart'
 export * from './orderManagement'
 export * from './singleOrderMgmt'
+export * from './toast'
 export * from './userReviews'
 export * from './userOrders'

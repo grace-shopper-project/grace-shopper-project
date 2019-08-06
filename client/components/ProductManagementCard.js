@@ -14,10 +14,11 @@ const ProductManagementCard = props => {
       {/* will eventually link button to the singleProduct page */}
       <Link to={url}>
         <button
+          className="jos"
           type="button"
           style={{
             backgroundColor: '#86af2d',
-            fontFamily: 'Josefin Sans, sans-serif',
+
             padding: '0.5vw',
             marginRight: '0.5vw'
           }}
@@ -26,11 +27,12 @@ const ProductManagementCard = props => {
         </button>
       </Link>
       <button
+        className="jos"
         type="button"
         onClick={() => props.fetchDeleteProduct(props.id)}
         style={{
           backgroundColor: '#ed4934',
-          fontFamily: 'Josefin Sans, sans-serif',
+
           padding: '0.5vw',
           marginLeft: '0.5vw'
         }}
