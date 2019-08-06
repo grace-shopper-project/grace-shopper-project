@@ -10,6 +10,8 @@ import adminSingleUserReducer from './singleUserForAdmin'
 import reviewsReducer from './allReviews'
 import reviewReducer from './singleReview'
 import singleUserReducer from './singleUser'
+import userReviewsReducer from './userReviews'
+import userOrdersReducer from './userOrders'
 import orderReducer from './orders'
 import cartReducer from './cart'
 import categoryReducer from './categories'
@@ -25,6 +27,8 @@ const reducer = combineReducers({
   singleReview: reviewReducer,
   singleUser: singleUserReducer,
   order: orderReducer,
+  reviewsForUser: userReviewsReducer,
+  ordersForUser: userOrdersReducer,
   categories: categoryReducer
 })
 
@@ -44,3 +48,5 @@ export * from './singleReview'
 export * from './singleUser'
 export * from './orders'
 export * from './cart'
+export * from './userReviews'
+export * from './userOrders'

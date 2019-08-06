@@ -8,6 +8,7 @@ const Category = require('../server/db/models/category')
 const ProductCategory = require('../server/db/models/productCategory')
 const Cart = require('../server/db/models/cart')
 const OrderDetails = require('../server/db/models/orderDetails')
+const Order = require('../server/db/models/order')
 const CartDetails = require('../server/db/models/cartDetails')
 const faker = require('faker')
 
@@ -503,6 +504,12 @@ async function seed() {
     })
   ]
 
+  Order.create({
+    status: 'processing',
+    address: '901 w st.',
+    subTotal: 5.0,
+    userId: 1
+  })
   for (let i = 0; i < 995; i++) {
     productArray.push(
       Product.create({

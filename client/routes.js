@@ -12,7 +12,8 @@ import {
   SingleProduct,
   AllReviews,
   NewReview,
-  SingleUser,
+  SingleUserReview,
+  SingleUserOrder,
   Cart,
   CartInfo,
   OrderConfirmation
@@ -63,8 +64,10 @@ class Routes extends Component {
               component={UserHome}
               onDelete={this.deleteReviews}
             />
-            <Route path="/users/:id" component={SingleUser} />
+            <Route path="/users/:id/reviews" component={SingleUserReview} />
+            <Route path="/users/:id/orders" component={SingleUserOrder} />
             <Route path="/reviews/new" component={NewReview} />
+            <Route path="/admin" component={Admin} />
             {/* { isAdmin && (
                 <Switch>
                   <Route path="/admin" component={Admin} />
