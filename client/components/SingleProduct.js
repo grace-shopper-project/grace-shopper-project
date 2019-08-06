@@ -19,9 +19,7 @@ export class SingleProduct extends React.Component {
   }
   componentDidMount() {
     const id = Number(this.props.match.params.id)
-    console.log('PPPPPPP', this.props)
     this.props.fetchSingleProduct(id)
-    // this.props.submitReview(id)
   }
 
   handleChange(evt) {
@@ -43,14 +41,13 @@ export class SingleProduct extends React.Component {
     const {singleProduct} = this.props
     const {inventoryQuantity} = this.props.singleProduct
     const reviews = singleProduct.reviews
-    console.log('REVIEW', reviews)
     let quantity = []
     for (let i = 0; i < inventoryQuantity; i++) {
       quantity.push(Number(i + 1))
     }
+
     return (
       <div>
-        {/* <h1 style={{textAlign: 'center', margin: '1vw'}}>Single Product</h1> */}
         <div className="productContainer" style={{marginTop: '2vw'}}>
           <Card
             key={singleProduct.id}

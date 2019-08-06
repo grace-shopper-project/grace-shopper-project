@@ -44,5 +44,8 @@ module.exports = {
   Product,
   Review,
   Category,
-  Order
+  Order,
+  Cart,
+  OrderDetails,
+  CartDetails
 }

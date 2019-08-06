@@ -5,11 +5,11 @@ const OrderDetails = require('./orderDetails')
 
 const Order = db.define('order', {
   status: {
-    type: Sequelize.ENUM('cart', 'processing', 'cancelled', 'completed'),
-    defaultValue: 'cart'
+    type: Sequelize.ENUM('processing', 'cancelled', 'completed'),
+    defaultValue: 'processing'
   },
   address: Sequelize.STRING,
-  subtotal: Sequelize.INTEGER
+  subtotal: Sequelize.FLOAT
 })
 
 Order.beforeUpdate(async orderInstance => {

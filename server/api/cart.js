@@ -59,16 +59,19 @@ cartRouter.put('/', async (req, res, next) => {
     //if we want to update a product quantity or add a product
     if (cartDetails) {
       if (req.body.add) {
+        let total = cartDetails.total
         if (quantity + cartDetails.quantity <= inventory) {
           await cartDetails.update({
-            quantity: (cartDetails.quantity += quantity)
+            quantity: (cartDetails.quantity += quantity),
+            total: total += quantity * product.price
           })
         }
       } else {
         // eslint-disable-next-line no-lonely-if
         if (req.body.quantity <= inventory) {
           await cartDetails.update({
-            quantity: quantity
+            quantity: quantity,
+            total: product.price * quantity
           })
         }
       }
@@ -76,7 +79,8 @@ cartRouter.put('/', async (req, res, next) => {
       await CartDetails.create({
         quantity: quantity,
         cartId: cart.id,
-        productId: Number(req.body.productId)
+        productId: Number(req.body.productId),
+        total: product.price * quantity
       })
     }
 

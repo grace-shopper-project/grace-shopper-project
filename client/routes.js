@@ -12,7 +12,8 @@ import {
   SingleProduct,
   AllReviews,
   NewReview,
-  SingleUser,
+  SingleUserReview,
+  SingleUserOrder,
   Cart,
   CartInfo
 } from './components'
@@ -50,7 +51,7 @@ class Routes extends Component {
           component={SingleUserForAdmin}
         />
         <Route path="/admin" component={Admin} />
-        <Route component={GuestHome} />
+        {/* <Route component={GuestHome} /> */}
 
         {isLoggedIn && (
           <Switch>
@@ -61,8 +62,10 @@ class Routes extends Component {
               component={UserHome}
               onDelete={this.deleteReviews}
             />
-            <Route path="/users/:id" component={SingleUser} />
+            <Route path="/users/:id/reviews" component={SingleUserReview} />
+            <Route path="/users/:id/orders" component={SingleUserOrder} />
             <Route path="/reviews/new" component={NewReview} />
+            <Route path="/admin" component={Admin} />
             {/* { isAdmin && (
                 <Switch>
                   <Route path="/admin" component={Admin} />

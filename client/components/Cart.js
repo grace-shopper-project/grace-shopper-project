@@ -1,55 +1,72 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {fetchCart, removeFromCartThunk} from '../store/cart'
+import {fetchCart, removeFromCartThunk, updateCartThunk} from '../store/cart'
 import {Card} from 'react-bootstrap'
 import {Link} from 'react-router-dom'
+import CartDropdown from './CartDropdown'
 
 export class Cart extends React.Component {
   constructor() {
     super()
-    this.state = []
+    this.state = {
+      quantity: ''
+    }
+    this.handleChange = this.handleChange.bind(this)
+    this.handleSubmit = this.handleSubmit.bind(this)
+  }
+  handleChange(evt) {
+    this.setState({
+      quantity: Number(evt.target.value)
+    })
   }
 
-  // componentDidUpdate(prevProps, prevState) {
-  //   if(prevState.cart.products.length !== this.state.cart.products.length){
-  //     this.props.fetchCart()
-  //   }
-  // }
+  handleSubmit(productId) {
+    this.props.updateCart({
+      productId: productId,
+      quantity: this.state.quantity
+    })
+  }
 
   render() {
-    const inventory = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
-
-    return (
-      <div style={{textAlign: 'center'}}>
-        <div>
-          <h1 style={{textAlign: 'center'}}>Your Cart: </h1>
-        </div>
-        <div
-          style={{
-            display: 'flex',
-            flexDirection: 'row',
-            justifyContent: 'center'
-          }}
-        >
+    if (!this.props.cart.products) {
+      return <h1>Your Cart is empty!</h1>
+    } else
+      return (
+        <div style={{textAlign: 'center'}}>
+          <div>
+            <h1 style={{textAlign: 'center'}}>Your Cart: </h1>
+          </div>
           <div
-            className="orderList"
             style={{
-              width: '44vw',
-              height: '72vw',
-              border: '3px dashed #3C70C0',
-              margin: '2vw',
-              overflow: 'scroll'
+              display: 'flex',
+              flexDirection: 'row',
+              justifyContent: 'center'
             }}
           >
-            <div>
-              <h4 style={{textAlign: 'left', margin: '2vw'}}>Cart ID: </h4>
-              <h4 style={{textAlign: 'left', margin: '2vw'}}>Subtotal: </h4>
-            </div>
-            <div className="deck">
-              {!this.props.cart.products ? (
-                <h1>Your cart is empty!</h1>
-              ) : (
-                this.props.cart.products.map(item => {
+            <div
+              className="orderList"
+              style={{
+                width: '44vw',
+                height: '72vw',
+                border: '3px dashed #3C70C0',
+                margin: '2vw',
+                overflow: 'scroll'
+              }}
+            >
+              <div>
+                <h4 style={{textAlign: 'left', margin: '2vw'}}>Cart ID: </h4>
+                <h4 style={{textAlign: 'left', margin: '2vw'}}>
+                  {`Subtotal: $${this.props.cart.products.reduce(
+                    (accum, val) => {
+                      accum += val.cartDetails.total
+                      return accum
+                    },
+                    0
+                  )}`}{' '}
+                </h4>
+              </div>
+              <div className="deck">
+                {this.props.cart.products.map(item => {
                   return (
                     <Card
                       key={item.id}
@@ -121,89 +138,58 @@ export class Cart extends React.Component {
                               <div>
                                 <h5>Quantity: {item.cartDetails.quantity}</h5>
                               </div>
-                              <div
-                                style={{
-                                  display: 'flex',
-                                  flexDirection: 'row',
-                                  textAlign: 'center',
-                                  alignItems: 'center'
-                                }}
+                              <CartDropdown
+                                inventory={item.inventoryQuantity}
+                                handleChange={this.handleChange}
+                              />
+                              <button
+                                className="cart"
+                                type="button"
+                                onClick={() => this.handleSubmit(item.id)}
+                                style={{fontSize: '0.75vw', width: '7vw'}}
                               >
-                                <h5
-                                  style={{
-                                    marginBlockStart: '0vw',
-                                    marginBlockEnd: '0vw'
-                                  }}
-                                >
-                                  Change Quantity:
-                                </h5>
-                                <div
-                                  style={{
-                                    width: '4vw',
-                                    height: '2vw',
-                                    marginLeft: '1vw'
-                                  }}
-                                  className="dropdown"
-                                  type="submit"
-                                  onClick={this.handleSubmit}
-                                >
-                                  <select
-                                    style={{
-                                      width: '4vw',
-                                      height: '2vw'
-                                    }}
-                                  >
-                                    {inventory.map(function(num) {
-                                      return (
-                                        <option key={inventory.indexOf(num)}>
-                                          {num}
-                                        </option>
-                                      )
-                                    })}
-                                  </select>
-                                </div>
-                              </div>
+                                Update Cart!
+                              </button>
                             </div>
                           </div>
                         </div>
                       </Card.Body>
                     </Card>
                   )
-                })
-              )}
-            </div>
+                })}
+              </div>
 
-            <div
-              style={{
-                display: 'flex',
-                flexDirection: 'row',
-                justifyContent: 'center'
-              }}
-            >
-              <Link
-                className="purchase"
-                to="/cart/info"
-                type="submit"
+              <div
                 style={{
-                  fontFamily: 'Josefin Sans, sans-serif',
-                  fontSize: '1.5vw',
-                  height: '3.5vw',
-                  border: '2px solid black',
-                  borderRadius: '15px',
-                  textAlign: 'center',
-                  padding: '0.75vw',
-                  marginTop: '1vw',
-                  marginBottom: '1vw',
-                  backgroundColor: '#3C70C0'
+                  display: 'flex',
+                  flexDirection: 'row',
+                  justifyContent: 'center'
                 }}
               >
-                Proceed to checkout!
-              </Link>
+                <Link
+                  className="purchase"
+                  to="/cart/info"
+                  type="submit"
+                  style={{
+                    fontFamily: 'Josefin Sans, sans-serif',
+                    fontSize: '1.5vw',
+                    height: '3.5vw',
+                    border: '2px solid black',
+                    borderRadius: '15px',
+                    textAlign: 'center',
+                    padding: '0.75vw',
+                    marginTop: '1vw',
+                    marginBottom: '1vw',
+                    backgroundColor: '#3C70C0'
+                  }}
+                >
+                  Proceed to checkout!
+                </Link>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-    )
+      )
   }
 }
 
@@ -216,7 +202,8 @@ const mapState = state => {
 const mapDispatch = dispatch => {
   return {
     fetchCart: cart => dispatch(fetchCart(cart)),
-    removeFromCart: productId => dispatch(removeFromCartThunk(productId))
+    removeFromCart: productId => dispatch(removeFromCartThunk(productId)),
+    updateCart: cart => dispatch(updateCartThunk(cart))
   }
 }
 

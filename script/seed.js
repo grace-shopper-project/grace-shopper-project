@@ -504,6 +504,12 @@ async function seed() {
     })
   ]
 
+  Order.create({
+    status: 'processing',
+    address: '901 w st.',
+    subTotal: 5.0,
+    userId: 1
+  })
   for (let i = 0; i < 995; i++) {
     productArray.push(
       Product.create({
