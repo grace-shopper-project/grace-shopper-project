@@ -3,6 +3,7 @@ import {Card} from 'react-bootstrap'
 import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
 import {updateCartThunk} from '../store/cart'
+import {sendToast} from '../store/toast'
 // import {capitalize} from '../../server/utils/helpers'
 
 const ProductCard = props => {
@@ -12,7 +13,6 @@ const ProductCard = props => {
       <Card.Img variant="top" src={props.imageUrl} style={{width: '15vw'}} />
       <Card.Title style={{marginTop: '1vw'}}>{props.name}</Card.Title>
       <Card.Text>${props.price}</Card.Text>
-      {/* will eventually link button to the singleProduct page */}
       <div style={{display: 'flex', flexDirection: 'row'}}>
         <div>
           <button
@@ -23,13 +23,14 @@ const ProductCard = props => {
               backgroundColor: '#f29f8f',
               color: 'white'
             }}
-            onClick={() =>
+            onClick={function clicker() {
               props.addToCart({
                 productId: props.id,
                 quantity: 1,
                 add: true
               })
-            }
+              props.sendToast('show')
+            }}
           >
             Add to cart
           </button>
@@ -53,7 +54,10 @@ const ProductCard = props => {
 }
 
 const mapDispatch = dispatch => {
-  return {addToCart: cart => dispatch(updateCartThunk(cart))}
+  return {
+    addToCart: cart => dispatch(updateCartThunk(cart)),
+    sendToast: status => dispatch(sendToast(status))
+  }
 }
 
 export default connect(null, mapDispatch)(ProductCard)

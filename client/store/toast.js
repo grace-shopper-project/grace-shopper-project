@@ -1,27 +1,28 @@
-import axios from 'axios'
+const SEND_TOAST = 'SEND_TOAST'
 
-const SHOW_TOAST = 'SHOW_TOAST'
-const HIDE_TOAST = 'HIDE_TOAST'
-
-export const showToast = show => ({
-  type: SHOW_TOAST,
-  status: show
+export const setToast = status => ({
+  type: SEND_TOAST,
+  status
 })
 
-export const hideToast = hide => ({
-  type: HIDE_TOAST,
-  status: hide
-})
+export const sendToast = status => {
+  return dispatch => {
+    try {
+      dispatch(setToast(status))
+      setTimeout(() => {
+        dispatch(setToast('hide'))
+      }, 5000)
+    } catch (err) {
+      console.log(err)
+    }
+  }
+}
 
-export const toastReducer = (state = 'hide', action) => {
+export default function toastReducer(state = 'hide', action) {
   switch (action.type) {
-    case SHOW_TOAST:
-      return action.status
-    case HIDE_TOAST:
+    case SEND_TOAST:
       return action.status
     default:
       return state
   }
 }
-
-export default toastReducer

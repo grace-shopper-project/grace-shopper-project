@@ -153,7 +153,8 @@ a.purchase {
 
 .popup {
   position: fixed;
-  right: 10vw;
-  top: 15vw;
+  background-color: #f29f8f;
+  right: 20px;
+  top: 5px;
   z-index: 3000;
 }

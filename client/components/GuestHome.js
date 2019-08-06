@@ -1,5 +1,4 @@
 import React from 'react'
-import Toasty from './Toast'
 
 export default class GuestHome extends React.Component {
   render() {
@@ -19,9 +18,7 @@ export default class GuestHome extends React.Component {
           You must be hungry!
         </h2>
         <br />
-        <div style={{justifyContent: 'center'}}>
-          <Toasty />
-        </div>
+
         <br />
         <img src="/tasty.jpg" style={{marginBottom: '2vw'}} />
       </div>

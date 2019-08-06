@@ -5,6 +5,7 @@ import {Link, withRouter} from 'react-router-dom'
 import {logout} from '../store'
 import {fetchSearchedProducts, fetchProducts} from '../store/products'
 import {fetchCart} from '../store/cart'
+import Toasty from './Toast'
 
 class Navbar extends React.Component {
   constructor() {
@@ -53,6 +54,9 @@ class Navbar extends React.Component {
               }}
             >
               let's get this bread!
+              <div style={{justifyContent: 'center'}}>
+                {this.props.toast === 'show' && <Toasty />}
+              </div>
             </h1>
           </div>
           <nav>
@@ -175,7 +179,8 @@ class Navbar extends React.Component {
 const mapState = state => {
   return {
     isLoggedIn: !!state.user.id,
-    userId: state.user.id
+    userId: state.user.id,
+    toast: state.toast
   }
 }
 
