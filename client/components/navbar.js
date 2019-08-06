@@ -40,9 +40,9 @@ class Navbar extends React.Component {
         <div>
           <div className="bread" style={{height: '18vh'}}>
             <h1
+              className="corb"
               style={{
                 textAlign: 'center',
-                fontFamily: 'Corben, cursive',
                 fontSize: '3.5vw',
                 color: 'black',
                 fontWeight: 'underline',
@@ -99,7 +99,9 @@ class Navbar extends React.Component {
                     <Link to={`/users/${this.props.userId}`}>Your Account</Link>
                   </div>
                   <div>
-                    <Link onClick={this.props.fetchCart} to="/cart">Your Cart</Link>
+                    <Link onClick={this.props.fetchCart} to="/cart">
+                      Your Cart
+                    </Link>
                   </div>
                   <div>
                     <a href="#" onClick={this.props.handleClick}>
@@ -153,7 +155,9 @@ class Navbar extends React.Component {
                     <Link to="/signup">Sign Up</Link>
                   </div>
                   <div style={{marginRight: '1.5vw'}}>
-                    <Link onClick={this.props.fetchCart} to="/cart">Your Cart</Link>
+                    <Link onClick={this.props.fetchCart} to="/cart">
+                      Your Cart
+                    </Link>
                   </div>
                 </div>
               </div>

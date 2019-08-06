@@ -16,7 +16,7 @@ export class OrderConfirmation extends React.Component {
   render() {
     return (
       <div>
-        <div style={{textAlign: 'center', fontFamily: 'Corben, cursive'}}>
+        <div className="corb" style={{textAlign: 'center'}}>
           <h2>
             <img src="/party.png" style={{width: '10vw', height: '10vw'}} />{' '}
             THANKS{' '}
