@@ -114,7 +114,6 @@ adminRouter.get('/orders', async (req, res, next) => {
 
 adminRouter.get('/orders/search', async (req, res, next) => {
   try {
-    console.log('CALL FROM INSIDE API ROUTE; STATUS: ', req.query.status)
     const status = req.query.status
     const allOrders = await Order.findAll({
       where: {
@@ -122,6 +121,28 @@ adminRouter.get('/orders/search', async (req, res, next) => {
       }
     })
     res.json(allOrders)
+  } catch (err) {
+    next(err)
+  }
+})
+
+adminRouter.get('/orders/:orderId', async (req, res, next) => {
+  try {
+    const singleOrder = await Order.findByPk(req.params.orderId)
+    res.json(singleOrder)
+  } catch (err) {
+    next(err)
+  }
+})
+
+adminRouter.delete('/orders/:orderId', async (req, res, next) => {
+  try {
+    await Order.destroy({
+      where: {
+        id: req.params.orderId
+      }
+    })
+    res.status(204).send('deleted')
   } catch (err) {
     next(err)
   }

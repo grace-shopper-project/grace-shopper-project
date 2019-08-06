@@ -29,14 +29,8 @@ class OrderManagement extends React.Component {
 
             <Dropdown.Menu>
               <Dropdown.Item
-                href="#/action-1"
-                value="cart"
-                onClick={this.handleClick}
-              >
-                cart
-              </Dropdown.Item>
-              <Dropdown.Item
                 href="#/action-2"
+                eventKey="1"
                 value="processing"
                 onClick={this.handleClick}
               >
@@ -44,6 +38,7 @@ class OrderManagement extends React.Component {
               </Dropdown.Item>
               <Dropdown.Item
                 href="#/action-3"
+                eventKey="1"
                 value="cancelled"
                 onClick={this.handleClick}
               >
@@ -51,6 +46,7 @@ class OrderManagement extends React.Component {
               </Dropdown.Item>
               <Dropdown.Item
                 href="#/action-4"
+                eventKey="1"
                 value="completed"
                 onClick={this.handleClick}
               >

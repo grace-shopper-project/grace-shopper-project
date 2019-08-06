@@ -15,7 +15,8 @@ import {
   SingleUserReview,
   SingleUserOrder,
   Cart,
-  CartInfo
+  CartInfo,
+  SingleOrderMgmt
 } from './components'
 import {me} from './store'
 import SingleUserForAdmin from './components/SingleUserForAdmin'
@@ -49,6 +50,11 @@ class Routes extends Component {
           exact
           path="/admin/users/:userId"
           component={SingleUserForAdmin}
+        />
+        <Route
+          exact
+          path="/admin/orders/:orderId"
+          component={SingleOrderMgmt}
         />
         <Route path="/admin" component={Admin} />
         {/* <Route component={GuestHome} /> */}
