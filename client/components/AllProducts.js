@@ -33,74 +33,34 @@ class AllProducts extends Component {
     this.props.fetchProducts()
   }
   render() {
-    const options = ['option1', 'option2', 'option3']
-    const filters = ['filter1', 'filter2', 'filter3']
+    const options = ['Filter by Category', 'option1', 'option2', 'option3']
     return (
       <div>
         <div
           style={{
+            margin: '1vw',
+            width: '15vw',
             display: 'flex',
-            flexDirection: 'row',
-            padding: '1vw',
-            verticalAlign: 'center'
+            flexDirection: 'row'
           }}
         >
           <div
-            style={{
-              margin: '1vw',
-              width: '15vw',
-              display: 'flex',
-              flexDirection: 'row'
-            }}
+            style={{width: '15vw', marginTop: '0.50vw'}}
+            className="dropdown"
+            type="submit"
+            onClick={this.handleSubmit}
           >
-            <div
-              style={{width: '15vw', marginTop: '0.25vw'}}
-              className="dropdown"
-              type="submit"
-              onClick={this.handleSubmit}
-            >
-              <select
-                style={{width: '15vw', backgroundColor: '#82bbb5'}}
-                onChange={this.handleChange}
-              >
-                {options.map(function(num) {
-                  return <option key={options.indexOf(num)}>{num}</option>
-                })}
-              </select>
-            </div>
-          </div>
-          <div>
-            <div
+            <select
               style={{
                 width: '15vw',
-                display: 'flex',
-                flexDirection: 'row',
-                padding: '1vw',
-                verticalAlign: 'center',
-                justifyContent: 'space-between'
+                backgroundColor: '#82bbb5'
               }}
+              onChange={this.handleChange}
             >
-              <div
-                style={{
-                  width: '15vw',
-                  marginTop: '0.25vw'
-                }}
-                className="dropdown"
-                type="submit"
-                onClick={this.handleSubmit}
-              >
-                <select
-                  style={{width: '20vw', backgroundColor: '#82bbb5'}}
-                  onChange={this.handleChange}
-                >
-                  {filters.map(function(filter) {
-                    return (
-                      <option key={filters.indexOf(filter)}>{filter}</option>
-                    )
-                  })}
-                </select>
-              </div>
-            </div>
+              {options.map(function(num) {
+                return <option key={options.indexOf(num)}>{num}</option>
+              })}
+            </select>
           </div>
         </div>
         {!this.props.products.length ? (
