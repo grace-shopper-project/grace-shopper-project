@@ -19,7 +19,7 @@ export default class GuestHome extends React.Component {
         </h2>
         <br />
         <br />
-        <img src="tasty.jpg" style={{marginBottom: '2vw'}} />
+        <img src="/tasty.jpg" style={{marginBottom: '2vw'}} />
       </div>
     )
   }
