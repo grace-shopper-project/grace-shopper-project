@@ -67,7 +67,6 @@ export function fetchCart() {
 export function removeFromCartThunk(productId) {
   return async dispatch => {
     try {
-      console.log('product id:', productId)
       const {data} = await axios.delete(`/api/cart/`, {
         data: {productId: productId}
       }) // need productinfo
@@ -82,7 +81,6 @@ export function removeFromCartThunk(productId) {
 export function updateCartThunk(cart) {
   return async dispatch => {
     try {
-      console.log('cart:', cart)
       const {data} = await axios.put(`/api/cart`, cart) //need product and quant info
       dispatch(updateCart(data))
     } catch (error) {
