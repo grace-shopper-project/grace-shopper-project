@@ -31,8 +31,7 @@ const reducer = combineReducers({
   categories: categoryReducer,
   toast: toastReducer,
   reviewsForUser: userReviewsReducer,
-  ordersForUser: userOrdersReducer,
-  categories: categoryReducer
+  ordersForUser: userOrdersReducer
 })
 
 const middleware = composeWithDevTools(
@@ -51,9 +50,6 @@ export * from './singleReview'
 export * from './singleUser'
 export * from './orders'
 export * from './cart'
-<<<<<<< HEAD
 export * from './toast'
-=======
 export * from './userReviews'
 export * from './userOrders'
->>>>>>> 6a2fc9b0c6b444b3108e5db23dfd3c51db338404
