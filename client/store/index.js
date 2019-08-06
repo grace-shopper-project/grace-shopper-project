@@ -6,6 +6,7 @@ import userReducer from './user'
 import productReducer from './products'
 import singleProductReducer from './singleProduct'
 import adminUserReducer from './usersForAdmin'
+import adminSingleUserReducer from './singleUserForAdmin'
 import reviewsReducer from './allReviews'
 import reviewReducer from './singleReview'
 import singleUserReducer from './singleUser'
@@ -19,6 +20,7 @@ const reducer = combineReducers({
   cart: cartReducer,
   singleProduct: singleProductReducer,
   usersForAdmin: adminUserReducer,
+  singleUserForAdmin: adminSingleUserReducer,
   allReviews: reviewsReducer,
   singleReview: reviewReducer,
   singleUser: singleUserReducer,
@@ -36,6 +38,7 @@ export * from './user'
 export * from './products'
 export * from './singleProduct'
 export * from './usersForAdmin'
+export * from './singleUserForAdmin'
 export * from './allReviews'
 export * from './singleReview'
 export * from './singleUser'
