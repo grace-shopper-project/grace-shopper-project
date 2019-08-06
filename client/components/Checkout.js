@@ -2,7 +2,7 @@ import React from 'react'
 import axios from 'axios'
 import StripeCheckout from 'react-stripe-checkout'
 import {toast} from 'react-toastify'
-import {connect} from 'react-redux'
+import {withRouter} from 'react-router'
 
 toast.configure()
 
@@ -12,17 +12,18 @@ const PAYMENT_SERVER_URL =
     : 'http://localhost:8080/api/stripe/checkout'
 
 class Checkout extends React.Component {
-  constructor(){
+  constructor() {
     super()
     this.handleToken = this.handleToken.bind(this)
   }
   async handleToken(token, addresses) {
-    const price = 15
     const name = 'bread'
+    const price = 15;
     const product = {price, name}
     const response = await axios.post(PAYMENT_SERVER_URL, {token, product})
     const {status} = response.data
     if (status === 'success') {
+      this.props.history.push('/orderConfirmation')
       toast('Success! You cool person, check your email for details', {
         type: 'success'
       })
@@ -43,10 +44,4 @@ class Checkout extends React.Component {
   }
 }
 
-const mapState = state => {
-  return {
-    product: state.cart
-  }
-}
-
-export default connect(mapState)(Checkout)
+export default withRouter(Checkout)
