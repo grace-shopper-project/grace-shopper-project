@@ -12,4 +12,5 @@ const CartDetails = db.define('cartDetails', {
   }
 })
 
+
 module.exports = CartDetails
