@@ -23,6 +23,7 @@ export function fetchSingleProduct(id) {
       const responses = await Promise.all([
         axios.get(productPath),
         axios.get(`${productPath}/reviews`)
+
         // axios.post(`${productPath}/reviews`, review)
       ])
       const [singleProduct, reviews, orders] = responses.map(res => res.data)

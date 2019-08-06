@@ -19,22 +19,11 @@ export const deleteOrder = orderId => ({
   orderId
 })
 
-export const newOrder = (userId, order) => {
+export const newOrder = order => {
   return async dispatch => {
     try {
-      const orderPath = `/api/users/${userId}`
-      const responses = await Promise.all([
-        axios.post(`${orderPath}/orders`, {
-          order,
-          subtotal: order.items.reduce(
-            (acc, item) => item.quantity * item.price + acc,
-            0
-          )
-        })
-      ])
-      const [users, orders] = responses.map(res => res.data)
-      users.orders = users
-      dispatch(addOrder(orders))
+      const {data} = await axios.post(`api/orders`, order)
+      dispatch(addOrder(data))
     } catch (err) {
       console.log("There's an error with newOrder")
     }
