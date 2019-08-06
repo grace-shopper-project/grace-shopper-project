@@ -1,6 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {fetchCart} from '../store/cart'
+// import {fetchOrdersForUsers} from '../store/userOrders'
 // import {capitalize} from '../../server/utils/helpers'
 
 export class OrderConfirmation extends React.Component {
@@ -11,6 +12,7 @@ export class OrderConfirmation extends React.Component {
 
   componentDidMount() {
     this.props.fetchCart()
+    // this.props.fetchOrdersForUsers()
   }
 
   render() {
@@ -43,7 +45,10 @@ export class OrderConfirmation extends React.Component {
               marginRight: '1vw'
             }}
           >
-            <h5 style={{textAlign: 'center'}}>ORDER SUMMARY:</h5>
+            <h5 style={{textAlign: 'center'}}>
+              ORDER SUMMARY: Cart: {this.props.cart.id}
+              {/* Subtotal: {this.props.user.} */}
+            </h5>
           </div>
           <div
             style={{
@@ -63,13 +68,15 @@ export class OrderConfirmation extends React.Component {
 
 const mapState = state => {
   return {
-    cart: state.cart
+    cart: state.cart,
+    userOrders: state.userOrders
   }
 }
 
 const mapDispatch = dispatch => {
   return {
     fetchCart: cart => dispatch(fetchCart(cart))
+    // fetchOrdersForUsers: () => dispatch(fetchOrdersForUsers())
   }
 }
 
