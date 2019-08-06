@@ -2,6 +2,7 @@ import React from 'react'
 import {connect} from 'react-redux'
 import {fetchCart} from '../store/cart'
 import {Card} from 'react-bootstrap'
+import {capitalize} from '../../server/utils/helpers'
 
 export class MiniCart extends React.Component {
   // constructor() {
@@ -73,6 +74,7 @@ export class MiniCart extends React.Component {
               }}
             >
               {fakeCart.map(item => {
+                const properName = capitalize(item.name)
                 return (
                   <Card
                     key={item.id}
@@ -127,7 +129,7 @@ export class MiniCart extends React.Component {
                                 paddingBottom: '1vw'
                               }}
                             >
-                              Product: {item.productName}
+                              Product: {properName}
                             </h5>
                             <h5
                               style={{
