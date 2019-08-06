@@ -36,13 +36,14 @@ export class Cart extends React.Component {
             style={{
               width: '44vw',
               height: '72vw',
-              border: '1px solid black',
-              margin: '2vw'
+              border: '3px dashed #3C70C0',
+              margin: '2vw',
+              overflow: 'scroll'
             }}
           >
             <div>
-              <h3 style={{textAlign: 'left', margin: '2vw'}}>Cart ID: </h3>
-              <h3 style={{textAlign: 'left', margin: '2vw'}}>Subtotal: </h3>
+              <h4 style={{textAlign: 'left', margin: '2vw'}}>Cart ID: </h4>
+              <h4 style={{textAlign: 'left', margin: '2vw'}}>Subtotal: </h4>
             </div>
             <div className="deck">
               {!this.props.cart.products ? (
@@ -58,7 +59,6 @@ export class Cart extends React.Component {
                         marginBottom: '1vh',
                         border: 'solid black 1px',
                         borderRadius: '5px'
-                        // paddingBottom: '1vw'
                       }}
                     >
                       <Card.Body style={{fontSize: '1.25vw'}}>
@@ -94,7 +94,6 @@ export class Cart extends React.Component {
                                   fontFamily: 'Josefin Sans, sans-serif',
                                   fontSize: '1vw',
                                   padding: '0.5vw'
-                                  // margin: '1vw'
                                 }}
                                 onClick={() =>
                                   this.props.removeFromCart(item.id)
@@ -111,39 +110,37 @@ export class Cart extends React.Component {
                               textAlign: 'left',
                               width: '60%',
                               height: '10vw',
-                              // paddingTop: '1vw',
                               marginLeft: '3vw'
                             }}
                           >
                             <div>
-                              <h4>Product: {item.name}</h4>
-                              <h4>Price: ${item.price}</h4>
+                              <h5 style={{marginTop: '2.5vw'}}>
+                                Product: {item.name}
+                              </h5>
+                              <h5>Price: ${item.price}</h5>
                               <div>
-                                <h4>Quantity: {item.cartDetails.quantity}</h4>
+                                <h5>Quantity: {item.cartDetails.quantity}</h5>
                               </div>
                               <div
                                 style={{
                                   display: 'flex',
                                   flexDirection: 'row',
                                   textAlign: 'center',
-                                  alignItems: 'center',
-                                  paddingTop: '0.75vw'
+                                  alignItems: 'center'
                                 }}
                               >
-                                <h4
+                                <h5
                                   style={{
                                     marginBlockStart: '0vw',
                                     marginBlockEnd: '0vw'
                                   }}
                                 >
-                                  {' '}
-                                  Change Quantity:{' '}
-                                </h4>
+                                  Change Quantity:
+                                </h5>
                                 <div
                                   style={{
                                     width: '4vw',
                                     height: '2vw',
-                                    marginTop: '0.25vw',
                                     marginLeft: '1vw'
                                   }}
                                   className="dropdown"
@@ -175,7 +172,7 @@ export class Cart extends React.Component {
                 })
               )}
             </div>
-            {/* <CartDetail /> */}
+
             <div
               style={{
                 display: 'flex',
@@ -184,6 +181,7 @@ export class Cart extends React.Component {
               }}
             >
               <Link
+                className="purchase"
                 to="/cart/info"
                 type="submit"
                 style={{
@@ -193,8 +191,9 @@ export class Cart extends React.Component {
                   border: '2px solid black',
                   borderRadius: '15px',
                   textAlign: 'center',
-                  padding: '1vw',
+                  padding: '0.75vw',
                   marginTop: '1vw',
+                  marginBottom: '1vw',
                   backgroundColor: '#3C70C0'
                 }}
               >

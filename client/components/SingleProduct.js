@@ -74,14 +74,14 @@ export class SingleProduct extends React.Component {
               >
                 <div className="singleProductImg">
                   <Card.Img
-                    style={{width: '27vw', margin: '2vw'}}
+                    style={{width: '25vw', margin: '1vw'}}
                     variant="left"
                     src={singleProduct.imageUrl}
                   />
                 </div>
                 <div
                   className="singleProductInfo"
-                  style={{width: '27vw', margin: '2vw'}}
+                  style={{width: '27vw', margin: '1vw'}}
                 >
                   <Card.Title style={{fontSize: '2vw', margin: '2vw'}}>
                     {singleProduct.name}
@@ -114,7 +114,7 @@ export class SingleProduct extends React.Component {
                           fontSize: '1.25vw'
                         }}
                       >
-                        <p>Quantity:</p>
+                        Quantity:
                       </div>
                       <div
                         style={{marginTop: '0.25vw'}}
@@ -124,7 +124,11 @@ export class SingleProduct extends React.Component {
                         <select name="quantity" onChange={this.handleChange}>
                           {quantity.map(function(num) {
                             return (
-                              <option value={num} key={num}>
+                              <option
+                                style={{verticalAlign: 'center'}}
+                                value={num}
+                                key={num}
+                              >
                                 {num}
                               </option>
                             )
@@ -132,11 +136,12 @@ export class SingleProduct extends React.Component {
                         </select>
                       </div>
                     </div>
-                    <div style={{justifyContent: 'space-around'}}>
+                    <div>
                       <button
                         className="cart"
                         type="button"
                         onClick={this.handleSubmit}
+                        style={{fontSize: '1.25vw', width: '10vw'}}
                       >
                         Add to cart!
                       </button>
@@ -147,49 +152,89 @@ export class SingleProduct extends React.Component {
             </Card.Body>
           </Card>
         </div>
-        <p>Product #:{singleProduct.id}</p>
-        {singleProduct.reviews ? (
-          <div>
-            <h5>Honest Reviews</h5>
+        <div
+          style={{
+            display: 'flex',
+            flexDirection: 'column',
+            marginTop: '2vw',
+            alignItems: 'center'
+          }}
+        >
+          {singleProduct.reviews ? (
             <div>
-              <Link
-                onClick={() => {
-                  history.push('/reviews')
+              <div
+                style={{
+                  display: 'flex',
+                  flexDirection: 'row',
+                  justifyContent: 'space-between'
                 }}
               >
-                All Reviews
-              </Link>
-            </div>
-            <div>
-              {reviews.map(review => (
-                <div key={review.id}>
-                  <StarRating defaultValue={review.rating} />
-                  <Link to={`/reviews/${review.id}`}>
-                    <small>{review.title}</small>
+                <div>Reviews for Product #{singleProduct.id}</div>
+                <div>
+                  <Link
+                    onClick={() => {
+                      history.push('/reviews')
+                    }}
+                  >
+                    See reviews for all of our products!
                   </Link>
-                  <small>{new Date(review.createdAt).toDateString()}</small>
-                  <p>{review.content}</p>
                 </div>
-              ))}
+              </div>
+              <div
+                style={{
+                  width: '45vw',
+                  overflow: 'scroll'
+                }}
+              >
+                {reviews.map(review => (
+                  <div
+                    style={{
+                      margin: '1vw',
+                      padding: '1vw',
+                      border: '1px solid black',
+                      borderRadius: '5px'
+                    }}
+                    key={review.id}
+                  >
+                    <div style={{display: 'flex', flexDirection: 'row'}}>
+                      <Link to={`/reviews/${review.id}`}>
+                        <h4>{review.title}</h4>
+                      </Link>
+                    </div>
+                    <h5>{review.content}</h5>
+                    <div
+                      style={{
+                        display: 'flex',
+                        flexDirection: 'row',
+                        justifyContent: 'space-between'
+                      }}
+                    >
+                      <StarRating defaultValue={review.rating} />
+                      <small>{new Date(review.createdAt).toDateString()}</small>
+                    </div>
+                  </div>
+                ))}
+              </div>
             </div>
-          </div>
-        ) : (
-          <div>Sorry no reviews yet! Be the first one to review!</div>
-        )}
-        {singleProduct.reviews ? (
-          <div>
-            <button
-              type="button"
-              onClick={() => {
-                history.push(`/reviews/new`)
-              }}
-            >
-              Add A Review
-            </button>
-          </div>
-        ) : (
-          <div />
-        )}
+          ) : (
+            <div>Sorry no reviews yet! Be the first one to review!</div>
+          )}
+          {singleProduct.reviews ? (
+            <div>
+              <button
+                style={{margin: '1vw'}}
+                type="button"
+                onClick={() => {
+                  history.push(`/reviews/new`)
+                }}
+              >
+                Add A Review
+              </button>
+            </div>
+          ) : (
+            <div />
+          )}
+        </div>
       </div>
     )
   }

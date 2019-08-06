@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import {fetchProducts} from '../store/products.js'
+import {fetchProducts, fetchFilteredProducts} from '../store/products.js'
+import {fetchCategories} from '../store/categories.js'
 import ProductCard from './ProductCard'
 import {Button} from 'react-bootstrap'
 
@@ -13,11 +14,17 @@ class AllProducts extends Component {
     }
     this.changeHandler = this.changeHandler.bind(this)
     this.clickHandler = this.clickHandler.bind(this)
+    this.handleChange = this.handleChange.bind(this)
   }
   changeHandler(event) {
     this.setState({
       searchTerm: event.target.value
     })
+  }
+
+  handleChange(evt) {
+    evt.preventDefault()
+    this.props.filteredProducts(evt.target.value, this.state.page)
   }
   clickHandler(event) {
     let current = this.state.page
@@ -31,9 +38,11 @@ class AllProducts extends Component {
   }
   componentDidMount() {
     this.props.fetchProducts()
+    this.props.fetchCategories()
   }
   render() {
-    const options = ['Filter by Category', 'option1', 'option2', 'option3']
+    const options = ['Filter by Category']
+
     return (
       <div>
         <div
@@ -57,8 +66,13 @@ class AllProducts extends Component {
               }}
               onChange={this.handleChange}
             >
-              {options.map(function(num) {
-                return <option key={options.indexOf(num)}>{num}</option>
+              <option default>filter by category:</option>
+              {this.props.categories.map((category, idx) => {
+                return (
+                  <option value={idx + 1} key={idx}>
+                    {category.name}
+                  </option>
+                )
               })}
             </select>
           </div>
@@ -109,13 +123,17 @@ class AllProducts extends Component {
 
 const mapState = state => {
   return {
-    products: state.products
+    products: state.products,
+    categories: state.categories
   }
 }
 
 const mapDispatch = dispatch => {
   return {
-    fetchProducts: page => dispatch(fetchProducts(page))
+    fetchProducts: page => dispatch(fetchProducts(page)),
+    fetchCategories: () => dispatch(fetchCategories()),
+    filteredProducts: (categoryId, page) =>
+      dispatch(fetchFilteredProducts(categoryId, page))
   }
 }
 
