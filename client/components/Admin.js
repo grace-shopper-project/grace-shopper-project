@@ -3,7 +3,8 @@ import UserManagement from './UserManagement'
 import ProductManagement from './ProductManagement'
 import {fetchUsersForAdmin} from '../store/usersForAdmin'
 import {connect} from 'react-redux'
-import Alert from 'react-bootstrap/Alert'
+// import Dropdown from 'react-bootstrap/Dropdown'
+import OrderManagement from './OrderManagement'
 
 class Admin extends React.Component {
   componentDidMount() {
@@ -13,13 +14,31 @@ class Admin extends React.Component {
   render() {
     return (
       <>
-        <div style={{alignContent: 'center'}}>
-          <h2>Welcome to the Administrative Dashboard</h2>
+        <div
+          style={{
+            display: 'block',
+            textAlign: 'center'
+          }}
+        >
+          <h2 style={{marginBlockEnd: '0'}}>
+            Welcome to the Administrative Dashboard
+          </h2>
           <h3>You manage users, products and orders from this dashboard.</h3>
         </div>
         <div style={{display: 'flex', flexDirection: 'row', margin: '1vw'}}>
-          <div style={{width: '27%', height: '90vh', overflow: 'scroll'}}>
-            <UserManagement usersForAdmin={this.props.usersForAdmin} />
+          <div style={{width: '27%', height: '90vh'}}>
+            <h3
+              style={{
+                marginTop: '1vh',
+                textAlign: 'center',
+                marginBlockEnd: '0'
+              }}
+            >
+              All Users
+            </h3>
+            <div style={{height: '85vh', overflow: 'scroll'}}>
+              <UserManagement usersForAdmin={this.props.usersForAdmin} />
+            </div>
           </div>
           <div
             style={{
@@ -30,11 +49,23 @@ class Admin extends React.Component {
               margin: '2vw'
             }}
           >
-            <div style={{height: '40vh', border: 'solid black 1px'}}>
-              Order Management
+            <div
+              style={{
+                height: '40vh',
+                marginTop: '0'
+              }}
+            >
+              <div>
+                <OrderManagement />
+              </div>
             </div>
-            <div style={{overflow: 'scroll', height: '40vh'}}>
-              <ProductManagement />
+            <div style={{height: '40vh'}}>
+              <h3 style={{textAlign: 'center', marginBlockEnd: '0'}}>
+                All Products
+              </h3>
+              <div style={{overflow: 'scroll', height: '35vh'}}>
+                <ProductManagement />
+              </div>
             </div>
           </div>
         </div>

@@ -1,5 +1,5 @@
 const adminRouter = require('express').Router()
-const {User} = require('../db/models')
+const {User, Order} = require('../db/models')
 const checkingIfAdmin = require('../utils/admin.middleware')
 const Sequelize = require('sequelize')
 //add in the checkingIfAdmin after checking the routes
@@ -96,6 +96,31 @@ adminRouter.put('/users/:userId/reset-password', async (req, res, next) => {
       needsPwReset: true
     })
     res.status(200).json(userToUpdate)
+  } catch (err) {
+    next(err)
+  }
+})
+
+//Orders
+//GET /api/admin/orders
+adminRouter.get('/orders', async (req, res, next) => {
+  try {
+    const allOrders = await Order.findAll()
+    res.json(allOrders)
+  } catch (err) {
+    next(err)
+  }
+})
+
+adminRouter.get('/orders/search', async (req, res, next) => {
+  try {
+    const status = req.query.status
+    const allOrders = await Order.findAll({
+      where: {
+        status: status
+      }
+    })
+    res.json(allOrders)
   } catch (err) {
     next(err)
   }

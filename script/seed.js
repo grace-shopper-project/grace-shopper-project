@@ -8,6 +8,7 @@ const Category = require('../server/db/models/category')
 const ProductCategory = require('../server/db/models/productCategory')
 const Cart = require('../server/db/models/cart')
 const OrderDetails = require('../server/db/models/orderDetails')
+const Order = require('../server/db/models/order')
 const CartDetails = require('../server/db/models/cartDetails')
 const faker = require('faker')
 
@@ -566,6 +567,20 @@ async function seed() {
   await CartDetails.create({cartId: 1, orderId: 2, productId: 3, quantity: 2})
   await CartDetails.create({cartId: 1, orderId: 2, productId: 2, quantity: 2})
   await CartDetails.create({cartId: 1, orderId: 2, productId: 4, quantity: 2})
+
+  let orderArray = []
+
+  for (let i = 0; i < 20; i++) {
+    orderArray.push(
+      Order.create({
+        status: 'processing',
+        address: faker.address.streetAddress(),
+        subtotal: faker.random.number()
+      })
+    )
+  }
+
+  await Promise.all(orderArray)
 
   console.log(`seeded ${users.length} users`)
   console.log(`seeded successfully`)
