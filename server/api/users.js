@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const {User} = require('../db/models')
+const {User, Review} = require('../db/models')
 module.exports = router
 
 router.use((req, res, next) => {
@@ -15,6 +15,28 @@ router.use((req, res, next) => {
   }
   next()
 })
+router.get('/:id', async (req, res, next) => {
+  try {
+    const id = Number(req.params.id)
+    const user = await User.findOne({where: {id}})
+    res.json(user)
+  } catch (err) {
+    next(err)
+  }
+})
+router.get('/:userId/reviews', async (req, res, next) => {
+  try {
+    const review = await Review.findAll({
+      where: {
+        userId: req.params.userId
+      },
+      include: [User]
+    })
+    res.json(review)
+  } catch (err) {
+    next(err)
+  }
+})
 
 router.get('/', async (req, res, next) => {
   try {
@@ -22,9 +44,24 @@ router.get('/', async (req, res, next) => {
       // explicitly select only the id and email fields - even though
       // users' passwords are encrypted, it won't help if we just
       // send everything to anyone who asks!
+
       attributes: ['id', 'email']
     })
     res.json(users)
+  } catch (err) {
+    next(err)
+  }
+})
+
+router.delete('/:reviewId', async (req, res, next) => {
+  try {
+    const review = await Review.findByPk(req.params.reviewId)
+    review.destroy({
+      where: {
+        id: req.params.userId
+      }
+    })
+    res.json(review)
   } catch (err) {
     next(err)
   }

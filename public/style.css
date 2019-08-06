@@ -20,6 +20,7 @@ label {
 }
 
 nav {
+  height: '2vw';
   background: #ebc57c;
 }
 
@@ -103,4 +104,8 @@ form div {
   height: 2.25vw;
   padding-top: 0.25vw;
   background-color: #f29f8f;
+}
+
+.checked {
+  color: orange;
 }
