@@ -34,7 +34,7 @@ export class MiniCart extends React.Component {
                 <h4 style={{textAlign: 'left', margin: '1vw'}}>Username: </h4>
                 <h4 style={{textAlign: 'left', margin: '1vw'}}>Account ID: </h4>
                 <h4 style={{textAlign: 'left', margin: '1vw'}}>Cart ID: </h4>
-                <h4 style={{textAlign: 'left', margin: '1vw'}}>
+                <h4 className='checkoutSubtotal' style={{textAlign: 'left', margin: '1vw'}}>
                   {`Subtotal: $${this.props.cart.products.reduce(
                     (accum, val) => {
                       accum += val.cartDetails.total
