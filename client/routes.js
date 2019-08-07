@@ -17,7 +17,8 @@ import {
   Cart,
   CartInfo,
   SingleOrderMgmt,
-  OrderConfirmation
+  OrderConfirmation,
+  WelcomePage
 } from './components'
 import {me} from './store'
 import SingleUserForAdmin from './components/SingleUserForAdmin'
@@ -73,6 +74,7 @@ class Routes extends Component {
             <Route path="/users/:id/reviews" component={SingleUserReview} />
             <Route path="/users/:id/orders" component={SingleUserOrder} />
             <Route path="/reviews/new" component={NewReview} />
+            <Route path="/home" component={WelcomePage} />
             <Route path="/admin" component={Admin} />
             {/* { isAdmin && (
                 <Switch>
