@@ -148,12 +148,13 @@ export class ShippingInfo extends React.Component {
               type="submit"
               style={{
                 fontSize: '1.25vw',
+                width: '15vw',
                 color: 'white',
                 height: '3vw',
                 border: '2px solid black',
                 borderRadius: '15px',
                 textAlign: 'center',
-                padding: '0.75vw',
+                padding: '0.5vw',
                 marginTop: '2vw',
                 backgroundColor: '#3C70C0'
               }}
@@ -169,12 +170,9 @@ export class ShippingInfo extends React.Component {
               justifyContent: 'center'
             }}
           >
-
-              <div>
-                <Checkout  />
-                <h1>HEY</h1>
-              </div>
-
+            <div style={{padding: '2vw'}}>
+              <Checkout />
+            </div>
           </div>
         </div>
       </div>

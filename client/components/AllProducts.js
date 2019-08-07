@@ -27,6 +27,7 @@ class AllProducts extends Component {
     evt.preventDefault()
     this.props.filteredProducts(evt.target.value, this.state.page)
   }
+
   clickHandler(event) {
     let current = this.state.page
     if (event.target.name === 'next') {
@@ -41,6 +42,7 @@ class AllProducts extends Component {
     this.props.fetchProducts()
     this.props.fetchCategories()
   }
+  
   render() {
     return (
       <div>
