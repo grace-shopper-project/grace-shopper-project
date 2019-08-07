@@ -13,6 +13,7 @@ const SingleUserOrder = props => {
   return (
     <>
       <h3 style={{textAlign: 'center'}}>Orders</h3>
+
       <CardDeck>
         {props.ordersForUser.map(order => {
           return (
