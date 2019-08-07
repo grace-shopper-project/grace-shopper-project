@@ -35,7 +35,7 @@ class SingleUserForAdmin extends React.Component {
               <p>Password Update Scheduled</p>
             ) : (
               <Button
-                style={{width: '10vw'}}
+                style={{width: '15vw'}}
                 onClick={() =>
                   this.props.fetchPasswordUpdateRQ(this.props.user.id)
                 }

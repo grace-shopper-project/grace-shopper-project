@@ -1,6 +1,5 @@
 import React from 'react'
 import Card from 'react-bootstrap/Card'
-import Button from 'react-bootstrap/Button'
 import {Link} from 'react-router-dom'
 import {
   fetchDeleteSingleUserForAdmin,
@@ -36,11 +35,6 @@ class UserManagement extends React.Component {
   render() {
     return (
       <div>
-        <h3
-          style={{marginTop: '1vh', textAlign: 'center', marginBlockEnd: '0'}}
-        >
-          All Users
-        </h3>
         <input
           type="text"
           value={this.state.userSearch}

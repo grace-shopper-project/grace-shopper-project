@@ -16,6 +16,7 @@ import {
   SingleUserOrder,
   Cart,
   CartInfo,
+  SingleOrderMgmt,
   OrderConfirmation
 } from './components'
 import {me} from './store'
@@ -47,6 +48,11 @@ class Routes extends Component {
         <Route path="/cart/info" component={CartInfo} />
         <Route path="/cart" component={Cart} />
         <Route path="/orderconfirmation" component={OrderConfirmation} />
+        <Route
+          exact
+          path="/admin/orders/:orderId"
+          component={SingleOrderMgmt}
+        />
         <Route
           exact
           path="/admin/users/:userId"
