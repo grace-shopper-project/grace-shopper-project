@@ -23,7 +23,11 @@ class OrderManagement extends React.Component {
         <div style={{display: 'flex', justifyContent: 'center'}}>
           <h3 style={{marginRight: '2vw'}}>All Orders</h3>
           <Dropdown style={{marginLeft: '2vw'}}>
-            <Dropdown.Toggle variant="success" id="dropdown-basic">
+            <Dropdown.Toggle
+              variant="success"
+              id="dropdown-basic"
+              style={{padding: '0.5vh'}}
+            >
               Filter by Status
             </Dropdown.Toggle>
 

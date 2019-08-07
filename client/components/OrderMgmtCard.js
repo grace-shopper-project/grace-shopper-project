@@ -1,7 +1,7 @@
 import React from 'react'
 import {fetchDeleteOrder} from '../store/orderManagement'
-import {fetchSingleOrder} from '../store/singleOrderMgmt'
 import {connect} from 'react-redux'
+import {Link} from 'react-router-dom'
 
 const OrderMgmtCard = props => {
   return (
@@ -12,6 +12,9 @@ const OrderMgmtCard = props => {
         <td>{props.order.address}</td>
         <td>{props.order.createdAt}</td>
         <td>
+          <Link to={`/admin/orders/${props.order.id}`}>
+            <button type="button">Edit</button>
+          </Link>
           <button
             type="button"
             onClick={() => props.deleteOrder(props.order.id)}
@@ -28,9 +31,6 @@ const mapDispatchToProps = dispatch => {
   return {
     deleteOrder: userId => {
       dispatch(fetchDeleteOrder(userId))
-    },
-    fetchSingleOrder: userId => {
-      dispatch(fetchSingleOrder(userId))
     }
   }
 }

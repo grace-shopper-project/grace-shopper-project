@@ -1,8 +1,34 @@
 import React from 'react'
 import {connect} from 'react-redux'
+import {fetchSingleOrder} from '../store/singleOrderMgmt'
 
-const SingleOrderMgmt = props => {
-  return <h3>Rendering from SingleOrderMgmt</h3>
+class SingleOrderMgmt extends React.Component {
+  async componentDidMount() {
+    const orderId = Number(this.props.match.params.orderId)
+    console.log('orderId: ', orderId)
+    await this.props.fetchSingleOrder(orderId)
+  }
+  render() {
+    return (
+      <>
+        <h3>{this.props.order.status}</h3>
+      </>
+    )
+  }
 }
 
-export default SingleOrderMgmt
+const mapStateToProps = state => {
+  return {
+    order: state.singleOrderForAdmin
+  }
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+    fetchSingleOrder: orderId => {
+      dispatch(fetchSingleOrder(orderId))
+    }
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(SingleOrderMgmt)

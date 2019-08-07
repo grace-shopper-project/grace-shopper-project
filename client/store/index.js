@@ -32,7 +32,7 @@ const reducer = combineReducers({
   order: orderReducer,
   categories: categoryReducer,
   allOrdersForAdmin: orderManagementReducer,
-  singOrderForAdmin: singleOrderManagementReducer,
+  singleOrderForAdmin: singleOrderManagementReducer,
   toast: toastReducer,
   reviewsForUser: userReviewsReducer,
   ordersForUser: userOrdersReducer

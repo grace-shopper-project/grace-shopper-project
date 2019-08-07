@@ -20,7 +20,15 @@ export default function singleOrderManagementReducer(state = {}, action) {
 
 export const fetchSingleOrder = orderId => {
   return async dispatch => {
-    const {data} = await axios.get(`/api/admin/orders/${orderId}`)
-    dispatch(getSingleOrder(data))
+    try {
+      const {data} = await axios.get(`/api/admin/orders/${orderId}`)
+      console.log(
+        'call from inside the thunk for singleUser; here is data: ',
+        data
+      )
+      dispatch(getSingleOrder(data))
+    } catch (err) {
+      console.log(err)
+    }
   }
 }

@@ -50,13 +50,13 @@ class Routes extends Component {
         <Route path="/orderconfirmation" component={OrderConfirmation} />
         <Route
           exact
-          path="/admin/users/:userId"
-          component={SingleUserForAdmin}
+          path="/admin/orders/:orderId"
+          component={SingleOrderMgmt}
         />
         <Route
           exact
-          path="/admin/orders/:orderId"
-          component={SingleOrderMgmt}
+          path="/admin/users/:userId"
+          component={SingleUserForAdmin}
         />
         <Route path="/admin" component={Admin} />
         {/* <Route component={GuestHome} /> */}
