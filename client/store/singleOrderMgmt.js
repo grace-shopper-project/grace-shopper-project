@@ -22,10 +22,6 @@ export const fetchSingleOrder = orderId => {
   return async dispatch => {
     try {
       const {data} = await axios.get(`/api/admin/orders/${orderId}`)
-      console.log(
-        'call from inside the thunk for singleUser; here is data: ',
-        data
-      )
       dispatch(getSingleOrder(data))
     } catch (err) {
       console.log(err)
