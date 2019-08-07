@@ -4,7 +4,7 @@ const {Order, Cart, User, Product, OrderDetails} = require('../db/models')
 orderRouter.get('/', async (req, res, next) => {
   try {
     const orders = await Order.findAll({
-      include: [User]
+      include: [User, Product]
     })
     if (orders) {
       res.json(orders)

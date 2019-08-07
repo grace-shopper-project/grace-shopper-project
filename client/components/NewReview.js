@@ -72,7 +72,12 @@ export class NewReview extends React.Component {
       <form id="new-review-form" onSubmit={this.handleSubmit}>
         <label htmlFor="new-review">
           {!this.state.productId ? (
-            <span className="warning">"Product Number is Required"</span>
+            <span
+              style={{backgroundColor: 'red', color: 'white'}}
+              className="warning"
+            >
+              "Product Number is Required"
+            </span>
           ) : (
             <div />
           )}
@@ -87,7 +92,12 @@ export class NewReview extends React.Component {
         />
         <label htmlFor="new-review">
           {!this.state.userId ? (
-            <span className="warning">"User Id is Required"</span>
+            <span
+              style={{backgroundColor: 'red', color: 'white'}}
+              className="warning"
+            >
+              "User Id is Required"
+            </span>
           ) : (
             <div />
           )}
@@ -102,7 +112,12 @@ export class NewReview extends React.Component {
         />
         <label htmlFor="new-review">
           {!this.state.rating ? (
-            <span className="warning">"Rating is Required"</span>
+            <span
+              style={{backgroundColor: 'red', color: 'white'}}
+              className="warning"
+            >
+              "Rating is Required"
+            </span>
           ) : (
             <div />
           )}
@@ -119,7 +134,12 @@ export class NewReview extends React.Component {
 
         <label htmlFor="new-review">
           {!this.state.title ? (
-            <span className="warning">"Title is Required"</span>
+            <span
+              style={{backgroundColor: 'red', color: 'white'}}
+              className="warning"
+            >
+              "Headline is Required"
+            </span>
           ) : (
             <div />
           )}
@@ -134,11 +154,16 @@ export class NewReview extends React.Component {
           onChange={this.handleChange}
         />
         <label htmlFor="new-review">
-          {/* {!this.state.content ? (
-            <span className="warning">"Content is Required"</span>
+          {!this.state.content ? (
+            <span
+              style={{backgroundColor: 'red', color: 'white'}}
+              className="warning"
+            >
+              "Review is Required"
+            </span>
           ) : (
             <div />
-          )} */}
+          )}
         </label>
         <h3>Write Your Review</h3>
         <input

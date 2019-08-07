@@ -510,6 +510,42 @@ async function seed() {
     subTotal: 5.0,
     userId: 1
   })
+  Order.create({
+    status: 'processing',
+    address: '50 w st.',
+    subTotal: 5.0,
+    userId: 2
+  })
+  Order.create({
+    status: 'completed',
+    address: '50 w st.',
+    subTotal: 5.0,
+    userId: 2
+  })
+  Order.create({
+    status: 'completed',
+    address: '50 w st.',
+    subTotal: 17.0,
+    userId: 2
+  })
+  Order.create({
+    status: 'completed',
+    address: '50 w st.',
+    subTotal: 9.0,
+    userId: 2
+  })
+  Order.create({
+    status: 'processing',
+    address: '19 w st.',
+    subTotal: 5.0,
+    userId: 3
+  })
+  Order.create({
+    status: 'processing',
+    address: '19 w st.',
+    subTotal: 5.0,
+    userId: 4
+  })
   for (let i = 0; i < 995; i++) {
     productArray.push(
       Product.create({

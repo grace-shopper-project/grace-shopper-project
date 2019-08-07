@@ -11,7 +11,7 @@ export const getOrders = ordersForUsers => {
 
 export const fetchOrdersForUsers = () => {
   return async dispatch => {
-    const {data} = await axios.get(`/api/users/orders`)
+    const {data} = await axios.get('/api/users/orders')
     dispatch(getOrders(data))
   }
 }

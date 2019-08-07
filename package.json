@@ -50,6 +50,7 @@
     "pg": "^7.9.0",
     "pg-hstore": "^2.3.2",
     "prop-types": "^15.7.2",
+    "rater-js": "^1.0.1",
     "react": "^16.8.6",
     "react-bootstrap": "^1.0.0-beta.10",
     "react-bootstrap-star-rating": "^3.5.5-alpha.0.3",

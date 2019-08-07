@@ -25,6 +25,7 @@ export class ShippingInfo extends React.Component {
     this.state = defaultState
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
+    // this.calculateSubtotal = this.calculateSubtotal.bind(this)
   }
 
   componentDidMount() {
@@ -56,16 +57,11 @@ export class ShippingInfo extends React.Component {
         document.querySelector('.checkoutSubtotal').innerText.split('$')[1]
       )
       const id = this.props.cart.id
-<<<<<<< HEAD
       const order = {address, subtotal, id}
+      console.log('ORDER', order)
       // const newOrder = await axios.post('/api/orders', {address, subtotal, id}) //update axios post route on backend
       this.props.newOrder(order) //make addNewStudent function and pass it down as props
       // this.setState({...defaultState, isClicked: true})
-=======
-      const newOrder = await axios.post('/api/orders', {address, subtotal, id}) //update axios post route on backend
-      this.props.addNewOrder(newOrder.data) //make addNewStudent function and pass it down as props
-      this.setState({defaultState})
->>>>>>> ceb2e847a90f1ce92a7e369e3b63d05a26b98c51
     } catch (error) {
       console.log(error)
     }
@@ -180,19 +176,10 @@ export class ShippingInfo extends React.Component {
               justifyContent: 'center'
             }}
           >
-<<<<<<< HEAD
             <div>
-              <Checkout info={this.state} />
+              <Checkout />
               <h1>HEY</h1>
             </div>
-=======
-
-              <div>
-                <Checkout  />
-                <h1>HEY</h1>
-              </div>
-
->>>>>>> ceb2e847a90f1ce92a7e369e3b63d05a26b98c51
           </div>
         </div>
       </div>

@@ -13,18 +13,22 @@ import SingleUserOrder from './SingleUserOrder'
  */
 class UserHome extends React.Component {
   componentDidMount() {
-    console.log('PRRRROOOOPS', this.props)
+    console.log('PRRRROOOOPS', this.state)
     this.props.fetchReviewsForUsers()
     this.props.fetchOrdersForUsers()
   }
   render() {
     return (
-      <div>
-        <SingleUserReview
-          reviewsForUser={this.props.reviewsForUser}
-          deleteReviews={this.props.deleteReviews}
-        />
-        <SingleUserOrder ordersForUser={this.props.ordersForUser} />
+      <div style={{display: 'flex', flexDirection: 'row', margin: '1vw'}}>
+        <div style={{width: '27%', height: '90vh', overflow: 'scroll'}}>
+          <SingleUserReview
+            reviewsForUser={this.props.reviewsForUser}
+            deleteReviews={this.props.deleteReviews}
+          />
+        </div>
+        <div style={{overflow: 'scroll', height: '40vh'}}>
+          <SingleUserOrder ordersForUser={this.props.ordersForUser} />
+        </div>
       </div>
     )
   }

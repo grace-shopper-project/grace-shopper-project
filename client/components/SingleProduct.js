@@ -1,6 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import StarRating from 'react-bootstrap-star-rating'
+import rater from 'rater-js'
 import {fetchSingleProduct} from '../store/singleProduct'
 import {fetchReview} from '../store/singleReview'
 import {sendToast} from '../store/toast'
@@ -47,6 +48,15 @@ export class SingleProduct extends React.Component {
     for (let i = 0; i < inventoryQuantity; i++) {
       quantity.push(Number(i + 1))
     }
+    // let myRating = raterJs({
+    //   element: document.querySelector('#rater'),
+
+    //   rateCallback: function rateCallback(rating, done) {
+    //     this.setRating(rating)
+
+    //     done()
+    //   }
+    // })
 
     return (
       <div>
@@ -152,6 +162,7 @@ export class SingleProduct extends React.Component {
           </Card>
         </div>
         <div
+          id="rater"
           style={{
             display: 'flex',
             flexDirection: 'column',

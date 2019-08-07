@@ -10,6 +10,7 @@ import Button from 'react-bootstrap/Button'
 import CardDeck from 'react-bootstrap/CardDeck'
 
 const SingleUserOrder = props => {
+  console.log('PROPS FOR ORDERS', props)
   return (
     <>
       <h1>Orders</h1>
@@ -18,9 +19,9 @@ const SingleUserOrder = props => {
           return (
             <Card style={{width: '20vw'}} key={order.id}>
               <Card.Body>
-                <Card.Title>{order.status}</Card.Title>
-                <Card.Text>{order.address}</Card.Text>
-                <Button variant="primary">See this User</Button>
+                <Card.Title>STATUS: {order.status}</Card.Title>
+                <Card.Text>SHIPPING:{order.address}</Card.Text>
+                <Card.Text>SUBTOTAL:{order.subtotal}</Card.Text>
               </Card.Body>
             </Card>
           )
