@@ -4,6 +4,7 @@ import {fetchCart, removeFromCartThunk, updateCartThunk} from '../store/cart'
 import {Card} from 'react-bootstrap'
 import {Link} from 'react-router-dom'
 import CartDropdown from './CartDropdown'
+import {capitalize} from '../../server/utils/helpers'
 
 export class Cart extends React.Component {
   constructor() {
@@ -67,6 +68,7 @@ export class Cart extends React.Component {
               </div>
               <div className="deck">
                 {this.props.cart.products.map(item => {
+                  const properName = capitalize(item.name)
                   return (
                     <Card
                       key={item.id}
@@ -125,15 +127,18 @@ export class Cart extends React.Component {
                             style={{
                               display: 'flex',
                               flexDirection: 'column',
+                              verticalAlign: 'center',
                               textAlign: 'left',
                               width: '60%',
                               height: '10vw',
                               marginLeft: '3vw'
                             }}
                           >
-                            <div>
-                              <h5 style={{marginTop: '2.5vw'}}>
-                                Product: {item.name}
+                            <div className="cartItem">
+                              <h5
+                                style={{marginTop: '1vw', fontSize: '1.25vw'}}
+                              >
+                                Product: {properName}
                               </h5>
                               <h5>Price: ${item.price}</h5>
                               <div>
@@ -147,7 +152,13 @@ export class Cart extends React.Component {
                                 className="cart"
                                 type="button"
                                 onClick={() => this.handleSubmit(item.id)}
-                                style={{fontSize: '0.75vw', width: '7vw'}}
+                                style={{
+                                  fontSize: '1vw',
+                                  width: '9vw',
+                                  marginTop: '0.25vw',
+                                  marginLeft: '6vw',
+                                  marginBottom: '0.25vw'
+                                }}
                               >
                                 Update Cart!
                               </button>
