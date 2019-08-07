@@ -33,7 +33,7 @@ export class CartInfo extends React.Component {
             }}
           >
             <div style={{display: 'flex', flexDirection: 'column'}}>
-              <h3 style={{marginBlockStart: '0vw'}}>
+              <h3 style={{marginBlockStart: '0vw', fontSize: '1.75vw'}}>
                 Please enter your shipping info below:
               </h3>
             </div>

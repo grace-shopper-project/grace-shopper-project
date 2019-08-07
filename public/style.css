@@ -158,3 +158,7 @@ a.purchase {
   top: 5px;
   z-index: 3000;
 }
+
+.cartItem h5 {
+  font-size: 1.25vw;
+}

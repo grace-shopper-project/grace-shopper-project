@@ -19,6 +19,7 @@ export class SingleProduct extends React.Component {
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
   }
+
   componentDidMount() {
     const id = Number(this.props.match.params.id)
     this.props.fetchSingleProduct(id)
