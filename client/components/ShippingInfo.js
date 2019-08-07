@@ -1,8 +1,11 @@
 import React from 'react'
 import {connect} from 'react-redux'
+import {withRouter} from 'react-router'
 import {fetchCart} from '../store/cart'
+import {newOrder} from '../store/orders'
 import axios from 'axios'
 import Checkout from './Checkout'
+// import {history} from 'history'
 
 const defaultState = {
   firstName: '',
@@ -22,6 +25,7 @@ export class ShippingInfo extends React.Component {
     this.state = defaultState
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
+    // this.calculateSubtotal = this.calculateSubtotal.bind(this)
   }
 
   componentDidMount() {
@@ -33,8 +37,9 @@ export class ShippingInfo extends React.Component {
     })
   }
 
-  async handleSubmit(event) {
+  handleSubmit(event) {
     console.log('In handle submit')
+    console.log(this.props)
     event.preventDefault()
     try {
       let streetAddress = ''
@@ -52,9 +57,11 @@ export class ShippingInfo extends React.Component {
         document.querySelector('.checkoutSubtotal').innerText.split('$')[1]
       )
       const id = this.props.cart.id
-      const newOrder = await axios.post('/api/orders', {address, subtotal, id}) //update axios post route on backend
-      this.props.addNewOrder(newOrder.data) //make addNewStudent function and pass it down as props
-      this.setState({defaultState})
+      const order = {address, subtotal, id}
+      console.log('ORDER', order)
+      // const newOrder = await axios.post('/api/orders', {address, subtotal, id}) //update axios post route on backend
+      this.props.newOrder(order) //make addNewStudent function and pass it down as props
+      // this.setState({...defaultState, isClicked: true})
     } catch (error) {
       console.log(error)
     }
@@ -188,8 +195,9 @@ const mapState = state => {
 
 const mapDispatch = dispatch => {
   return {
-    fetchCart: cart => dispatch(fetchCart(cart))
+    fetchCart: cart => dispatch(fetchCart(cart)),
+    newOrder: order => dispatch(newOrder(order))
   }
 }
 
-export default connect(mapState, mapDispatch)(ShippingInfo)
+export default withRouter(connect(mapState, mapDispatch)(ShippingInfo))

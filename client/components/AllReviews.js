@@ -41,19 +41,25 @@ export class AllReviews extends React.Component {
                     border: '1px solid black',
                     display: 'flex',
                     flexDirection: 'row',
-                    justifyContent: 'space-between'
+                    justifyContent: 'space-between',
+                    backgroundColor: '#3C70C0'
                   }}
                 >
-                  <div style={{margin: '1vw'}}>Item Name: </div>
-                  <div style={{margin: '1vw'}}>Rating: {review.rating}</div>
+                  {/* <div style={{margin: '1vw'}}>Item Name: </div> */}
+                  <div style={{margin: '1vw'}}>Rating: {review.rating}/5</div>
                 </Card.Header>
-                <Card.Body style={{border: '1px solid black'}}>
+                <Card.Body
+                  style={{
+                    border: '1px solid black',
+                    backgroundColor: '#E4B660'
+                  }}
+                >
                   <Card.Title>
                     <h3>{review.title}</h3>
                   </Card.Title>
                   <Card.Text>{review.content}</Card.Text>
                   {/* add link */}
-                  <button
+                  {/* <button
                     type="button"
                     style={{
                       display: 'flex',
@@ -61,11 +67,12 @@ export class AllReviews extends React.Component {
                       justifyContent: 'center',
                       margin: '1vw',
                       border: '1px solid black',
-                      borderRadius: '15px'
+                      borderRadius: '15px',
+                      color: '#FFD954'
                     }}
                   >
                     Go somewhere
-                  </button>
+                  </button> */}
                 </Card.Body>
                 <Card.Footer
                   className="text-muted"
@@ -73,12 +80,12 @@ export class AllReviews extends React.Component {
                     border: '1px solid black',
                     display: 'flex',
                     flexDirection: 'row',
-                    justifyContent: 'space-between'
+                    justifyContent: 'space-between',
+                    backgroundColor: '#3C70C0'
                   }}
                 >
-                  <div style={{width: '50%', margin: '1vw'}}>Written by:</div>
                   <div style={{width: '50%', margin: '1vw'}}>
-                    Date of Review: {new Date(review.createdAt).toDateString()}
+                    Date: {new Date(review.createdAt).toDateString()}
                   </div>
                 </Card.Footer>
               </Card>

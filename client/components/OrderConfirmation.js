@@ -1,6 +1,9 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {fetchCart} from '../store/cart'
+import {calculateSubtotal} from '../util'
+import {fetchOrdersForUsers} from '../store/userOrders'
+// import {fetchOrdersForUsers} from '../store/userOrders'
 // import {capitalize} from '../../server/utils/helpers'
 
 export class OrderConfirmation extends React.Component {
@@ -11,6 +14,8 @@ export class OrderConfirmation extends React.Component {
 
   componentDidMount() {
     this.props.fetchCart()
+    console.log(this.props.cart)
+    this.props.fetchOrdersForUsers()
   }
 
   render() {
@@ -19,7 +24,7 @@ export class OrderConfirmation extends React.Component {
         <div className="corb" style={{textAlign: 'center'}}>
           <h2>
             <img src="/party.png" style={{width: '10vw', height: '10vw'}} />{' '}
-            THANKS{' '}
+            THANKS
             <img src="/party.png" style={{width: '10vw', height: '10vw'}} />
           </h2>
           <h4>
@@ -43,17 +48,12 @@ export class OrderConfirmation extends React.Component {
               marginRight: '1vw'
             }}
           >
-            <h5 style={{textAlign: 'center'}}>ORDER SUMMARY:</h5>
-          </div>
-          <div
-            style={{
-              width: '45vw',
-              height: '45vh',
-              border: '1px solid black',
-              marginRight: '1vw'
-            }}
-          >
-            <h5 style={{textAlign: 'center'}}>SHIPPING INFO:</h5>
+            <h5 style={{textAlign: 'center'}}>
+              ORDER SUMMARY: Cart: {this.props.cart.id}
+            </h5>
+            <h5 style={{textAlign: 'center'}}>
+              Subtotal: {this.props.subtotal}
+            </h5>
           </div>
         </div>
       </div>
@@ -63,13 +63,15 @@ export class OrderConfirmation extends React.Component {
 
 const mapState = state => {
   return {
-    cart: state.cart
+    cart: state.cart,
+    subtotal: calculateSubtotal(state.cart)
   }
 }
 
 const mapDispatch = dispatch => {
   return {
-    fetchCart: cart => dispatch(fetchCart(cart))
+    fetchCart: cart => dispatch(fetchCart(cart)),
+    fetchOrdersForUsers: () => dispatch(fetchOrdersForUsers())
   }
 }
 

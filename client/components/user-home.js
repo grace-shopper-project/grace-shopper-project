@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
-import {fetchReviewsForUsers} from '../store/userReviews'
+import {fetchReviewsForUsers, deleteReviews} from '../store/userReviews'
 import {fetchOrdersForUsers} from '../store/userOrders'
 import {AllReviews} from './AllReviews'
 import {Route, Switch, Link} from 'react-router-dom'
@@ -13,15 +13,22 @@ import SingleUserOrder from './SingleUserOrder'
  */
 class UserHome extends React.Component {
   componentDidMount() {
-    console.log('PRRRROOOOPS', this.props)
+    console.log('PRRRROOOOPS', this.state)
     this.props.fetchReviewsForUsers()
     this.props.fetchOrdersForUsers()
   }
   render() {
     return (
-      <div>
-        <SingleUserReview reviewsForUser={this.props.reviewsForUser} />
-        <SingleUserOrder ordersForUser={this.props.ordersForUser} />
+      <div style={{display: 'flex', flexDirection: 'row', margin: '1vw'}}>
+        <div style={{width: '27%', height: '90vh', overflow: 'scroll'}}>
+          <SingleUserReview
+            reviewsForUser={this.props.reviewsForUser}
+            deleteReviews={this.props.deleteReviews}
+          />
+        </div>
+        <div style={{overflow: 'scroll', height: '40vh'}}>
+          <SingleUserOrder ordersForUser={this.props.ordersForUser} />
+        </div>
       </div>
     )
   }
@@ -29,7 +36,8 @@ class UserHome extends React.Component {
 const mapDispatch = dispatch => {
   return {
     fetchReviewsForUsers: () => dispatch(fetchReviewsForUsers()),
-    fetchOrdersForUsers: () => dispatch(fetchOrdersForUsers())
+    fetchOrdersForUsers: () => dispatch(fetchOrdersForUsers()),
+    deleteReviews: reviewId => dispatch(deleteReviews(reviewId))
   }
 }
 

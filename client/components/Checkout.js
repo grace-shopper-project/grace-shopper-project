@@ -18,12 +18,12 @@ class Checkout extends React.Component {
   }
   async handleToken(token, addresses) {
     const name = 'bread'
-    const price = 15;
+    const price = 15
     const product = {price, name}
     const response = await axios.post(PAYMENT_SERVER_URL, {token, product})
     const {status} = response.data
     if (status === 'success') {
-      this.props.history.push('/orderConfirmation')
+      this.props.history.push('/orderconfirmation')
       toast('Success! You cool person, check your email for details', {
         type: 'success'
       })

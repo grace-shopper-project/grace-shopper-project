@@ -43,7 +43,7 @@ router.get('/orders', async (req, res, next) => {
     console.log('USSSSSSEEEERRR', req.user.id)
     const order = await Order.findAll({
       where: {
-        id: req.user.id
+        userId: req.user.id
       },
       include: [User]
     })

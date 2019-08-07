@@ -22,7 +22,8 @@ export const deleteOrder = orderId => ({
 export const newOrder = order => {
   return async dispatch => {
     try {
-      const {data} = await axios.post(`api/orders`, order)
+      console.log('THIS IS IT')
+      const {data} = await axios.post('/api/orders', order)
       dispatch(addOrder(data))
     } catch (err) {
       console.log("There's an error with newOrder")
